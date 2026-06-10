@@ -143,6 +143,14 @@
   .info-banner { background: #1a2535; border: 1px solid #2563eb44; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #93c5fd; }
   .info-banner strong { color: #60a5fa; }
 
+  /* SUB-TABS */
+  .sub-tabs { display: flex; gap: 2px; background: var(--surface2); border-radius: 10px; padding: 4px; margin-bottom: 22px; flex-wrap: wrap; }
+  .sub-tab { padding: 8px 18px; border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.2s; border: none; background: none; white-space: nowrap; }
+  .sub-tab:hover { color: var(--text); }
+  .sub-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+  .sub-section { display: none; }
+  .sub-section.active { display: block; }
+
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -170,7 +178,7 @@
   <div class="tab" onclick="showTab('calculator', this)">🧮 Financing Calculator</div>
   <div class="tab" onclick="showTab('listings', this)">📋 Live Listings</div>
   <div class="tab" onclick="showTab('recommend', this)">🎯 Recommendations</div>
-  <div class="tab" onclick="showTab('macan', this)">🏎️ Porsche Macan</div>
+  <div class="tab" onclick="showTab('macan', this)">🏎️ Porsche</div>
 </div>
 
 <!-- ============================== MODELS TAB ============================== -->
@@ -794,9 +802,131 @@
   </div>
 </div>
 
-<!-- ============================== PORSCHE MACAN TAB ============================== -->
+<!-- ============================== PORSCHE TAB ============================== -->
 <div id="tab-macan" class="section" data-built="0">
   <span id="macan-built" data-built="0" style="display:none"></span>
+
+  <!-- SUB-TAB NAV -->
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showPorscheTab('overview',this)">📊 Overview</button>
+    <button class="sub-tab" onclick="showPorscheTab('macan',this)">🚙 Macan</button>
+    <button class="sub-tab" onclick="showPorscheTab('cayenne',this)">🏔️ Cayenne</button>
+    <button class="sub-tab" onclick="showPorscheTab('boxster',this)">🏎️ 718 Boxster</button>
+  </div>
+
+  <!-- ===== OVERVIEW SUB-TAB ===== -->
+  <div id="porsche-overview" class="sub-section active">
+    <h2 class="section-title">Porsche Lineup Under $70k <span style="color:#CC0000">— Ottawa Area</span></h2>
+    <p class="section-sub">3 distinct models found with realistic listings. AutoTrader research June 2026 · 400km radius of Ottawa.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:28px">
+      <div style="background:var(--surface);border:2px solid #CC0000;border-radius:14px;padding:22px;cursor:pointer" onclick="showPorscheTab('macan',document.querySelectorAll('#tab-macan .sub-tab')[1])">
+        <div style="font-size:28px;margin-bottom:8px">🚙</div>
+        <div style="font-size:17px;font-weight:800">Porsche Macan</div>
+        <div style="font-size:12px;color:var(--muted);margin:4px 0 12px">Compact SUV · 2021–2023 Gas</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Listings in budget</span><span style="font-weight:700;color:#4ade80">9 found</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Price range</span><span style="font-weight:700">$44,995–$69,900</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Power range</span><span style="font-weight:700">261–434hp</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Ottawa CPO?</span><span style="font-weight:700;color:#4ade80">Yes — Mark Motors</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Best for</span><span style="font-weight:700">Daily driver, 4 pax, winter</span></div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#CC0000;font-weight:700">→ Click to explore Macan listings</div>
+      </div>
+
+      <div style="background:var(--surface);border:2px solid #8B4513;border-radius:14px;padding:22px;cursor:pointer" onclick="showPorscheTab('cayenne',document.querySelectorAll('#tab-macan .sub-tab')[2])">
+        <div style="font-size:28px;margin-bottom:8px">🏔️</div>
+        <div style="font-size:17px;font-weight:800">Porsche Cayenne</div>
+        <div style="font-size:12px;color:var(--muted);margin:4px 0 12px">Mid-Size Luxury SUV · 2021–2024</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Listings in budget</span><span style="font-weight:700;color:#4ade80">4 found</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Price range</span><span style="font-weight:700">$56,900–$65,900</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Power</span><span style="font-weight:700">335hp V6 (base)</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Ottawa CPO?</span><span style="font-weight:700;color:#f59e0b">Limited — GTA mostly</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Best for</span><span style="font-weight:700">Families, 5 pax, space</span></div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#8B4513;font-weight:700">→ Click to explore Cayenne listings</div>
+      </div>
+
+      <div style="background:var(--surface);border:2px solid #1a3a5f;border-radius:14px;padding:22px;cursor:pointer" onclick="showPorscheTab('boxster',document.querySelectorAll('#tab-macan .sub-tab')[3])">
+        <div style="font-size:28px;margin-bottom:8px">🏎️</div>
+        <div style="font-size:17px;font-weight:800">Porsche 718 Boxster</div>
+        <div style="font-size:12px;color:var(--muted);margin:4px 0 12px">2-Seat Convertible Sports Car · 2018–2020</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Listings in budget</span><span style="font-weight:700;color:#4ade80">6 found</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Price range</span><span style="font-weight:700">$62,408–$69,900</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Power range</span><span style="font-weight:700">300–394hp</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Ottawa listing?</span><span style="font-weight:700;color:#4ade80">Yes — Orléans (16km!)</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted);font-size:12px">Best for</span><span style="font-weight:700">Weekend fun, driving thrills</span></div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#4472C4;font-weight:700">→ Click to explore Boxster listings</div>
+      </div>
+    </div>
+
+    <!-- MASTER COMPARISON TABLE -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">Head-to-Head: All Three Models</h3>
+    <div class="table-wrap" style="margin-bottom:28px">
+      <table>
+        <thead>
+          <tr><th>Category</th><th style="color:#CC0000">Macan</th><th style="color:#CD853F">Cayenne</th><th style="color:#4472C4">718 Boxster</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Body Style</strong></td><td>Compact SUV</td><td>Mid-Size SUV</td><td>2-Seat Convertible</td></tr>
+          <tr><td><strong>Seats</strong></td><td>5</td><td>5 (optional 7)</td><td>2 ⚠️</td></tr>
+          <tr><td><strong>Engine (base)</strong></td><td>2.0T 4-cyl 261hp</td><td>3.0T V6 335hp</td><td>2.0T 4-cyl 300hp</td></tr>
+          <tr><td><strong>Top engine (in budget)</strong></td><td style="color:#f59e0b">2.9T V6 375hp (S)</td><td style="color:#f59e0b">3.0T V6 335hp</td><td style="color:#f59e0b">4.0L flat-6 394hp (GTS)</td></tr>
+          <tr><td><strong>AWD</strong></td><td><span class="tick">Standard</span></td><td><span class="tick">Standard</span></td><td><span class="cross">RWD only</span></td></tr>
+          <tr><td><strong>Winter capable?</strong></td><td><span class="tick">Excellent</span></td><td><span class="tick">Excellent</span></td><td><span class="cross">Poor — RWD convertible</span></td></tr>
+          <tr><td><strong>Cargo / Practicality</strong></td><td>Good (488L)</td><td>Excellent (770L)</td><td><span class="cross">None — trunk only</span></td></tr>
+          <tr><td><strong>Cheapest listing found</strong></td><td style="color:#4ade80">$44,995</td><td style="color:#4ade80">$56,900</td><td style="color:#4ade80">$62,408</td></tr>
+          <tr><td><strong>Best value listing</strong></td><td>2022 Macan S CPO $66,900</td><td>2022 Cayenne $65,900 / 51k km</td><td>2020 Boxster $69,800 / 16k km</td></tr>
+          <tr><td><strong>Ottawa/Gatineau CPO?</strong></td><td><span class="tick">Yes — Mark Motors</span></td><td><span style="color:#f59e0b">Limited</span></td><td><span class="cross">No (private Orléans)</span></td></tr>
+          <tr><td><strong>Maintenance cost</strong></td><td style="color:#f59e0b">Medium-High</td><td style="color:#f87171">High</td><td style="color:#f87171">High</td></tr>
+          <tr><td><strong>Daily driver?</strong></td><td><span class="tick">Yes</span></td><td><span class="tick">Yes</span></td><td><span style="color:#f59e0b">Seasonal only</span></td></tr>
+          <tr><td><strong>Financing (72mo, 15% dn, std)</strong></td><td>$790–$1,230/mo</td><td>$1,000–$1,160/mo</td><td>$1,095–$1,230/mo</td></tr>
+          <tr><td><strong>Verdict</strong></td><td style="color:#4ade80">Most practical + Ottawa CPO</td><td style="color:#f59e0b">Best space, stretch budget</td><td style="color:#4472C4">Most thrilling, least practical</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WHO SHOULD BUY WHAT -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">Which Porsche is Right for You?</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+      <div style="background:var(--surface);border-left:4px solid #CC0000;border-radius:0 10px 10px 0;padding:16px">
+        <div style="font-size:12px;font-weight:700;color:#CC0000;margin-bottom:6px">Choose the MACAN if…</div>
+        <ul style="color:var(--muted);font-size:12px;line-height:1.9;padding-left:16px">
+          <li>You drive year-round in Ottawa winters</li>
+          <li>You want Ottawa-local CPO warranty</li>
+          <li>You carry passengers regularly</li>
+          <li>You want the Porsche badge under $55k</li>
+          <li>Daily driver comfort matters most</li>
+        </ul>
+      </div>
+      <div style="background:var(--surface);border-left:4px solid #CD853F;border-radius:0 10px 10px 0;padding:16px">
+        <div style="font-size:12px;font-weight:700;color:#CD853F;margin-bottom:6px">Choose the CAYENNE if…</div>
+        <ul style="color:var(--muted);font-size:12px;line-height:1.9;padding-left:16px">
+          <li>You have a family needing SUV space</li>
+          <li>You want more power (335hp standard)</li>
+          <li>You're OK driving to GTA to buy</li>
+          <li>You want the bigger Porsche presence</li>
+          <li>Budget is flexible up to $66k</li>
+        </ul>
+      </div>
+      <div style="background:var(--surface);border-left:4px solid #4472C4;border-radius:0 10px 10px 0;padding:16px">
+        <div style="font-size:12px;font-weight:700;color:#4472C4;margin-bottom:6px">Choose the 718 BOXSTER if…</div>
+        <ul style="color:var(--muted);font-size:12px;line-height:1.9;padding-left:16px">
+          <li>You want the most thrilling driving experience</li>
+          <li>You have another daily driver for winter</li>
+          <li>It's a weekend/summer car</li>
+          <li>You're a driving enthusiast first</li>
+          <li>2 seats is enough for your lifestyle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MACAN SUB-TAB ===== -->
+  <div id="porsche-macan" class="sub-section">
 
   <!-- HERO -->
   <div style="background:linear-gradient(135deg,#1a0808,#2a0d0d,#1a1d27);border:1px solid #660000;border-radius:14px;padding:24px 28px;margin-bottom:24px;display:flex;gap:28px;flex-wrap:wrap;align-items:center">
@@ -993,7 +1123,457 @@
       <div style="color:var(--muted);font-size:12px;line-height:1.6">If you can stretch ~$9k over budget (or negotiate), you get the last-ever naturally-spec'd Macan S with very low km, full CPO, and the new interior refresh. Est. $1,385/mo (72mo, 15% down, 5.99%).</div>
     </div>
   </div>
-</div>
+  </div><!-- /porsche-macan sub-section -->
+
+  <!-- ===== CAYENNE SUB-TAB ===== -->
+  <div id="porsche-cayenne" class="sub-section">
+    <h2 class="section-title">Porsche Cayenne <span style="color:#CD853F">Under $70k</span></h2>
+    <p class="section-sub">Mid-size luxury SUV with genuine Porsche performance. 4 listings found within ~400km of Ottawa · June 2026 · AutoTrader.ca</p>
+
+    <!-- TRIM GUIDE -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🔧 Trim Guide (3rd Gen 2018–2022)</h3>
+    <div class="table-wrap" style="margin-bottom:24px">
+      <table>
+        <thead><tr><th>Trim</th><th>Engine</th><th>Power</th><th>0–100 km/h</th><th>Key Features</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Cayenne (Base)</strong></td>
+            <td>3.0L Twin-Turbo V6</td>
+            <td style="color:#f59e0b">335 hp</td>
+            <td>5.9 sec</td>
+            <td>AWD, 8-spd PDK, Air suspension optional, 18" wheels</td>
+          </tr>
+          <tr>
+            <td><strong>Cayenne S</strong></td>
+            <td>2.9L Twin-Turbo V6</td>
+            <td style="color:#f59e0b">434 hp</td>
+            <td>4.8 sec</td>
+            <td>Sport Chrono, PASM sport suspension, 20" wheels std</td>
+          </tr>
+          <tr>
+            <td><strong>Cayenne GTS</strong></td>
+            <td>4.0L Twin-Turbo V8</td>
+            <td style="color:#f87171">453 hp</td>
+            <td>4.5 sec</td>
+            <td>Sport exhaust, lowered suspension, sport interior</td>
+          </tr>
+          <tr>
+            <td><strong>Cayenne Turbo</strong></td>
+            <td>4.0L Twin-Turbo V8</td>
+            <td style="color:#f87171">541 hp</td>
+            <td>4.1 sec</td>
+            <td>Too expensive to find under $70k in 2022+</td>
+          </tr>
+          <tr>
+            <td><strong>Cayenne Coupe</strong></td>
+            <td>Same as above</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Sloped roofline, sportier look, slightly less cargo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CAYENNE LISTINGS -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🔍 Live Listings — Cayenne Under $70k (Ottawa Region)</h3>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px">
+
+      <!-- Listing 1: Best Value -->
+      <div style="background:var(--surface);border:2px solid #CD853F;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#CD853F;color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">⭐ BEST VALUE</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2022 Cayenne Base</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Prem Plus · HUD · Panoramic · BOSE · 21"</div>
+        <div style="font-size:22px;font-weight:900;color:#CD853F;margin-bottom:10px">$65,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">51,496 km ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Vaughan (357km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Engine</div>
+            <div style="font-size:13px;font-weight:700">3.0T V6 335hp</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,160/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Newest year at lowest km in budget. Premium Plus trim with heads-up display, panoramic roof, BOSE audio. Lowest km/year ratio of all Cayenne listings. Best overall value here.</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#f59e0b">⚠️ 357km to dealer — plan GTA trip or negotiate delivery</div>
+      </div>
+
+      <!-- Listing 2 -->
+      <div style="background:var(--surface);border:1px solid #4a3520;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#333;color:#CD853F;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">LOW PRICE</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2021 Cayenne Coupe</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Prem Plus · BOSE · Panoramic · 22" Wheels</div>
+        <div style="font-size:22px;font-weight:900;color:#CD853F;margin-bottom:10px">$56,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#f59e0b">92,281 km</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Vaughan (357km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Engine</div>
+            <div style="font-size:13px;font-weight:700">3.0T V6 335hp</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,000/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Coupe variant with sporty roofline. Very well equipped. Higher km (92k) explains the low price — budget for upcoming maintenance. Negotiate down another $2–3k given km.</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#f87171">⚠️ 92k km on a 2021 — roughly 31k km/yr average use</div>
+      </div>
+
+      <!-- Listing 3 -->
+      <div style="background:var(--surface);border:1px solid #4a3520;border-radius:14px;padding:20px;position:relative">
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2021 Cayenne Base</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Prem Plus · Panoramic · BOSE · 21" Wheels</div>
+        <div style="font-size:22px;font-weight:900;color:#CD853F;margin-bottom:10px">$59,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">53,325 km ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Vaughan (357km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Engine</div>
+            <div style="font-size:13px;font-weight:700">3.0T V6 335hp</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,055/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Reasonable mileage for a 2021. Same dealer as the Coupe above — could negotiate a deal if visiting both. Good all-round package at a fair price.</div>
+      </div>
+
+      <!-- Listing 4: Caution -->
+      <div style="background:var(--surface);border:1px solid #4a1515;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#7f1d1d;color:#fca5a5;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">⚠️ HIGH KM</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2024 Cayenne Base</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Premium Plus</div>
+        <div style="font-size:22px;font-weight:900;color:#f87171;margin-bottom:10px">$61,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#f87171">140,867 km ⚠️</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">GTA area</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Engine</div>
+            <div style="font-size:13px;font-weight:700">3.0T V6 335hp</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,090/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">2024 model year is appealing, but 141k km in 1–2 years suggests fleet/rental/rideshare history. Likely beyond original Porsche warranty. Avoid unless price drops significantly and pre-purchase inspection is clean.</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#f87171">❌ Skip this one — 141k km on a 2024 is a red flag</div>
+      </div>
+
+    </div>
+
+    <!-- CAYENNE OWNERSHIP NOTES -->
+    <div style="background:var(--surface);border-radius:12px;padding:20px;margin-bottom:16px">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">🧾 Cayenne Ownership Notes for Ottawa</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#4ade80;margin-bottom:4px">✅ Winter Performance</div>
+          <div style="font-size:11px;color:var(--muted)">All-wheel drive standard. Air suspension (optional) handles snow roads well. Swap to winter tires — factor ~$2,000 for a second set on 20–22" wheels.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:4px">⚠️ Maintenance Costs</div>
+          <div style="font-size:11px;color:var(--muted)">Annual service ~$800–$1,500/yr. Brakes ~$1,500–$3,000 per axle. No local Porsche dealer in Ottawa — Mark Motors is 5km away for Macan/Cayenne service.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#60a5fa;margin-bottom:4px">💡 Buy Strategy</div>
+          <div style="font-size:11px;color:var(--muted)">All GTA listings. Budget $500–$1,000 for a pre-purchase inspection. Call ahead for CarFax, accident history. Best move: negotiate delivery or fly down, inspect, drive back.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#a78bfa;margin-bottom:4px">📊 vs. Macan</div>
+          <div style="font-size:11px;color:var(--muted)">Cayenne gives you more space, more power, and a more imposing presence — but listings are older/higher km for similar price. Macan wins on value in the Ottawa market.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /porsche-cayenne -->
+
+  <!-- ===== 718 BOXSTER SUB-TAB ===== -->
+  <div id="porsche-boxster" class="sub-section">
+    <h2 class="section-title">Porsche 718 Boxster <span style="color:#4472C4">Under $70k</span></h2>
+    <p class="section-sub">Mid-engined 2-seat roadster — the purest driving experience in the Porsche lineup. 6 listings found within ~400km of Ottawa · June 2026 · AutoTrader.ca</p>
+
+    <!-- WINTER WARNING BANNER -->
+    <div style="background:linear-gradient(135deg,#1a1a2e,#0d1117);border:2px solid #f59e0b;border-radius:12px;padding:18px;margin-bottom:22px;display:flex;gap:14px;align-items:flex-start">
+      <div style="font-size:28px">❄️</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#f59e0b;margin-bottom:4px">Ottawa Winter Reality Check</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7">The 718 Boxster is a <strong style="color:#fff">rear-wheel-drive convertible</strong> with a low, wide stance. It is <strong style="color:#f87171">not suitable as a primary vehicle in Ottawa</strong> where you'll see 4+ months of snow, ice, and road salt. If you buy a Boxster, plan to garage it October–April and have a second car (or assume Uber costs). That said — for 5 months of pure driving bliss, it's arguably the most rewarding car on this list.</div>
+      </div>
+    </div>
+
+    <!-- TRIM GUIDE -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🔧 718 Boxster Trim Guide (2017–2020)</h3>
+    <div class="table-wrap" style="margin-bottom:24px">
+      <table>
+        <thead><tr><th>Trim</th><th>Engine</th><th>Power</th><th>0–100 km/h</th><th>Transmission</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>718 Boxster (Base)</strong></td>
+            <td>2.0L Turbo flat-4</td>
+            <td style="color:#60a5fa">300 hp</td>
+            <td>5.1 sec (PDK)</td>
+            <td>6-spd manual or 7-spd PDK</td>
+            <td>Visceral sound; some miss flat-6 of older 981</td>
+          </tr>
+          <tr>
+            <td><strong>718 Boxster S</strong></td>
+            <td>2.5L Turbo flat-4</td>
+            <td style="color:#f59e0b">350 hp</td>
+            <td>4.5 sec (PDK)</td>
+            <td>6-spd manual or 7-spd PDK</td>
+            <td>Noticeably quicker; better throttle response</td>
+          </tr>
+          <tr>
+            <td><strong>718 Boxster GTS 4.0</strong></td>
+            <td>4.0L N/A flat-6</td>
+            <td style="color:#f87171">394 hp</td>
+            <td>4.0 sec (PDK)</td>
+            <td>6-spd manual or 7-spd PDK</td>
+            <td>✨ The holy grail — flat-6 sound, 2020 only</td>
+          </tr>
+          <tr>
+            <td><strong>718 Boxster T</strong></td>
+            <td>2.0L Turbo flat-4</td>
+            <td style="color:#60a5fa">300 hp</td>
+            <td>5.1 sec</td>
+            <td>Manual preferred trim</td>
+            <td>Lightweight, stripped-back, driver focused</td>
+          </tr>
+          <tr>
+            <td><strong>718 Boxster Spyder</strong></td>
+            <td>4.0L N/A flat-6</td>
+            <td style="color:#f87171">414 hp</td>
+            <td>3.9 sec</td>
+            <td>6-spd manual only</td>
+            <td>Over budget; manual canvas top; track spec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BOXSTER LISTINGS -->
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🔍 Live Listings — 718 Boxster Under $70k (Ottawa Region)</h3>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px">
+
+      <!-- STAR LISTING -->
+      <div style="background:var(--surface);border:2px solid #4472C4;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#4472C4;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">🌟 BEST PICK</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2020 718 Boxster</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Manual · Private Seller · Orléans</div>
+        <div style="font-size:22px;font-weight:900;color:#4472C4;margin-bottom:10px">$69,800</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">16,500 km ✓✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">Orléans — 16km ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Trans</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">Manual ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Seller</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">Private</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Exceptional find. A 2020 Boxster (last pre-GTS4.0 update) with only 16,500 km, manual transmission, private seller, and 16km from you. This car has barely been driven — likely babied/garage kept. Get a PPI immediately. Est. ~$1,225/mo (72mo, 15% dn).</div>
+        <div style="margin-top:10px;padding:8px;background:#1a2a3a;border-radius:8px;font-size:11px;color:#60a5fa;font-weight:700">🎯 Move fast — private + low km + Ottawa local = rare combination</div>
+      </div>
+
+      <!-- Listing 2 -->
+      <div style="background:var(--surface);border:1px solid #1a3050;border-radius:14px;padding:20px;position:relative">
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2019 718 Boxster</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Automatic (PDK) · Red interior · Toronto</div>
+        <div style="font-size:22px;font-weight:900;color:#4472C4;margin-bottom:10px">$62,988</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#f59e0b">59,241 km</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Toronto (341km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Trans</div>
+            <div style="font-size:13px;font-weight:700">PDK Auto</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,105/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Lowest price on the list. Red interior adds a sporty touch. PDK is fine for daily spirited driving — faster than manual in drag race. 59k km on a 2019 is reasonable (~9k/yr). Good budget option.</div>
+      </div>
+
+      <!-- Listing 3 -->
+      <div style="background:var(--surface);border:1px solid #1a3050;border-radius:14px;padding:20px;position:relative">
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2018 718 Boxster</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">No Accidents · Richmond Hill</div>
+        <div style="font-size:22px;font-weight:900;color:#4472C4;margin-bottom:10px">$64,995</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">43,500 km ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Richmond Hill (341km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Trans</div>
+            <div style="font-size:13px;font-weight:700">—</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,140/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Clean title, no accident history, low-ish km for a 2018 (7.5k/yr average). Solid middle option. Confirm manual vs PDK before visit. Dealer listed — more negotiating room.</div>
+      </div>
+
+      <!-- Listing 4 -->
+      <div style="background:var(--surface);border:1px solid #1a3050;border-radius:14px;padding:20px;position:relative">
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2018 718 Boxster</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Private Seller · Woodbridge</div>
+        <div style="font-size:22px;font-weight:900;color:#4472C4;margin-bottom:10px">$69,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#4ade80">29,000 km ✓</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Woodbridge (361km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Seller</div>
+            <div style="font-size:13px;font-weight:700">Private</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,228/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">A 2018 with only 29k km is excellent — 3.6k/yr, possibly another seasonal keeper. Private seller at $69,900 is firm-priced — confirm trim and options. Budget for PPI ($300) given no dealer warranty.</div>
+      </div>
+
+      <!-- Listing 5: High Km -->
+      <div style="background:var(--surface);border:1px solid #4a1515;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#7f1d1d;color:#fca5a5;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">HIGH KM</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2018 718 Boxster GTS</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">GTS Trim · Vaughan</div>
+        <div style="font-size:22px;font-weight:900;color:#f87171;margin-bottom:10px">$69,900</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#f87171">126,918 km ⚠️</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Vaughan (357km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Trim</div>
+            <div style="font-size:13px;font-weight:700;color:#f59e0b">GTS (365hp)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,228/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">GTS is the best 718 trim short of the 4.0 — but 127k km is steep. This was a 2018 GTS (2.5T, not flat-6). Only consider if price drops to ~$50k range. Demand full service history.</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#f87171">⚠️ Pass unless heavily discounted</div>
+      </div>
+
+      <!-- Listing 6: High Km -->
+      <div style="background:var(--surface);border:1px solid #4a1515;border-radius:14px;padding:20px;position:relative">
+        <div style="position:absolute;top:12px;right:12px;background:#7f1d1d;color:#fca5a5;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">HIGH KM</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:2px">2018 718 Boxster Base</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">Mississauga</div>
+        <div style="font-size:22px;font-weight:900;color:#f87171;margin-bottom:10px">$62,408</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Mileage</div>
+            <div style="font-size:13px;font-weight:700;color:#f87171">112,000 km ⚠️</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Location</div>
+            <div style="font-size:13px;font-weight:700">Mississauga (379km)</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Engine</div>
+            <div style="font-size:13px;font-weight:700">2.0T 300hp</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:6px;padding:6px 8px">
+            <div style="font-size:10px;color:var(--muted)">Monthly est.</div>
+            <div style="font-size:13px;font-weight:700">~$1,095/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Lowest price on the board but 112k km makes future reliability uncertain. Would need timing chain, clutch, and wear-item inspection. Only at this price point if everything checks out on PPI.</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#f87171">⚠️ Risky at this km without full service history</div>
+      </div>
+
+    </div>
+
+    <!-- BOXSTER OWNERSHIP NOTES -->
+    <div style="background:var(--surface);border-radius:12px;padding:20px">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">🧾 Boxster Ownership Notes for Ottawa</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#4ade80;margin-bottom:4px">✅ Summer/Fall Experience</div>
+          <div style="font-size:11px;color:var(--muted)">Ottawa has genuinely beautiful driving roads — Gatineau Park, Champlain Bridge, Highway 50. A Boxster here May–October is incredible. The soft-top folds in 9 seconds at speeds up to 50km/h.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f87171;margin-bottom:4px">❌ Winter Storage</div>
+          <div style="font-size:11px;color:var(--muted)">RWD + convertible = winter storage mandatory. Budget $150–$300/mo for indoor heated storage (Oct–Apr). Or: separate winter car (Civic, RAV4) + Boxster seasonally.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:4px">⚠️ IMS / Intermediate Shaft</div>
+          <div style="font-size:11px;color:var(--muted)">2017+ 718 uses a 4-cyl engine — IMS bearing issues of older 981 don't apply. Reliability is good. Main concern: coolant temp sensor, PCV, and convertible top hydraulics on high-km cars.</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#60a5fa;margin-bottom:4px">💡 Manual vs PDK</div>
+          <div style="font-size:11px;color:var(--muted)">Manual is rarer (and better for driving fun). PDK is faster in lap times. The 2020 Orléans listing is manual — that alone makes it special. Manual Porsches hold value better at resale.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /porsche-boxster -->
+
+</div><!-- /tab-macan outer -->
 
 <!-- ============================== RECOMMENDATIONS TAB ============================== -->
 <div id="tab-recommend" class="section">
@@ -1135,7 +1715,15 @@ function showTab(name, el) {
   el.classList.add('active');
   if (name === 'calculator') { buildMatrix(); calcUpdate(); }
   if (name === 'listings') buildListings();
-  if (name === 'macan') buildMacanTab();
+  if (name === 'macan') { buildMacanTab(); showPorscheTab('overview', document.querySelector('#tab-macan .sub-tab')); }
+}
+
+function showPorscheTab(name, btnEl) {
+  document.querySelectorAll('#tab-macan .sub-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#tab-macan .sub-tab').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById('porsche-' + name);
+  if (section) section.classList.add('active');
+  if (btnEl) btnEl.classList.add('active');
 }
 
 // ============================================================
