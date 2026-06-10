@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ottawa Luxury Car Buyer's Dashboard 2026</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3347;
+    --text: #e8eaf0;
+    --muted: #8891a8;
+    --accent: #4f7cff;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --porsche: #CC0000;
+    --mercedes: #AAAAAA;
+    --bmw: #0066B1;
+    --audi: #BB0A30;
+    --genesis: #007B7B;
+    --volvo: #003057;
+    --lexus: #8B7536;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, #0f1117 0%, #1a1d27 50%, #0d1520 100%); border-bottom: 1px solid var(--border); padding: 28px 32px 24px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--muted); margin-top: 4px; font-size: 13px; }
+  .header-meta { display: flex; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+  .meta-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; font-size: 12px; color: var(--muted); }
+  .meta-chip strong { color: var(--text); }
+
+  /* NAV TABS */
+  .tabs { display: flex; gap: 2px; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 32px; overflow-x: auto; }
+  .tab { padding: 14px 18px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  .main { max-width: 1300px; margin: 0 auto; padding: 28px 32px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* FILTERS */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
+  .filter-bar label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  select, .btn-filter { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; appearance: none; transition: border-color 0.2s; }
+  select:hover, .btn-filter:hover { border-color: var(--accent); }
+  .btn-filter { padding: 8px 16px; font-weight: 500; }
+  .btn-filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .filter-group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+  /* MODEL CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+  .model-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; cursor: pointer; position: relative; }
+  .model-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .model-card.hidden { display: none; }
+  .card-header { padding: 16px 18px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .card-title { font-size: 15px; font-weight: 700; }
+  .card-subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .card-badge { margin-left: auto; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .badge-suv { background: #1e3a5f; color: #60a5fa; }
+  .badge-sedan { background: #2d1f3d; color: #c084fc; }
+  .badge-value { background: #1a3a2a; color: #4ade80; }
+  .card-body { padding: 14px 18px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 12px; color: var(--muted); }
+  .stat-val { font-size: 13px; font-weight: 600; }
+  .stat-val.green { color: var(--green); }
+  .stat-val.red { color: var(--red); }
+  .stat-val.yellow { color: var(--yellow); }
+  .card-footer { padding: 12px 18px; background: var(--surface2); display: flex; justify-content: space-between; align-items: center; }
+  .price-range { font-size: 13px; font-weight: 700; }
+  .monthly-est { font-size: 11px; color: var(--muted); }
+  .star-row { display: flex; gap: 3px; }
+  .star { font-size: 13px; }
+
+  /* COMPARISON TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--surface2); padding: 12px 14px; text-align: left; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  td { padding: 12px 14px; border-top: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
+  tr:hover td { background: var(--surface2); }
+  .brand-pill { display: inline-flex; align-items: center; gap: 6px; }
+  .brand-bar { width: 4px; height: 16px; border-radius: 2px; }
+  .tick { color: var(--green); font-weight: 700; }
+  .cross { color: var(--red); }
+  .highlight { color: var(--yellow); font-weight: 600; }
+
+  /* FINANCING CALCULATOR */
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+  .calc-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+  .calc-panel h3 { font-size: 15px; font-weight: 700; margin-bottom: 18px; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+  .input-group select, .input-group input[type=range] { width: 100%; }
+  .input-group input[type=range] { accent-color: var(--accent); cursor: pointer; }
+  .range-val { text-align: right; font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+  .result-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-top: 8px; }
+  .result-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .result-row:last-child { border-bottom: none; }
+  .result-label { color: var(--muted); font-size: 13px; }
+  .result-val { font-size: 13px; font-weight: 700; }
+  .result-monthly { text-align: center; padding: 16px 0; }
+  .result-monthly .amount { font-size: 38px; font-weight: 800; color: var(--accent); }
+  .result-monthly .period { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .matrix-table th, .matrix-table td { font-size: 12px; padding: 9px 12px; }
+  .matrix-table .model-col { font-weight: 700; white-space: nowrap; }
+
+  /* LISTINGS */
+  .listing-row td { font-size: 13px; }
+  .listing-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .lb-cpo { background: #1a3a2a; color: #4ade80; }
+  .lb-private { background: #3a2a1a; color: #fb923c; }
+  .lb-dealer { background: #1a2a3a; color: #60a5fa; }
+  .price-tag { font-weight: 700; font-size: 14px; }
+  .price-good { color: var(--green); }
+  .price-fair { color: var(--yellow); }
+  .price-high { color: var(--red); }
+
+  /* RECOMMENDATIONS */
+  .rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .rec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .rec-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .rec-card .persona { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .rec-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .rec-card .pick { margin-top: 12px; font-size: 13px; font-weight: 700; }
+
+  /* MISC */
+  .section-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+  .count-badge { background: var(--surface2); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; font-size: 12px; color: var(--muted); margin-left: 10px; }
+  .no-results { text-align: center; padding: 60px; color: var(--muted); font-size: 15px; display: none; }
+  .info-banner { background: #1a2535; border: 1px solid #2563eb44; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #93c5fd; }
+  .info-banner strong { color: #60a5fa; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Ottawa Luxury Car <span>Buyer's Dashboard</span> 2026</h1>
+  <p>Personalized research · 11 models · Budget up to $70,000 CAD · Ottawa & surrounding area (4–5 hr radius)</p>
+  <div class="header-meta">
+    <div class="meta-chip">📍 <strong>Ottawa, ON</strong> — 4–5 hr radius</div>
+    <div class="meta-chip">💰 Budget: <strong>Up to $70,000 CAD</strong></div>
+    <div class="meta-chip">📅 <strong>2022–2024</strong> model years</div>
+    <div class="meta-chip">🏦 Financing: <strong>7.49% APR</strong> (Ontario avg, good credit)</div>
+    <div class="meta-chip">🏷️ HST: <strong>13%</strong> included in all calculations</div>
+    <div class="meta-chip">📊 <strong>11 models</strong> researched</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('models', this)">🚗 All Models</div>
+  <div class="tab" onclick="showTab('compare', this)">⚖️ Head-to-Head</div>
+  <div class="tab" onclick="showTab('calculator', this)">🧮 Financing Calculator</div>
+  <div class="tab" onclick="showTab('listings', this)">📋 Live Listings</div>
+  <div class="tab" onclick="showTab('recommend', this)">🎯 Recommendations</div>
+</div>
+
+<!-- ============================== MODELS TAB ============================== -->
+<div class="main">
+<div id="tab-models" class="section active">
+  <h2 class="section-title">All 11 Models <span class="count-badge" id="card-count">11 shown</span></h2>
+  <p class="section-sub">Click any card to jump to the financing calculator for that model</p>
+
+  <div class="filter-bar">
+    <label>TYPE:</label>
+    <div class="filter-group">
+      <button class="btn-filter active" onclick="filterType('all', this)">All</button>
+      <button class="btn-filter" onclick="filterType('compact-suv', this)">Compact SUV</button>
+      <button class="btn-filter" onclick="filterType('mid-suv', this)">Mid-Size SUV</button>
+      <button class="btn-filter" onclick="filterType('sedan', this)">Sedan</button>
+    </div>
+    <label style="margin-left:12px">BUDGET:</label>
+    <select onchange="filterBudget(this.value)">
+      <option value="all">Any price</option>
+      <option value="60">Under $60k</option>
+      <option value="65">Under $65k</option>
+      <option value="70">Under $70k</option>
+    </select>
+    <label style="margin-left:12px">BRAND:</label>
+    <select onchange="filterBrand(this.value)">
+      <option value="all">All brands</option>
+      <option value="mercedes">Mercedes-Benz</option>
+      <option value="audi">Audi</option>
+      <option value="bmw">BMW</option>
+      <option value="porsche">Porsche</option>
+      <option value="genesis">Genesis</option>
+      <option value="volvo">Volvo</option>
+      <option value="lexus">Lexus</option>
+    </select>
+    <label style="margin-left:12px">SORT:</label>
+    <select onchange="sortCards(this.value)">
+      <option value="default">Default</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
+      <option value="value">Best Value</option>
+    </select>
+  </div>
+
+  <div class="cards-grid" id="cards-grid">
+
+    <!-- GENESIS GV70 -->
+    <div class="model-card" data-type="compact-suv" data-brand="genesis" data-price="49" data-value="98" onclick="jumpCalc('genesis-gv70')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--genesis)"></div>
+        <div>
+          <div class="card-title">Genesis GV70</div>
+          <div class="card-subtitle">2023–2024 · Compact SUV</div>
+        </div>
+        <div class="card-badge badge-value">🏆 Best Value</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.5T 300hp or 3.5T 375hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">HTRAC AWD (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa CPO</span><span class="stat-val green">✓ Genesis Certified Available</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">HUD, Massaging Seats, Panoramic</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val green">★★★★★ J.D. Power #1</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2024 Adv. Plus $49,490 (31k km)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--genesis)">$46,000 – $58,000</div><div class="monthly-est">Est. $820–$1,020/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- VOLVO XC60 -->
+    <div class="model-card" data-type="compact-suv" data-brand="volvo" data-price="55" data-value="90" onclick="jumpCalc('volvo-xc60')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--volvo)"></div>
+        <div>
+          <div class="card-title">Volvo XC60</div>
+          <div class="card-subtitle">2023–2024 · Compact SUV</div>
+        </div>
+        <div class="card-badge badge-suv">🛡️ Safest</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 247hp / Recharge PHEV 455hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">AWD (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Safety</span><span class="stat-val green">IIHS Top Safety Pick+ (every year)</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">Google infotainment, Pilot Assist</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★★ Above Average</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2023 R-Design ~$51,000 (GTA)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:#4d85b8">$48,000 – $62,000</div><div class="monthly-est">Est. $850–$1,090/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- AUDI Q5 -->
+    <div class="model-card" data-type="compact-suv" data-brand="audi" data-price="59" data-value="87" onclick="jumpCalc('audi-q5')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--audi)"></div>
+        <div>
+          <div class="card-title">Audi Q5</div>
+          <div class="card-subtitle">2023–2024 · Compact SUV</div>
+        </div>
+        <div class="card-badge badge-suv">❄️ Best in Snow</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 261hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val green">Quattro (best AWD in class)</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa CPO</span><span class="stat-val green">✓ Audi West Ottawa — $58,888</span></div>
+        <div class="stat-row"><span class="stat-label">CPO Rate</span><span class="stat-val green">3.49% APR (vs 7.49% standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★★ Slightly above avg</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2022 Progressiv CPO $58,888 (49k km)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--audi)">$52,000 – $65,000</div><div class="monthly-est">Est. $920–$1,140/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- MERCEDES GLC 300 -->
+    <div class="model-card" data-type="compact-suv" data-brand="mercedes" data-price="58" data-value="82" onclick="jumpCalc('mercedes-glc')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--mercedes)"></div>
+        <div>
+          <div class="card-title">Mercedes GLC 300</div>
+          <div class="card-subtitle">2023–2024 · Compact SUV</div>
+        </div>
+        <div class="card-badge badge-suv">📱 Best Tech</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 258hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">4MATIC (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Infotainment</span><span class="stat-val green">MBUX 11.9" + 12.3" combo</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">MBUX Interior Assist, 64-color ambient</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val yellow">2023 4MATIC ~$57,500 (Toronto)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:#999">$52,000 – $65,000</div><div class="monthly-est">Est. $920–$1,140/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- LEXUS RX 350 -->
+    <div class="model-card" data-type="mid-suv" data-brand="lexus" data-price="60" data-value="85" onclick="jumpCalc('lexus-rx350')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--lexus)"></div>
+        <div>
+          <div class="card-title">Lexus RX 350</div>
+          <div class="card-subtitle">2023–2024 · Mid-Size SUV</div>
+        </div>
+        <div class="card-badge badge-suv">🔧 Most Reliable</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.4T 275hp (or Hybrid 246hp)</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">AWD (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Maintenance Cost</span><span class="stat-val green">~$900/yr — lowest in class</span></div>
+        <div class="stat-row"><span class="stat-label">Resale Value</span><span class="stat-val green">Best resale value of all 11</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val green">★★★★★ Consumer Reports #1</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val yellow">2023 Premium AWD ~$58,500 (GTA)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:#b8952d">$53,000 – $65,000</div><div class="monthly-est">Est. $935–$1,140/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- BMW X5 -->
+    <div class="model-card" data-type="mid-suv" data-brand="bmw" data-price="63" data-value="83" onclick="jumpCalc('bmw-x5')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--bmw)"></div>
+        <div>
+          <div class="card-title">BMW X5</div>
+          <div class="card-subtitle">2022–2024 · Mid-Size SUV</div>
+        </div>
+        <div class="card-badge badge-suv">🏁 Most Performance</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0L I6 TwinTurbo 335hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">xDrive (performance-biased)</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa CPO</span><span class="stat-val yellow">Limited — 2022 models $57–64k</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">iDrive 7/8, Panoramic, M Sport</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2022 M Sport $57,800 (Kitchener, 34k km)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--bmw)">$57,000 – $72,000</div><div class="monthly-est">Est. $1,010–$1,265/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- PORSCHE MACAN -->
+    <div class="model-card" data-type="compact-suv" data-brand="porsche" data-price="66" data-value="80" onclick="jumpCalc('porsche-macan')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--porsche)"></div>
+        <div>
+          <div class="card-title">Porsche Macan</div>
+          <div class="card-subtitle">2021–2023 · Compact SUV (last gas gen)</div>
+        </div>
+        <div class="card-badge badge-suv">🏎️ Prestige</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 261hp / 2.9T 375hp (S)</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">Porsche Traction Mgmt AWD</span></div>
+        <div class="stat-row"><span class="stat-label">⚠️ Important Note</span><span class="stat-val red">2024+ is full ELECTRIC only</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa CPO</span><span class="stat-val green">✓ Mark Motors — 2021 CPO $44,995</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★★ Above avg (higher maint.)</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2021 CPO $44,995 (Gatineau, 39k km)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--porsche)">$44,995 – $68,000</div><div class="monthly-est">Est. $800–$1,195/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- GENESIS GV80 -->
+    <div class="model-card" data-type="mid-suv" data-brand="genesis" data-price="62" data-value="88" onclick="jumpCalc('genesis-gv80')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--genesis)"></div>
+        <div>
+          <div class="card-title">Genesis GV80</div>
+          <div class="card-subtitle">2023–2024 · Mid-Size SUV</div>
+        </div>
+        <div class="card-badge badge-value">💎 Best Mid-Size Value</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.5T 300hp / 3.5T 375hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">HTRAC AWD (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Seating</span><span class="stat-val">5 standard, 7 optional</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">Quilted leather, 3D Terrain Map</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val green">★★★★★ J.D. Power top-rated</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val yellow">2023 Advanced ~$59,900 (Ottawa area)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--genesis)">$55,000 – $68,000</div><div class="monthly-est">Est. $970–$1,195/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- MERCEDES E-CLASS -->
+    <div class="model-card" data-type="sedan" data-brand="mercedes" data-price="65" data-value="78" onclick="jumpCalc('mercedes-eclass')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--mercedes)"></div>
+        <div>
+          <div class="card-title">Mercedes E-Class</div>
+          <div class="card-subtitle">2023–2024 · Luxury Sedan</div>
+        </div>
+        <div class="card-badge badge-sedan">🎭 Most Refined</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 255hp (W213) / 2.0T+ (W214)</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">4MATIC (optional on W213)</span></div>
+        <div class="stat-row"><span class="stat-label">⚠️ Generation Note</span><span class="stat-val yellow">W213=2023 old gen, W214=2024 new</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">MBUX Superscreen (W214), OLED dash</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val yellow">2023 E450 4MATIC ~$62,000 (GTA)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:#999">$58,000 – $72,000</div><div class="monthly-est">Est. $1,025–$1,265/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- BMW 530i -->
+    <div class="model-card" data-type="sedan" data-brand="bmw" data-price="58" data-value="80" onclick="jumpCalc('bmw-530i')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--bmw)"></div>
+        <div>
+          <div class="card-title">BMW 530i xDrive</div>
+          <div class="card-subtitle">2023–2024 · Luxury Sedan</div>
+        </div>
+        <div class="card-badge badge-sedan">🏎️ Driver's Sedan</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">2.0T 248hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">xDrive AWD (standard)</span></div>
+        <div class="stat-row"><span class="stat-label">Drive Feel</span><span class="stat-val green">Best driving dynamics in class</span></div>
+        <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">iDrive 8, Curved Display, Sport</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">2023 530i xDrive ~$55,000 (Ottawa)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--bmw)">$52,000 – $65,000</div><div class="monthly-est">Est. $920–$1,140/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <!-- AUDI Q7 -->
+    <div class="model-card" data-type="mid-suv" data-brand="audi" data-price="72" data-value="75" onclick="jumpCalc('audi-q7')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--audi)"></div>
+        <div>
+          <div class="card-title">Audi Q7</div>
+          <div class="card-subtitle">2023–2024 · 7-Seat Mid-Size SUV</div>
+        </div>
+        <div class="card-badge badge-suv">👨‍👩‍👧‍👦 Family First</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0T V6 335hp</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val green">Quattro (best AWD in class)</span></div>
+        <div class="stat-row"><span class="stat-label">Seating</span><span class="stat-val">7 passengers standard</span></div>
+        <div class="stat-row"><span class="stat-label">⚠️ Budget</span><span class="stat-val red">2023+ typically $68–78k — over budget</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (complex V6)</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val red">2022 Progressiv ~$68,000 (Toronto)</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--audi)">$65,000 – $80,000</div><div class="monthly-est">Est. $1,140–$1,405/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="no-results" id="no-results">No models match your current filters. Try adjusting your criteria.</div>
+</div>
+
+<!-- ============================== COMPARE TAB ============================== -->
+<div id="tab-compare" class="section">
+  <h2 class="section-title">Head-to-Head Comparison</h2>
+  <p class="section-sub">All 11 models side by side — key specs, budget fit, and standout traits</p>
+
+  <div class="info-banner">💡 <strong>Green = Best in class</strong> · <strong>Yellow = Good</strong> · <strong>Red = Caution or over budget</strong> for your criteria</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Type</th>
+          <th>Used Price Range</th>
+          <th>Budget Fit</th>
+          <th>Engine / Power</th>
+          <th>AWD System</th>
+          <th>Reliability</th>
+          <th>Maint. Cost</th>
+          <th>Ottawa Inventory</th>
+          <th>CPO Available</th>
+          <th>Best Trait</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--genesis)"></div><strong>Genesis GV70</strong></div></td>
+          <td>Compact SUV</td>
+          <td>$46k–$58k</td>
+          <td><span class="tick">✓ Strong</span></td>
+          <td>2.5T 300hp / 3.5T 375hp</td>
+          <td>HTRAC AWD</td>
+          <td><span class="tick">★★★★★</span></td>
+          <td><span class="tick">Low</span></td>
+          <td><span class="tick">Good</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Best value, massaging seats, HUD under $50k</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--lexus)"></div><strong>Lexus RX 350</strong></div></td>
+          <td>Mid-Size SUV</td>
+          <td>$53k–$65k</td>
+          <td><span class="tick">✓ Good</span></td>
+          <td>2.4T 275hp (or Hybrid)</td>
+          <td>AWD</td>
+          <td><span class="tick">★★★★★</span></td>
+          <td><span class="tick">~$900/yr</span></td>
+          <td><span style="color:var(--yellow)">Moderate</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Lowest TCO, best resale, bulletproof reliability</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--audi)"></div><strong>Audi Q5</strong></div></td>
+          <td>Compact SUV</td>
+          <td>$52k–$65k</td>
+          <td><span class="tick">✓ Strong</span></td>
+          <td>2.0T 261hp</td>
+          <td><span class="tick">Quattro (best)</span></td>
+          <td><span style="color:var(--yellow)">★★★★</span></td>
+          <td>Moderate</td>
+          <td><span class="tick">Ottawa CPO $58,888</span></td>
+          <td><span class="tick">Yes — 3.49% APR</span></td>
+          <td class="highlight">Best AWD in snow, CPO in Ottawa</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--volvo)"></div><strong>Volvo XC60</strong></div></td>
+          <td>Compact SUV</td>
+          <td>$48k–$62k</td>
+          <td><span class="tick">✓ Good</span></td>
+          <td>2.0T 247hp / PHEV 455hp</td>
+          <td>AWD</td>
+          <td><span style="color:var(--yellow)">★★★★</span></td>
+          <td>Moderate</td>
+          <td><span style="color:var(--yellow)">Limited</span></td>
+          <td><span style="color:var(--yellow)">Yes</span></td>
+          <td class="highlight">IIHS safest pick+ every year</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--mercedes)"></div><strong>Mercedes GLC 300</strong></div></td>
+          <td>Compact SUV</td>
+          <td>$52k–$65k</td>
+          <td><span class="tick">✓ Good</span></td>
+          <td>2.0T 258hp</td>
+          <td>4MATIC AWD</td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Higher</td>
+          <td><span style="color:var(--yellow)">GTA mostly</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Best infotainment (MBUX), premium interior</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--genesis)"></div><strong>Genesis GV80</strong></div></td>
+          <td>Mid-Size SUV</td>
+          <td>$55k–$68k</td>
+          <td><span class="tick">✓ Fits</span></td>
+          <td>2.5T 300hp / 3.5T 375hp</td>
+          <td>HTRAC AWD</td>
+          <td><span class="tick">★★★★★</span></td>
+          <td><span class="tick">Low</span></td>
+          <td><span style="color:var(--yellow)">Moderate</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">7 seats optional, quilted leather, best mid-size value</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--porsche)"></div><strong>Porsche Macan</strong></div></td>
+          <td>Compact SUV</td>
+          <td>$44,995–$68k</td>
+          <td><span style="color:var(--yellow)">⚠️ 2021–22 only</span></td>
+          <td>2.0T 261hp / 2.9T 375hp</td>
+          <td>Porsche AWD</td>
+          <td><span style="color:var(--yellow)">★★★★</span></td>
+          <td>Higher</td>
+          <td><span class="tick">Ottawa CPO $44,995 (2021)</span></td>
+          <td><span class="tick">Porsche Approved 24mo</span></td>
+          <td class="highlight">Prestige badge, best driving feel in class</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--bmw)"></div><strong>BMW 530i xDrive</strong></div></td>
+          <td>Sedan</td>
+          <td>$52k–$65k</td>
+          <td><span class="tick">✓ Good</span></td>
+          <td>2.0T 248hp</td>
+          <td>xDrive AWD</td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Higher</td>
+          <td><span style="color:var(--yellow)">Moderate</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Best driver's car, handling, sport sedan feel</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--mercedes)"></div><strong>Mercedes E-Class</strong></div></td>
+          <td>Sedan</td>
+          <td>$58k–$72k</td>
+          <td><span style="color:var(--yellow)">⚠️ Stretched</span></td>
+          <td>2.0T 255hp (W213/W214)</td>
+          <td>4MATIC AWD</td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Higher</td>
+          <td><span style="color:var(--yellow)">GTA mostly</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Most refined sedan, MBUX Superscreen (W214)</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--bmw)"></div><strong>BMW X5</strong></div></td>
+          <td>Mid-Size SUV</td>
+          <td>$57k–$72k</td>
+          <td><span style="color:var(--yellow)">⚠️ 2022 only</span></td>
+          <td>3.0L I6 TT 335hp</td>
+          <td>xDrive AWD</td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Highest</td>
+          <td><span class="tick">Kitchener $57,800</span></td>
+          <td><span class="tick">Yes</span></td>
+          <td class="highlight">Most powerful (335hp), best tow capacity (3,500kg)</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--audi)"></div><strong>Audi Q7</strong></div></td>
+          <td>Mid-Size 7-Seat SUV</td>
+          <td>$65k–$80k</td>
+          <td><span class="cross">✗ Over budget</span></td>
+          <td>3.0T V6 335hp</td>
+          <td><span class="tick">Quattro (best)</span></td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Highest</td>
+          <td>GTA/Toronto area</td>
+          <td><span style="color:var(--yellow)">Yes</span></td>
+          <td class="highlight">Only 7-seater in list with Quattro AWD</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================== CALCULATOR TAB ============================== -->
+<div id="tab-calculator" class="section">
+  <h2 class="section-title">Financing Calculator</h2>
+  <p class="section-sub">Ontario HST (13%) included · Standard rate 7.49% APR · Audi/Genesis CPO rates shown where available</p>
+
+  <div class="calc-grid">
+    <div class="calc-panel">
+      <h3>🧮 Payment Estimator</h3>
+      <div class="input-group">
+        <label>Select Model</label>
+        <select id="calc-model" onchange="calcUpdate()">
+          <option value="49490" data-label="Genesis GV70 Advanced Plus (2024, 31k km)" data-cpo="4.99">Genesis GV70 Advanced Plus — $49,490</option>
+          <option value="51000" data-label="Volvo XC60 R-Design (2023, ~40k km)" data-cpo="5.49">Volvo XC60 R-Design — $51,000</option>
+          <option value="55000" data-label="BMW 530i xDrive (2023, ~35k km)" data-cpo="">BMW 530i xDrive — $55,000</option>
+          <option value="57800" data-label="BMW X5 M Sport (2022, 34k km, Kitchener)" data-cpo="">BMW X5 M Sport — $57,800</option>
+          <option value="57500" data-label="Mercedes GLC 300 4MATIC (2023, ~38k km)" data-cpo="">Mercedes GLC 300 4MATIC — $57,500</option>
+          <option value="58500" data-label="Lexus RX 350 Premium AWD (2023, ~30k km)" data-cpo="5.49">Lexus RX 350 Premium AWD — $58,500</option>
+          <option value="58888" data-label="Audi Q5 Progressiv CPO (2022, 49k km, Ottawa)" data-cpo="3.49">Audi Q5 Progressiv CPO — $58,888</option>
+          <option value="59900" data-label="Genesis GV80 Advanced (2023, ~35k km)" data-cpo="4.99">Genesis GV80 Advanced — $59,900</option>
+          <option value="44995" data-label="Porsche Macan CPO (2021, 39k km, Gatineau)" data-cpo="5.99">Porsche Macan CPO (2021) — $44,995</option>
+          <option value="66900" data-label="Porsche Macan S CPO (2022, 31k km, Mark Motors)" data-cpo="5.99">Porsche Macan S CPO (2022) — $66,900</option>
+          <option value="62000" data-label="Mercedes E450 4MATIC (2023, ~40k km, GTA)" data-cpo="">Mercedes E-Class E450 — $62,000</option>
+          <option value="68000" data-label="Audi Q7 Progressiv (2022, ~45k km, Toronto)" data-cpo="3.49">Audi Q7 Progressiv — $68,000</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Down Payment: <span id="down-pct-label">15%</span></label>
+        <input type="range" id="down-pct" min="5" max="30" step="5" value="15" oninput="document.getElementById('down-pct-label').textContent=this.value+'%'; calcUpdate()">
+        <div class="range-val" id="down-amt">$—</div>
+      </div>
+      <div class="input-group">
+        <label>Loan Term</label>
+        <select id="calc-term" onchange="calcUpdate()">
+          <option value="60">60 months (5 years)</option>
+          <option value="72" selected>72 months (6 years)</option>
+          <option value="84">84 months (7 years)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Interest Rate</label>
+        <select id="calc-rate" onchange="calcUpdate()">
+          <option value="7.49">7.49% — Standard (good credit)</option>
+          <option value="6.49">6.49% — Excellent credit</option>
+          <option value="3.49" id="cpo-rate-option">3.49% — Audi CPO Promotional</option>
+          <option value="4.99">4.99% — Genesis CPO Rate</option>
+          <option value="5.49">5.49% — Volvo/Lexus CPO Rate</option>
+          <option value="5.99">5.99% — Porsche CPO Rate</option>
+        </select>
+      </div>
+
+      <div class="result-box" id="calc-result">
+        <div class="result-monthly">
+          <div class="amount" id="result-monthly">$—</div>
+          <div class="period">per month</div>
+        </div>
+        <div class="result-row"><span class="result-label">Vehicle Price</span><span class="result-val" id="r-price">—</span></div>
+        <div class="result-row"><span class="result-label">Ontario HST (13%)</span><span class="result-val" id="r-hst">—</span></div>
+        <div class="result-row"><span class="result-label">Price After Tax</span><span class="result-val" id="r-taxed">—</span></div>
+        <div class="result-row"><span class="result-label">Down Payment</span><span class="result-val" id="r-down">—</span></div>
+        <div class="result-row"><span class="result-label">Amount Financed</span><span class="result-val" id="r-financed">—</span></div>
+        <div class="result-row"><span class="result-label">Total Interest Paid</span><span class="result-val" id="r-interest" style="color:var(--yellow)">—</span></div>
+        <div class="result-row"><span class="result-label">Total Cost (all-in)</span><span class="result-val" id="r-total" style="color:var(--red)">—</span></div>
+      </div>
+    </div>
+
+    <div class="calc-panel">
+      <h3>📊 Payment Matrix — All Key Listings</h3>
+      <p style="color:var(--muted); font-size:12px; margin-bottom:14px">Monthly payments at 7.49% APR with 15% down (Ontario HST included)</p>
+      <div class="table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Price</th>
+              <th>60 mo</th>
+              <th>72 mo</th>
+              <th>84 mo</th>
+              <th>CPO Rate (72mo)</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== LISTINGS TAB ============================== -->
+<div id="tab-listings" class="section">
+  <h2 class="section-title">Live Listings Research</h2>
+  <p class="section-sub">Best available listings found on AutoTrader.ca, Kijiji Autos & dealer sites · Research date: June 2026</p>
+
+  <div class="info-banner">
+    🔍 <strong>Prices are from web research (June 2026)</strong> — always verify current pricing directly with the dealer. Prices do not include HST.
+  </div>
+
+  <div class="filter-bar" style="margin-bottom:16px">
+    <label>FILTER BY:</label>
+    <select onchange="filterListings(this.value)">
+      <option value="all">All models</option>
+      <option value="genesis">Genesis</option>
+      <option value="audi">Audi</option>
+      <option value="bmw">BMW</option>
+      <option value="porsche">Porsche</option>
+      <option value="mercedes">Mercedes-Benz</option>
+      <option value="volvo">Volvo</option>
+      <option value="lexus">Lexus</option>
+    </select>
+    <select onchange="filterListingsType(this.value)">
+      <option value="all">All types</option>
+      <option value="cpo">CPO Only</option>
+      <option value="dealer">Dealer</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Km</th>
+          <th>Trim</th>
+          <th>Price</th>
+          <th>Type</th>
+          <th>Location</th>
+          <th>Highlights</th>
+          <th>Value Rating</th>
+        </tr>
+      </thead>
+      <tbody id="listings-body">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================== RECOMMENDATIONS TAB ============================== -->
+<div id="tab-recommend" class="section">
+  <h2 class="section-title">Who Should Buy What?</h2>
+  <p class="section-sub">Personalized picks based on priorities — for your Ottawa area budget of up to $70k</p>
+
+  <div class="rec-grid" id="rec-grid">
+
+    <div class="rec-card" style="border-color: var(--genesis)">
+      <div class="persona">🏆 Best Overall Value</div>
+      <h4>Genesis GV70 Advanced Plus</h4>
+      <p>If you want the most car for money — massaging seats, HUD, panoramic roof, ventilated seats, 300hp AWD — and you don't need the German badge, nothing in this list comes close at $49,490. J.D. Power #1 reliability to boot.</p>
+      <div class="pick" style="color:var(--genesis)">→ 2024 GV70 Advanced Plus @ $49,490</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--audi)">
+      <div class="persona">❄️ Best for Ottawa Winters</div>
+      <h4>Audi Q5 with Quattro</h4>
+      <p>Quattro is universally recognized as the best AWD system for Canadian winters. The CPO listing at Audi West Ottawa ($58,888, 3.49% rate) means you get peace of mind warranty, lower rate, and the best snow car in this list.</p>
+      <div class="pick" style="color:var(--audi)">→ 2022 Q5 Progressiv CPO @ $58,888 (Ottawa)</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--lexus)">
+      <div class="persona">🔧 Lowest Total Cost of Ownership</div>
+      <h4>Lexus RX 350</h4>
+      <p>~$900/yr maintenance (vs $1,800–2,400 for BMW/Mercedes), best resale value, Consumer Reports #1 reliability. If you plan to keep the car 5–8 years, the RX pays for itself vs German alternatives.</p>
+      <div class="pick" style="color:var(--lexus)">→ 2023 RX 350 Premium AWD @ ~$58,500</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--porsche)">
+      <div class="persona">🏎️ If the Badge Matters</div>
+      <h4>Porsche Macan CPO</h4>
+      <p>The 2021 CPO at Gatineau ($44,995, Porsche Approved 24-month warranty) is the best-risk Porsche you can get under $60k near Ottawa. The 2022 Macan S ($66,900) gets you 375hp and more tech but stretches the budget.</p>
+      <div class="pick" style="color:var(--porsche)">→ 2021 Macan CPO @ $44,995 (Gatineau)</div>
+    </div>
+
+    <div class="rec-card" style="border-color: #4d85b8">
+      <div class="persona">🛡️ Safety First</div>
+      <h4>Volvo XC60</h4>
+      <p>IIHS Top Safety Pick+ every single year — no other car on this list matches it. If you have a family and safety is the #1 priority, the XC60 is the answer. The Recharge PHEV variant (455hp combined) is outstanding if you have a plug.</p>
+      <div class="pick" style="color:#4d85b8">→ 2023 XC60 R-Design @ ~$51,000</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--bmw)">
+      <div class="persona">🏁 Best Performance / Driver's Car</div>
+      <h4>BMW X5 or 530i xDrive</h4>
+      <p>BMW's 3.0L I6 in the X5 (335hp) is genuinely thrilling. If you want an SUV that handles like a sport car, the X5 M Sport at $57,800 (Kitchener, 34k km) is the pick. For a sedan, the 530i xDrive has the best driving dynamics in class.</p>
+      <div class="pick" style="color:var(--bmw)">→ 2022 X5 M Sport @ $57,800 (Kitchener)</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--genesis)">
+      <div class="persona">👨‍👩‍👧‍👦 Best for Families (Mid-Size)</div>
+      <h4>Genesis GV80</h4>
+      <p>7-seat option, quilted nappa leather, panoramic, heads-up display, and the Genesis 5-year 100k warranty — all for ~$59,900 used. Competes directly with the GLE and Q7 but at a significant price advantage.</p>
+      <div class="pick" style="color:var(--genesis)">→ 2023 GV80 Advanced @ ~$59,900</div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--mercedes)">
+      <div class="persona">🎭 Most Luxurious Interior</div>
+      <h4>Mercedes GLC 300 or E-Class</h4>
+      <p>If the interior ambiance matters most — ambient lighting, MBUX voice assistant, hyperscreen displays — Mercedes wins. The GLC is more practical; the E-Class more refined. Both stretch to or slightly above $70k for 2023+ examples.</p>
+      <div class="pick" style="color:#999">→ 2023 GLC 300 4MATIC @ ~$57,500</div>
+    </div>
+
+  </div>
+
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-top: 24px;">
+    <h3 style="margin-bottom: 12px; font-size: 15px;">⚡ My Top 3 Picks for Manik (Ottawa, $70k, Ottawa winters, luxury feel)</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
+      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--genesis)">
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥇 Top Pick</div>
+        <div style="font-weight:700; font-size:15px">Genesis GV70 Advanced Plus</div>
+        <div style="color:var(--genesis); font-size:13px; margin:4px 0">$49,490 · 2024 · 31k km</div>
+        <div style="color:var(--muted); font-size:12px">Best combo of features, reliability, and value. Leaves money for tires, insurance buffer. Nothing competes at this price.</div>
+      </div>
+      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--audi)">
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥈 Runner-Up</div>
+        <div style="font-weight:700; font-size:15px">Audi Q5 Progressiv CPO</div>
+        <div style="color:var(--audi); font-size:13px; margin:4px 0">$58,888 · 2022 · 49k km · Ottawa</div>
+        <div style="color:var(--muted); font-size:12px">Best in-class AWD for Ottawa winters. CPO at 3.49% saves ~$80/mo vs standard rate. Buy-it-now convenience at local dealer.</div>
+      </div>
+      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--porsche)">
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥉 Prestige Pick</div>
+        <div style="font-weight:700; font-size:15px">Porsche Macan CPO (2021)</div>
+        <div style="color:var(--porsche); font-size:13px; margin:4px 0">$44,995 · 2021 · 39k km · Gatineau</div>
+        <div style="color:var(--muted); font-size:12px">If the Porsche badge is important, the 2021 CPO in Gatineau is the best-value path. 24-month unlimited warranty protects you.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const listings = [
+  { brand:'genesis', model:'Genesis GV70 Advanced Plus', year:2024, km:'31,000', trim:'Advanced Plus', price:49490, type:'dealer', location:'Ottawa Area', highlights:'300hp, HUD, Massaging Seats, Panoramic, AWD', value:'great' },
+  { brand:'genesis', model:'Genesis GV70 Sport 3.5T', year:2023, km:'28,000', trim:'Sport 3.5T', price:57200, type:'dealer', location:'Ottawa Area', highlights:'375hp V6, Sport suspension, Launch Control', value:'good' },
+  { brand:'genesis', model:'Genesis GV80 Advanced', year:2023, km:'35,000', trim:'Advanced', price:59900, type:'dealer', location:'Ottawa/Gatineau', highlights:'300hp, Quilted Nappa, 3D Terrain Map, HUD', value:'good' },
+  { brand:'audi', model:'Audi Q5 Progressiv', year:2022, km:'49,000', trim:'Progressiv CPO', price:58888, type:'cpo', location:'Audi West Ottawa', highlights:'Quattro AWD, CPO to 2030, 3.49% rate available', value:'great' },
+  { brand:'audi', model:'Audi Q5 Komfort', year:2023, km:'38,000', trim:'Komfort', price:55500, type:'dealer', location:'GTA (2.5hr drive)', highlights:'Quattro, Virtual Cockpit, 261hp', value:'good' },
+  { brand:'audi', model:'Audi Q7 Progressiv', year:2022, km:'45,000', trim:'Progressiv', price:68000, type:'dealer', location:'Toronto', highlights:'7-seat, 335hp V6, Quattro — over $70k budget', value:'fair' },
+  { brand:'bmw', model:'BMW X5 M Sport', year:2022, km:'34,000', trim:'M Sport xDrive40i', price:57800, type:'dealer', location:'Kitchener (2hr drive)', highlights:'335hp I6, M Sport pkg, Panoramic, 21" wheels', value:'great' },
+  { brand:'bmw', model:'BMW X5 xDrive40i', year:2023, km:'29,000', trim:'xDrive40i', price:67500, type:'dealer', location:'GTA', highlights:'335hp, newer model year — at top of budget', value:'fair' },
+  { brand:'bmw', model:'BMW 530i xDrive', year:2023, km:'35,000', trim:'Sport Line xDrive', price:55000, type:'dealer', location:'Ottawa', highlights:'248hp, xDrive AWD, iDrive 8, Curved Display', value:'good' },
+  { brand:'porsche', model:'Porsche Macan', year:2021, km:'39,000', trim:'Base CPO', price:44995, type:'cpo', location:'Gatineau (Mark Motors)', highlights:'Porsche Approved 24-mo warranty, 261hp, AWD', value:'great' },
+  { brand:'porsche', model:'Porsche Macan S', year:2022, km:'31,000', trim:'Macan S CPO', price:66900, type:'cpo', location:'Mark Motors Ottawa', highlights:'375hp twin-turbo, BOSE, PASM, sport chrono', value:'good' },
+  { brand:'mercedes', model:'Mercedes GLC 300', year:2023, km:'38,000', trim:'4MATIC AMG Line', price:57500, type:'dealer', location:'Toronto (4hr)', highlights:'258hp, MBUX 11.9", 64-color ambient, 4MATIC', value:'good' },
+  { brand:'mercedes', model:'Mercedes E-Class E450', year:2023, km:'40,000', trim:'4MATIC AMG Line', price:62000, type:'dealer', location:'GTA', highlights:'362hp V6, 4MATIC, MBUX, old gen W213', value:'fair' },
+  { brand:'volvo', model:'Volvo XC60 R-Design', year:2023, km:'40,000', trim:'R-Design AWD', price:51000, type:'dealer', location:'GTA (4hr)', highlights:'247hp, Pilot Assist, IIHS Top Safety Pick+', value:'good' },
+  { brand:'volvo', model:'Volvo XC60 Recharge', year:2023, km:'28,000', trim:'Recharge T8 PHEV', price:59500, type:'dealer', location:'GTA', highlights:'455hp combined PHEV, 40km EV range, AWD', value:'good' },
+  { brand:'lexus', model:'Lexus RX 350 Premium', year:2023, km:'30,000', trim:'Premium AWD', price:58500, type:'dealer', location:'GTA (4hr)', highlights:'275hp, AWD, lowest maint cost, best resale', value:'good' },
+  { brand:'lexus', model:'Lexus RX 350h Hybrid', year:2023, km:'25,000', trim:'Premium+ Hybrid AWD', price:62000, type:'dealer', location:'Ottawa area', highlights:'246hp hybrid, 28mpg combined, premium audio', value:'good' },
+];
+
+const matrixData = [
+  { label:'Genesis GV70 (2024)', price:49490, cpo:4.99, cpoLabel:'4.99%' },
+  { label:'Porsche Macan CPO (2021)', price:44995, cpo:5.99, cpoLabel:'5.99%' },
+  { label:'Volvo XC60 R-Design (2023)', price:51000, cpo:5.49, cpoLabel:'5.49%' },
+  { label:'BMW 530i xDrive (2023)', price:55000, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 M Sport (2022)', price:57800, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 (2023)', price:57500, cpo:null, cpoLabel:'N/A' },
+  { label:'Lexus RX 350 (2023)', price:58500, cpo:5.49, cpoLabel:'5.49%' },
+  { label:'Audi Q5 CPO (2022)', price:58888, cpo:3.49, cpoLabel:'3.49% ★' },
+  { label:'Genesis GV80 (2023)', price:59900, cpo:4.99, cpoLabel:'4.99%' },
+  { label:'Mercedes E-Class (2023)', price:62000, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Macan S CPO (2022)', price:66900, cpo:5.99, cpoLabel:'5.99%' },
+  { label:'Audi Q7 (2022)', price:68000, cpo:3.49, cpoLabel:'3.49%' },
+];
+
+// ============================================================
+// TABS
+// ============================================================
+function showTab(name, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'calculator') { buildMatrix(); calcUpdate(); }
+  if (name === 'listings') buildListings();
+}
+
+// ============================================================
+// CARD FILTERS
+// ============================================================
+let activeType = 'all', activeBrand = 'all', activeBudget = 'all';
+
+function updateCards() {
+  const cards = document.querySelectorAll('.model-card');
+  let shown = 0;
+  cards.forEach(c => {
+    const type = c.dataset.type;
+    const brand = c.dataset.brand;
+    const price = parseInt(c.dataset.price);
+    let show = true;
+    if (activeType !== 'all' && type !== activeType) show = false;
+    if (activeBrand !== 'all' && brand !== activeBrand) show = false;
+    if (activeBudget !== 'all' && price > parseInt(activeBudget)) show = false;
+    c.classList.toggle('hidden', !show);
+    if (show) shown++;
+  });
+  document.getElementById('card-count').textContent = shown + ' shown';
+  document.getElementById('no-results').style.display = shown === 0 ? 'block' : 'none';
+}
+
+function filterType(val, btn) {
+  activeType = val;
+  document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateCards();
+}
+function filterBrand(val) { activeBrand = val; updateCards(); }
+function filterBudget(val) { activeBudget = val; updateCards(); }
+
+function sortCards(val) {
+  const grid = document.getElementById('cards-grid');
+  const cards = [...grid.querySelectorAll('.model-card')];
+  if (val === 'price-asc') cards.sort((a,b) => a.dataset.price - b.dataset.price);
+  else if (val === 'price-desc') cards.sort((a,b) => b.dataset.price - a.dataset.price);
+  else if (val === 'value') cards.sort((a,b) => b.dataset.value - a.dataset.value);
+  cards.forEach(c => grid.appendChild(c));
+}
+
+// ============================================================
+// FINANCING CALCULATOR
+// ============================================================
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-CA'); }
+
+function monthly(price, downPct, annualRate, months) {
+  const taxed = price * 1.13;
+  const down = price * (downPct / 100);
+  const financed = taxed - down;
+  const r = annualRate / 100 / 12;
+  if (r === 0) return financed / months;
+  return financed * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1);
+}
+
+function calcUpdate() {
+  const sel = document.getElementById('calc-model');
+  const price = parseFloat(sel.value);
+  const downPct = parseInt(document.getElementById('down-pct').value);
+  const term = parseInt(document.getElementById('calc-term').value);
+  const rate = parseFloat(document.getElementById('calc-rate').value);
+
+  const taxed = price * 1.13;
+  const down = price * (downPct / 100);
+  const financed = taxed - down;
+  const mo = monthly(price, downPct, rate, term);
+  const totalPaid = down + mo * term;
+  const totalInterest = totalPaid - taxed;
+
+  document.getElementById('down-amt').textContent = fmt(down);
+  document.getElementById('result-monthly').textContent = fmt(mo);
+  document.getElementById('r-price').textContent = fmt(price);
+  document.getElementById('r-hst').textContent = fmt(price * 0.13);
+  document.getElementById('r-taxed').textContent = fmt(taxed);
+  document.getElementById('r-down').textContent = fmt(down) + ' (' + downPct + '%)';
+  document.getElementById('r-financed').textContent = fmt(financed);
+  document.getElementById('r-interest').textContent = fmt(totalInterest);
+  document.getElementById('r-total').textContent = fmt(totalPaid);
+}
+
+function buildMatrix() {
+  const tbody = document.getElementById('matrix-body');
+  if (tbody.innerHTML !== '') return;
+  matrixData.forEach(row => {
+    const m60 = monthly(row.price, 15, 7.49, 60);
+    const m72 = monthly(row.price, 15, 7.49, 72);
+    const m84 = monthly(row.price, 15, 7.49, 84);
+    const mCpo = row.cpo ? monthly(row.price, 15, row.cpo, 72) : null;
+    const overBudget = row.price > 70000;
+    const highlight = overBudget ? ' style="opacity:0.6"' : '';
+    tbody.innerHTML += `<tr${highlight}>
+      <td class="model-col">${row.label}${overBudget ? ' <span style="color:var(--red);font-size:10px">over budget</span>' : ''}</td>
+      <td>${fmt(row.price)}</td>
+      <td>${fmt(m60)}/mo</td>
+      <td><strong>${fmt(m72)}/mo</strong></td>
+      <td>${fmt(m84)}/mo</td>
+      <td>${mCpo ? '<span style="color:var(--green);font-weight:700">' + fmt(mCpo) + '/mo</span> <span style="color:var(--muted);font-size:10px">' + row.cpoLabel + '</span>' : '<span style="color:var(--muted)">—</span>'}</td>
+    </tr>`;
+  });
+}
+
+function jumpCalc(modelKey) {
+  const tab = document.querySelector('.tab:nth-child(3)');
+  showTab('calculator', tab);
+  // Try to match model in select
+  const sel = document.getElementById('calc-model');
+  const keyMap = {
+    'genesis-gv70': '49490', 'volvo-xc60': '51000', 'bmw-530i': '55000',
+    'bmw-x5': '57800', 'mercedes-glc': '57500', 'lexus-rx350': '58500',
+    'audi-q5': '58888', 'genesis-gv80': '59900', 'porsche-macan': '44995',
+    'mercedes-eclass': '62000', 'audi-q7': '68000'
+  };
+  const target = keyMap[modelKey];
+  if (target) {
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === target) { sel.selectedIndex = i; break; }
+    }
+  }
+  buildMatrix(); calcUpdate();
+}
+
+// ============================================================
+// LISTINGS
+// ============================================================
+let listingsBrandFilter = 'all', listingsTypeFilter = 'all';
+
+function buildListings() {
+  renderListings();
+}
+
+function filterListings(val) { listingsBrandFilter = val; renderListings(); }
+function filterListingsType(val) { listingsTypeFilter = val; renderListings(); }
+
+function renderListings() {
+  const tbody = document.getElementById('listings-body');
+  tbody.innerHTML = '';
+  const filtered = listings.filter(l => {
+    if (listingsBrandFilter !== 'all' && l.brand !== listingsBrandFilter) return false;
+    if (listingsTypeFilter !== 'all' && l.type !== listingsTypeFilter) return false;
+    return true;
+  });
+  filtered.sort((a,b) => a.price - b.price);
+  filtered.forEach(l => {
+    const priceClass = l.value === 'great' ? 'price-good' : l.value === 'fair' ? 'price-high' : 'price-fair';
+    const typeBadge = l.type === 'cpo' ? '<span class="listing-badge lb-cpo">CPO</span>' : '<span class="listing-badge lb-dealer">Dealer</span>';
+    const valueIcon = l.value === 'great' ? '🟢 Great Deal' : l.value === 'good' ? '🟡 Good Price' : '🔴 Fair/Stretched';
+    const brandColors = {genesis:'var(--genesis)',audi:'var(--audi)',bmw:'var(--bmw)',porsche:'var(--porsche)',mercedes:'var(--mercedes)',volvo:'#4d85b8',lexus:'var(--lexus)'};
+    const dot = `<div style="display:inline-block;width:8px;height:8px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:6px"></div>`;
+    tbody.innerHTML += `<tr class="listing-row" data-brand="${l.brand}" data-type="${l.type}">
+      <td>${dot}<strong>${l.model}</strong></td>
+      <td>${l.year}</td>
+      <td>${l.km} km</td>
+      <td style="font-size:12px;color:var(--muted)">${l.trim}</td>
+      <td><span class="price-tag ${priceClass}">${fmt(l.price)}</span><br><span style="font-size:10px;color:var(--muted)">+HST</span></td>
+      <td>${typeBadge}</td>
+      <td style="font-size:12px">${l.location}</td>
+      <td style="font-size:12px;color:var(--muted)">${l.highlights}</td>
+      <td style="font-size:12px">${valueIcon}</td>
+    </tr>`;
+  });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = () => {
+  calcUpdate();
+};
+</script>
+</body>
+</html>
