@@ -201,7 +201,7 @@
       <option value="all">Any price</option>
       <option value="45">Under $45k</option>
       <option value="55">Under $55k</option>
-      <option value="60">Under $60k</option>
+      <option value="60">Under $70k</option>
     </select>
     <label style="margin-left:12px">BRAND:</label>
     <select onchange="filterBrand(this.value)">
@@ -319,7 +319,7 @@
     </div>
 
     <!-- MERCEDES E-CLASS -->
-    <div class="model-card" data-type="sedan" data-brand="mercedes" data-price="65" data-value="78" onclick="jumpCalc('mercedes-eclass')">
+    <div class="model-card" data-type="sedan" data-brand="mercedes" data-price="46" data-value="78" onclick="jumpCalc('mercedes-eclass')">
       <div class="card-header">
         <div class="brand-dot" style="background:var(--mercedes)"></div>
         <div>
@@ -445,7 +445,7 @@
 <!-- ============================== COMPARE TAB ============================== -->
 <div id="tab-compare" class="section">
   <h2 class="section-title">Head-to-Head Comparison</h2>
-  <p class="section-sub">All 9 models · Audi · BMW · Mercedes · Porsche · Budget $60k · 2023+ focus</p>
+  <p class="section-sub">Audi · BMW · Mercedes · Porsche · Budget $70k · 2023+ focus · June 2026 fresh research</p>
 
   <div class="info-banner">💡 <strong>Green = Best in class</strong> · <strong>Yellow = Good</strong> · <strong>Red = Caution or over budget</strong> for your criteria</div>
 
@@ -501,7 +501,7 @@
           <td><div class="brand-pill"><div class="brand-bar" style="background:var(--porsche)"></div><strong>Porsche Macan</strong></div></td>
           <td>Compact SUV</td>
           <td>$50,900–$59k</td>
-          <td><span class="tick">✓ 2023 base under $60k</span></td>
+          <td><span class="tick">✓ 2023 base under $70k</span></td>
           <td>2.0T 261hp (base gas)</td>
           <td>Porsche AWD</td>
           <td><span style="color:var(--yellow)">★★★★</span></td>
@@ -540,7 +540,7 @@
           <td><div class="brand-pill"><div class="brand-bar" style="background:var(--bmw)"></div><strong>BMW X5</strong></div></td>
           <td>Mid-Size SUV</td>
           <td>$50k–$60k</td>
-          <td><span style="color:var(--yellow)">⚠️ 2023 = high km (82k) under $60k</span></td>
+          <td><span style="color:var(--yellow)">⚠️ 2023 = high km (82k) under $70k</span></td>
           <td>3.0L I6 TT 335hp</td>
           <td>xDrive AWD</td>
           <td><span style="color:var(--yellow)">★★★</span></td>
@@ -604,41 +604,45 @@
       <div class="input-group">
         <label>Select Model</label>
         <select id="calc-model" onchange="calcUpdate()">
-          <optgroup label="🚗 Audi">
-          <option value="30998" data-label="Audi Q5 Komfort ★ Accident-Free (2023, 57k km, Ottawa)" data-cpo="">Audi Q5 Komfort ★ — $30,998 ← Lowest</option>
-          <option value="34995" data-label="Audi Q5 Technik High-Km (2023, 95k km, Ottawa)" data-cpo="">Audi Q5 Technik High-Km — $34,995</option>
-          <option value="38888" data-label="Audi Q5 Technik + S-Line (2023, 64k km, Audi Ottawa)" data-cpo="">Audi Q5 Technik + S-Line — $38,888</option>
-          <option value="42898" data-label="Audi Q5 Technik Top Trim (2023, 43k km, Audi West Ottawa)" data-cpo="">Audi Q5 Technik — $42,898 ★ Best Balance</option>
-          <option value="43888" data-label="Audi Q5 Technik + S-Line (2023, 57k km, Audi Ottawa)" data-cpo="">Audi Q5 Technik + S-Line — $43,888</option>
-          <option value="46995" data-label="Audi Q7 Technik V6 335hp (2022, 61k km, Ottawa)" data-cpo="">Audi Q7 Technik V6 335hp — $46,995 ★</option>
-          <option value="47995" data-label="Audi Q7 Technik V6 335hp (2022, 79k km, Ottawa)" data-cpo="">Audi Q7 Technik V6 — $47,995</option>
+          <optgroup label="🔵 Audi">
+          <option value="38888" data-label="Audi Q5 Technik + S-Line (2023, 64k km, Audi Ottawa)" data-cpo="">Audi Q5 Technik + S-Line — $38,888 ← Lowest</option>
+          <option value="42898" data-label="Audi Q5 Technik Low Km (2023, 43k km, Audi West Ottawa)" data-cpo="">Audi Q5 Technik ★ — $42,898 · Best Ottawa Value</option>
+          <option value="42995" data-label="Audi Q7 Komfort V6 (2023, 59k km, Mississauga)" data-cpo="">Audi Q7 Komfort V6 — $42,995</option>
+          <option value="46995" data-label="Audi Q7 Technik V6 335hp (2022, 61k km, Ottawa)" data-cpo="">Audi Q7 Technik V6 ★ — $46,995 · Ottawa Local</option>
+          <option value="59995" data-label="Audi Q8 Technik Flagship (2023, 62k km, Orleans ON)" data-cpo="">Audi Q8 Technik ★ Flagship — $59,995 · Orleans 10km!</option>
+          <option value="60995" data-label="Audi Q7 Technik Top Trim (2023, 40k km, Mississauga)" data-cpo="">Audi Q7 Technik 2023 — $60,995</option>
+          <option value="62800" data-label="Audi Q8 Technik Low Km (2023, 35k km, Toronto)" data-cpo="">Audi Q8 Technik — $62,800 · 35k km</option>
+          <option value="65995" data-label="Audi Q8 Progressiv 2024 Ottawa Local (37k km)" data-cpo="">Audi Q8 Progressiv 2024 — $65,995 · Ottawa Local</option>
           </optgroup>
-          <optgroup label="🚘 BMW">
-          <option value="44495" data-label="BMW 530e xDrive CPO M Sport PHEV (2023, 76k km, Woodbridge)" data-cpo="">BMW 530e CPO M Sport PHEV — $44,495 ← Lowest</option>
-          <option value="48169" data-label="BMW 530e xDrive CPO M Sport Pro PHEV (2023, 50k km, Montreal)" data-cpo="">BMW 530e CPO M Sport Pro PHEV — $48,169</option>
-          <option value="50900" data-label="BMW 530i xDrive M Sport ★ 17k km (2023, factory warranty Jul 2027)" data-cpo="">BMW 530i xDrive M Sport ★ 17k km — $50,900</option>
-          <option value="50990" data-label="BMW 540i xDrive M Sport No Accidents (2023, 84k km, Mississauga)" data-cpo="">BMW 540i xDrive M Sport No Acc — $50,990</option>
-          <option value="51988" data-label="BMW 540i xDrive M Sport Pro + Premium Enhanced (2023, 62k km, Brossard QC)" data-cpo="">BMW 540i M Sport Pro ★ Top Trim — $51,988</option>
+          <optgroup label="⚫ BMW">
+          <option value="44495" data-label="BMW 530e CPO M Sport PHEV (2023, 76k km, Woodbridge)" data-cpo="">BMW 530e CPO M Sport PHEV — $44,495</option>
+          <option value="50900" data-label="BMW 530i M Sport ★ 17k km (2023, warranty Jul 2027)" data-cpo="">BMW 530i M Sport ★ — $50,900 · 17k km</option>
+          <option value="51988" data-label="BMW 540i M Sport Pro Top Trim (2023, 62k km, Brossard QC)" data-cpo="">BMW 540i M Sport Pro ★ — $51,988 · Top Trim</option>
+          <option value="62898" data-label="BMW X5 M50i 523hp V8 (2022, 44k km, Vaughan)" data-cpo="">BMW X5 M50i ★★ — $62,898 · 523hp V8!</option>
+          <option value="64477" data-label="BMW X5 xDrive40i CPO (2024, 46k km, North York)" data-cpo="">BMW X5 xDrive40i CPO — $64,477</option>
+          <option value="65695" data-label="BMW X5 xDrive40i CPO (2024, 43k km, Thornhill)" data-cpo="">BMW X5 xDrive40i CPO — $65,695</option>
+          <option value="65949" data-label="BMW X5 CPO Closest Ottawa (2024, 32k km, Ste-Agathe QC)" data-cpo="">BMW X5 CPO ★ — $65,949 · Closest Ottawa</option>
           </optgroup>
-          <optgroup label="🚙 Mercedes-Benz">
-          <option value="37999" data-label="Mercedes GLC 300 4MATIC (2023, 87k km, Waterloo ON)" data-cpo="">Mercedes GLC 300 4MATIC — $37,999 ← Lowest</option>
-          <option value="38800" data-label="Mercedes GLC 300 4MATIC (2023, 81k km, Scarborough ON)" data-cpo="">Mercedes GLC 300 4MATIC — $38,800</option>
-          <option value="40395" data-label="Mercedes GLC 300 4MATIC Coupe (2023, 74k km, Joliette QC ~130km)" data-cpo="">Mercedes GLC 300 4MATIC Coupe — $40,395</option>
-          <option value="41995" data-label="Mercedes GLC 300 4MATIC ★ Ottawa Local 18km (2023, 90k km)" data-cpo="">Mercedes GLC 300 ★ Ottawa Local — $41,995</option>
-          <option value="48995" data-label="Mercedes GLC 300 4MATIC (2023, 18k km, Montreal QC)" data-cpo="">Mercedes GLC 300 — $48,995 ★ Low km</option>
-          <option value="49895" data-label="Mercedes GLC 300 4MATIC CPO (2023, 24k km, Greenfield Park QC)" data-cpo="">Mercedes GLC 300 CPO — $49,895</option>
+          <optgroup label="⭐ Mercedes-Benz">
+          <option value="36980" data-label="Mercedes GLC 300 4MATIC (2023, 81k km, Guelph ON)" data-cpo="">Mercedes GLC 300 — $36,980 ← Lowest</option>
+          <option value="38980" data-label="Mercedes GLC 300 4MATIC Best Km (2023, 58k km, North York)" data-cpo="">Mercedes GLC 300 — $38,980 · Best Km/Price</option>
+          <option value="39995" data-label="Mercedes GLC 300 4MATIC Ottawa Local (2023, 90k km)" data-cpo="">Mercedes GLC 300 ★ — $39,995 · Ottawa 18km!</option>
+          <option value="41500" data-label="Mercedes GLC 300 4MATIC CPO (2023, 77k km, Ste-Agathe QC)" data-cpo="">Mercedes GLC 300 CPO — $41,500 · ~90km</option>
+          <option value="49140" data-label="Mercedes E 350 4MATIC Ultra-Low Km (2022, 15k km, Ontario)" data-cpo="">Mercedes E 350 — $49,140 · Only 15k km!</option>
+          <option value="49895" data-label="Mercedes GLC 300 CPO Low Km (2023, 24k km, Greenfield Park QC)" data-cpo="">Mercedes GLC 300 CPO — $49,895 · 24k km</option>
+          <option value="57992" data-label="Mercedes E 450 4MATIC Near-New (2023, 18k km, Laval QC)" data-cpo="">Mercedes E 450 ★★ — $57,992 · 362hp 18k km!</option>
           </optgroup>
           <optgroup label="🏎️ Porsche">
-          <option value="53898" data-label="Porsche Macan 2023 BOSE/Pano/No Acc (61k km, Vaughan)" data-cpo="">Porsche Macan 2023 BOSE/Pano — $53,898</option>
-          <option value="55275" data-label="Porsche Macan CPO ★ (2023, 32k km, Montreal)" data-cpo="5.99">Porsche Macan 2023 CPO ★ — $55,275</option>
-          <option value="56998" data-label="Porsche Macan 2023 Pano/Vented (53k km, Thornhill)" data-cpo="">Porsche Macan 2023 Pano/Vented — $56,998</option>
-          <option value="56900" data-label="Porsche Cayenne Coupe (2021, 92k km, Vaughan)" data-cpo="">Porsche Cayenne Coupe (2021) — $56,900</option>
-          <option value="58588" data-label="Porsche Macan 2023 AWD White (58k km, North York)" data-cpo="">Porsche Macan 2023 AWD — $58,588</option>
-          <option value="58898" data-label="Porsche Macan S ★ V6 375hp (2023, 65k km, Vaughan)" data-cpo="">Porsche Macan S ★ V6 375hp — $58,898</option>
-          <option value="59898" data-label="Porsche Macan 2023 ★ Only 13k km No Accidents (Vaughan)" data-cpo="">Porsche Macan 2023 ★ 13k km No Acc — $59,898</option>
-          <option value="59900" data-label="Porsche Macan T 2023 ★ Most Loaded Air Susp/BOSE (62k km, Vaughan)" data-cpo="">Porsche Macan T ★ Most Loaded — $59,900</option>
-          <option value="65900" data-label="Porsche Cayenne ★ Best Value (2022, 51k km, Vaughan)" data-cpo="">Porsche Cayenne ★ Best Value (2022) — $65,900</option>
-          <option value="69800" data-label="Porsche 718 Boxster ★ Manual Best Pick (2020, 16k km, Orléans 16km!)" data-cpo="">Porsche 718 Boxster ★ Manual (2020) — $69,800</option>
+          <option value="53898" data-label="Porsche Macan BOSE/Pano/No Acc (2023, 61k km, Vaughan)" data-cpo="">Porsche Macan — $53,898 · BOSE/Pano</option>
+          <option value="55275" data-label="Porsche Macan CPO ★ (2023, 32k km, Montreal)" data-cpo="5.99">Porsche Macan CPO ★ — $55,275 · 32k km</option>
+          <option value="58898" data-label="Porsche Macan S V6 375hp (2023, 65k km, Vaughan)" data-cpo="">Porsche Macan S ★ V6 — $58,898 · 375hp</option>
+          <option value="60690" data-label="Porsche Macan T 14k km Ottawa Local (2023)" data-cpo="">Porsche Macan T ★★ — $60,690 · 14k km Ottawa!</option>
+          <option value="61999" data-label="Porsche Cayenne BOSE+HUD+360 Dilawri (2023, 78k km, Markham)" data-cpo="">Porsche Cayenne ★ — $61,999 · Dilawri Cert</option>
+          <option value="64888" data-label="Porsche Cayenne HUD+ACC 21 RS Spyder (2023, 64k km, Woodbridge)" data-cpo="">Porsche Cayenne — $64,888 · HUD+ACC</option>
+          <option value="65900" data-label="Porsche Cayenne Pano Warranty Mar27 (2023, 72k km, Vaughan)" data-cpo="">Porsche Cayenne ★ — $65,900 · Pano+Warranty</option>
+          <option value="66990" data-label="Porsche Macan S V6 Near-New (2023, 20k km, Toronto)" data-cpo="">Porsche Macan S ★ — $66,990 · 375hp 20k km!</option>
+          <option value="69800" data-label="Porsche Cayenne Platinum Edition (2023, 49k km, Toronto)" data-cpo="">Porsche Cayenne ★★ Platinum — $69,800 · $128k car</option>
+          <option value="69800" data-label="Porsche 718 Boxster Manual (2020, 16k km, Orléans 16km!)" data-cpo="">Porsche 718 Boxster ★ Manual — $69,800 · Orléans!</option>
           </optgroup>
         </select>
       </div>
@@ -763,7 +767,7 @@
 
   <!-- ===== OVERVIEW SUB-TAB ===== -->
   <div id="porsche-overview" class="sub-section active">
-    <h2 class="section-title">Porsche Lineup Under $60k <span style="color:#CC0000">— Ottawa Area</span></h2>
+    <h2 class="section-title">Porsche Lineup Under $70k <span style="color:#CC0000">— Ottawa Area</span></h2>
     <p class="section-sub">3 distinct models found with realistic listings. AutoTrader research June 2026 · 400km radius of Ottawa.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:28px">
@@ -880,12 +884,12 @@
     <div style="flex:1;min-width:240px">
       <div style="font-size:11px;color:#cc4444;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Deep Dive · Ottawa Research · June 2026</div>
       <h2 style="font-size:24px;font-weight:800;margin-bottom:6px">Porsche Macan <span style="color:#CC0000">Complete Guide</span></h2>
-      <p style="color:var(--muted);font-size:13px">6 new 2023 base Gas Macan listings with individual AutoTrader links · All under $60k · June 2026</p>
+      <p style="color:var(--muted);font-size:13px">6 new 2023 base Gas Macan listings with individual AutoTrader links · All under $70k · June 2026</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <div style="background:#1a0d0d;border:1px solid #440000;border-radius:10px;padding:12px 16px;text-align:center">
         <div style="font-size:22px;font-weight:800;color:#CC0000">9</div>
-        <div style="font-size:11px;color:var(--muted)">In Budget (≤$60k)</div>
+        <div style="font-size:11px;color:var(--muted)">In Budget (≤$70k)</div>
       </div>
       <div style="background:#1a0d0d;border:1px solid #440000;border-radius:10px;padding:12px 16px;text-align:center">
         <div style="font-size:22px;font-weight:800;color:#f59e0b">9</div>
@@ -904,14 +908,14 @@
 
   <!-- IMPORTANT ALERT -->
   <div style="background:#1a1508;border:1px solid #7c5c10;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#fbbf24">
-    ⚠️ <strong>Critical note:</strong> The Macan has TWO completely different generations. <strong>2021–2023 = Gas (old gen, turbocharged 4-cyl or V6)</strong>. <strong>2024+ Macan Electric = Entirely new platform</strong> (PPE, same as Taycan), 100% electric, no gas option. The 2025 gas models listed at Mark Motors are remaining old-gen inventory still being sold as CPO. If you want gas, stick to 2021–2023 (or 2025 gas CPO stock). Budget-wise: 6 x 2023 Gas Macan listings found under $60k — all with individual AutoTrader links.
+    ⚠️ <strong>Critical note:</strong> The Macan has TWO completely different generations. <strong>2021–2023 = Gas (old gen, turbocharged 4-cyl or V6)</strong>. <strong>2024+ Macan Electric = Entirely new platform</strong> (PPE, same as Taycan), 100% electric, no gas option. The 2025 gas models listed at Mark Motors are remaining old-gen inventory still being sold as CPO. If you want gas, stick to 2021–2023 (or 2025 gas CPO stock). Budget-wise: 6 x 2023 Gas Macan listings found under $70k — all with individual AutoTrader links.
   </div>
 
   <!-- GENERATION SPLIT -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
     <div style="background:var(--surface);border:1px solid #440000;border-radius:12px;padding:20px">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#CC0000;letter-spacing:1px;margin-bottom:10px">⛽ GAS GEN — 2021–2023 (& 2024/25 CPO)</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.7">Platform: Macan J1 (same since 2014, heavily updated 2019/2022)<br>Engine: 2.0T 4-cyl (261hp) or 2.9T V6 TT (375hp–434hp)<br>AWD: Porsche Traction Mgmt (permanent AWD)<br>Trans: 7-speed PDK<br>0-60: 5.8s (base) → 4.3s (GTS)<br>Fuel economy: ~11.5L/100km combined<br><span style="color:#4ade80">✓ Multiple 2023 listings under $60k · Individual links available</span></div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.7">Platform: Macan J1 (same since 2014, heavily updated 2019/2022)<br>Engine: 2.0T 4-cyl (261hp) or 2.9T V6 TT (375hp–434hp)<br>AWD: Porsche Traction Mgmt (permanent AWD)<br>Trans: 7-speed PDK<br>0-60: 5.8s (base) → 4.3s (GTS)<br>Fuel economy: ~11.5L/100km combined<br><span style="color:#4ade80">✓ Multiple 2023 listings under $70k · Individual links available</span></div>
     </div>
     <div style="background:var(--surface);border:1px solid #440055;border-radius:12px;padding:20px">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#a78bfa;letter-spacing:1px;margin-bottom:10px">⚡ ELECTRIC GEN — 2024+ Macan Electric</div>
@@ -1526,163 +1530,180 @@
 <!-- ============================== RECOMMENDATIONS TAB ============================== -->
 <div id="tab-recommend" class="section">
   <h2 class="section-title">Who Should Buy What?</h2>
-  <p class="section-sub">Personalized picks · 4 brands · Audi · BMW · Mercedes · Porsche · Budget $60k · Ottawa winters · June 2026 research</p>
+  <p class="section-sub">Personalized picks · 4 brands · Audi · BMW · Mercedes · Porsche · Budget $70k · Ottawa winters · June 2026 research</p>
+
+  <!-- TOP 3 PICKS BANNER -->
+  <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;border:1px solid var(--gold);">
+    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top Picks — June 2026 · Budget $70k</div>
+    <div style="font-size:15px;color:#fff;line-height:2.2;">
+      🥇 <strong style="color:#FFD700">Porsche Macan T 2023</strong> — $60,690 · 14k km · Ottawa local · near-new<br>
+      🥈 <strong style="color:#C0C0C0">BMW 530i xDrive M Sport 2023</strong> — $50,900 · 17k km · factory warranty Jul 2027<br>
+      🥉 <strong style="color:#CD7F32">Audi Q8 Technik 2023</strong> — $59,995 · 62k km · Orleans ON — 10km away!
+    </div>
+  </div>
 
   <div class="rec-grid" id="rec-grid">
 
-    <div class="rec-card" style="border-color: var(--audi)">
-      <div class="persona">❄️ Best for Ottawa Winters + Best Value</div>
-      <h4>Audi Q5 2023 (Komfort or Technik)</h4>
-      <p>Multiple 2023 Q5 listings available at Audi Ottawa and Audi West Ottawa right now. Quattro AWD is the gold standard for Canadian winters. The 2023 Komfort with accident-free CARFAX starts at $30,998 (57k km) from Myers Barrhaven. Technik top trim at $42,898 (43k km) from Audi West Ottawa is the sweet spot — 360 Cam, Traffic Jam Assist, all luxury features, local dealer.</p>
-      <div class="pick" style="color:var(--audi)">→ 2023 Q5 Technik @ $42,898 / 43k km (Audi West Ottawa) 🔗 Individual link</div>
-    </div>
-
-    <div class="rec-card" style="border-color: var(--audi)">
-      <div class="persona">👨‍👩‍👧‍👦 Best 7-Seat Option Under Budget</div>
-      <h4>Audi Q7 Technik V6 (2022 — Ottawa Local)</h4>
-      <p>The only 7-seat luxury SUV in this shortlist that's actually in Ottawa. The 2022 Q7 55 Technik V6 335hp at Mark Motors Ottawa (61k km, $46,995) is a steal — full Technik spec with B&O Audio, HUD, air suspension, 4-zone climate, surround-view cameras. The V6 makes it genuinely fast (5.9s to 100). If you need a family SUV with 7 seats, this is the pick.</p>
-      <div class="pick" style="color:var(--audi)">→ 2022 Q7 Technik V6 @ $46,995 / 61k km (Ottawa — Mark Motors) 🔗 Individual link</div>
+    <div class="rec-card" style="border-color: var(--porsche)">
+      <div class="persona">🏆 #1 Pick — Best Overall</div>
+      <h4>Porsche Macan T 2023 — Ottawa Local, 14k km</h4>
+      <p>Near-new Macan T at an Ottawa-area dealer — only 14,755 km, Sport Chrono standard, PASM, mechanical LSD. This is the unicorn: local, freshest km, and the T trim adds sportier tuning over the base. $60,690 with $70k budget = lots of room for extras. Move fast — this will sell quickly.</p>
+      <div class="pick" style="color:var(--porsche)">→ 2023 Macan T @ $60,690 / 14k km (Ottawa local!) 🔗 <a href="https://www.cargurus.ca/details/419227198" target="_blank" style="color:var(--porsche)">Direct Link</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--bmw)">
-      <div class="persona">🏁 Best Driver's Car</div>
-      <h4>BMW 530i xDrive M Sport (2023)</h4>
-      <p>The sweet spot in BMW's lineup — 248hp inline-4 with xDrive AWD, M Sport exterior, iDrive 8 curved display, factory warranty still valid to 2027 on 2023 examples. No-accidents examples found in Ontario at ~$48,900 with M Sport. Best choice if you want a proper driver's car with a daily driver practicality.</p>
-      <div class="pick" style="color:var(--bmw)">→ 2023 530i xDrive M Sport @ ~$48,900 (Ontario — factory warranty active)</div>
+      <div class="persona">🏁 #2 Pick — Best Driver's Car</div>
+      <h4>BMW 530i xDrive M Sport 2023 — 17k km, Warranty Jul 2027</h4>
+      <p>Diamond-stitch leather, 20" wheels, HUD, M Sport bodykit — factory warranty still runs to July 2027. Only 17,615 km on a 2023 model. Best km/price BMW sedan in all of Canada right now. If you want a proper driver's machine with daily practicality, this is it.</p>
+      <div class="pick" style="color:var(--bmw)">→ 2023 530i M Sport ★ @ $50,900 / 17k km (Vaughan) 🔗 <a href="https://www.autotrader.ca/offers/bmw-5-series-530i-m-sport-diamond-stitch-20-rim-heated-gasoline-grey-cat_ma13gr100039mt489tr478943-2164bdd7-0e7e-4b70-9bbc-a108223ec02c" target="_blank" style="color:var(--bmw)">Direct Link</a></div>
+    </div>
+
+    <div class="rec-card" style="border-color: var(--audi)">
+      <div class="persona">🌟 Best Local Flagship</div>
+      <h4>Audi Q8 Technik 2023 — Orleans ON (10km!)</h4>
+      <p>A Q8 Technik flagship coupe-SUV sitting in Orleans — 10km from downtown Ottawa. 3.0T V6, Technik top trim, Virtual Cockpit Plus, Daytona Gray Pearl. At $59,995 it's $10k under budget. This doesn't happen. Rare to find a Q8 Technik this local at this price.</p>
+      <div class="pick" style="color:var(--audi)">→ 2023 Q8 Technik ★ @ $59,995 / 62k km (Orleans, 10km!) 🔗 <a href="https://www.cargurus.ca/details/449505535" target="_blank" style="color:var(--audi)">Direct Link</a></div>
+    </div>
+
+    <div class="rec-card" style="border-color: #888">
+      <div class="persona">⚡ Best Mercedes Power Move</div>
+      <h4>Mercedes E 450 4MATIC 2023 — 362hp, 18k km, Laval QC</h4>
+      <p>362hp inline-6 TwinTurbo, near-new 18,942 km — $57,992 for a 2023 E 450 is exceptional. $30k off new MSRP. Best power-per-dollar in the Mercedes lineup. Laval is ~90min from Ottawa, home delivery available. If you want Mercedes prestige with real grunt, this is the one.</p>
+      <div class="pick" style="color:#999">→ 2023 E 450 ★★ @ $57,992 / 18k km (Laval QC ~90km) 🔗 <a href="https://www.cargurus.ca/details/447138514" target="_blank" style="color:#999">Direct Link</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--bmw)">
-      <div class="persona">🚙 Most Powerful SUV Under Budget</div>
-      <h4>BMW X5 xDrive40i (2023 — Orleans Ottawa)</h4>
-      <p>Finding a 2023 X5 under $60k requires accepting 80k+ km — the 335hp I6 xDrive40i in Orléans at $50,999 (82k km) is the one realistic option. High km but 335hp twin-turbo I6 is exceptional, xDrive AWD handles Ottawa winters, and you're local. If mileage concerns you, the 540i M Sport Pro CPO at $54,899 (57k km) in GTA is a better km/price ratio.</p>
-      <div class="pick" style="color:var(--bmw)">→ 2023 X5 xDrive40i @ $50,999 (Orléans, 16km from Ottawa)</div>
+      <div class="persona">🔥 Wildcard — 523hp V8 Beast</div>
+      <h4>BMW X5 M50i 2022 — 523hp V8, 44k km, Vaughan</h4>
+      <p>523hp 4.4L twin-turbo V8 M Performance SUV. Was $127k+ new. At $62,898 with 44k km, this is the most bang-for-buck vehicle in the entire list. "Great Deal" on CarGurus. If you have a daily driver and want something that makes people look twice at the highway, this is it. AWD handles Ottawa winters.</p>
+      <div class="pick" style="color:var(--bmw)">→ 2022 X5 M50i ★★ @ $62,898 / 44k km (Vaughan) 🔗 <a href="https://www.cargurus.ca/details/428467089" target="_blank" style="color:var(--bmw)">Direct Link</a></div>
     </div>
 
-    <div class="rec-card" style="border-color: var(--mercedes)">
-      <div class="persona">🎭 Most Luxurious Interior (2023 Platform)</div>
-      <h4>Mercedes GLC 300 4MATIC (2023)</h4>
-      <p>The 2023 GLC is a completely new platform — bigger, better tech, 11.9" MBUX vertical touchscreen, 64-color ambient lighting, MBUX Interior Assist. CPO at Greenfield Park (24k km, $49,895) or low-km non-CPO in Montreal (18.8k km, $48,995) are the best finds. You'll need to drive ~190-200km to pick it up. Budget for one trip — worth it.</p>
-      <div class="pick" style="color:#999">→ 2023 GLC 300 CPO @ $49,895 / 24k km (Greenfield Park QC ~190km) 🔗 Individual link</div>
+    <div class="rec-card" style="border-color: var(--audi)">
+      <div class="persona">❄️ Best Ottawa Winter Value</div>
+      <h4>Audi Q5 Technik 2023 — Ottawa Local, $42,898</h4>
+      <p>Best value entry: Technik top trim from Audi West Ottawa — HUD, 360 Cam, Pano, Traffic Jam Assist, beige leather. Quattro AWD is the gold standard for Canadian winters. $27k under budget with full luxury spec. Walk in and buy today.</p>
+      <div class="pick" style="color:var(--audi)">→ 2023 Q5 Technik ★ @ $42,898 / 43k km (Audi West Ottawa) 🔗 <a href="https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13809211.html" target="_blank" style="color:var(--audi)">Direct Link</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--porsche)">
-      <div class="persona">🏎️ Prestige Pick — Porsche Under $60k</div>
-      <h4>Porsche Macan 2023 (Base Gas — Last Gas Gen)</h4>
-      <p>2023 is the last gas Macan (2024 went full electric). Multiple 2023 base listings found under $60k with individual AutoTrader links. Best pick: $55,888 / 39k km / No Accidents in Mississauga (lowest km at this price). CPO options from $53,900 at Porsche Centre Vaughan. The Montreal listing at $58,769 (51k km, No Accidents, 200km from Ottawa) is the closest with clean Carfax. All links are direct individual listing permalinks — click and go.</p>
-      <div class="pick" style="color:var(--porsche)">→ 2023 Macan ★ No Accidents @ $55,888 / 39k km (Mississauga) 🔗 Individual link</div>
-    </div>
-
-    <div class="rec-card" style="border-color: #CD853F">
-      <div class="persona">🏔️ Biggest Porsche Under Budget</div>
-      <h4>Porsche Cayenne (2022 — Best Value)</h4>
-      <p>2023+ Cayenne starts at ~$62k minimum (78k km) — technically over the $60k target. The 2022 Cayenne at $65,900 (51k km, Vaughan) remains the best value in the lineup. V6 335hp, HUD, panoramic, BOSE, 21" wheels. If you can stretch $6k over budget for a much more capable Porsche, this is it. One trip to GTA, done.</p>
-      <div class="pick" style="color:#CD853F">→ 2022 Cayenne Prem Plus @ $65,900 / 51k km (Vaughan)</div>
+      <div class="persona">🏔️ Best Porsche Value Under $70k</div>
+      <h4>Porsche Cayenne Platinum Edition 2023 — $69,800, Toronto</h4>
+      <p>Platinum Edition + Premium Plus — HUD, ACC, ventilated seats front and rear, Sport Exhaust, Sport Design package. Was $128k new. Only 49,617 km, 1-owner, clean Carfax. For Porsche's full-size SUV with every box ticked, $69,800 is a steal. One trip to Toronto.</p>
+      <div class="pick" style="color:var(--porsche)">→ 2023 Cayenne Platinum ★★ @ $69,800 / 49k km (Toronto) 🔗 <a href="https://www.autotrader.ca/offers/porsche-cayenne-platinum-edition-sport-design-adaptive-cruise-s-gasoline-white-cat_ma57gr18284tr5878-3da28e9c-e0c2-4544-9b6c-41e279f59680" target="_blank" style="color:var(--porsche)">Direct Link</a></div>
     </div>
 
     <div class="rec-card" style="border-color: #4472C4">
-      <div class="persona">🏎️ Weekend Thrill Machine</div>
-      <h4>Porsche 718 Boxster (2020 — Orléans Gem)</h4>
-      <p>If you have a daily driver and want something purely joyful May–October, the 2020 Boxster in Orléans (16km away!) is a unicorn — manual gearbox, only 16,500 km, private seller, garage-kept. Get a pre-purchase inspection (~$300), then jump. RWD means winter storage mandatory — budget $150-300/mo Oct–Apr.</p>
-      <div class="pick" style="color:#4472C4">→ 2020 718 Boxster Manual @ $69,800 / 16,500 km (Orléans, 16km)</div>
+      <div class="persona">🎯 Weekend Thrill Machine</div>
+      <h4>Porsche 718 Boxster 2020 — Manual, 16k km, Orléans (16km!)</h4>
+      <p>Manual gearbox, only 16,500 km, private seller — in Orléans, 16km from Ottawa. If you have a daily driver and want something purely joyful May–October, this is the unicorn. Get a PPI (~$300) then jump. Budget for winter storage Oct–Apr (~$150-300/mo). Prices only go up on manual 718s as they age.</p>
+      <div class="pick" style="color:#4472C4">→ 2020 718 Boxster ★ Manual @ $69,800 / 16k km (Orléans, 16km!) 🔗 <a href="https://www.kijiji.ca/b-cars-trucks/ottawa/porsche+718+boxster/k0c174l1700185" target="_blank" style="color:#4472C4">Direct Link</a></div>
     </div>
 
   </div>
 
   <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-top: 24px;">
-    <h3 style="margin-bottom: 12px; font-size: 15px;">⚡ Top 3 Picks for Manik (Ottawa, $60k, Ottawa winters, 2023+ luxury feel)</h3>
+    <h3 style="margin-bottom: 12px; font-size: 15px;">💡 Buying Tips — Ottawa 2026</h3>
     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
-      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--audi)">
-        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥇 Top Pick (Snow + Value)</div>
-        <div style="font-weight:700; font-size:15px">Audi Q5 Technik 2023</div>
-        <div style="color:var(--audi); font-size:13px; margin:4px 0">$42,898 · 43k km · Audi West Ottawa</div>
-        <div style="color:var(--muted); font-size:12px">Best combo: Ottawa local, 2023 Technik top trim, low km, Quattro AWD, 360 Cam. Walk-in, buy today. Direct link available.</div>
-      </div>
-      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--mercedes)">
-        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥈 Best Tech + Luxury</div>
-        <div style="font-weight:700; font-size:15px">Mercedes GLC 300 4MATIC CPO</div>
-        <div style="color:#999; font-size:13px; margin:4px 0">$49,895 · 24k km · Greenfield Park QC (~190km)</div>
-        <div style="color:var(--muted); font-size:12px">All-new 2023 platform, MBUX tech, CPO certified, lowest km in budget. One trip to Montreal area. Direct link available.</div>
-      </div>
       <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--porsche)">
-        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥉 Prestige Pick</div>
-        <div style="font-weight:700; font-size:15px">Porsche Macan 2023 ★</div>
-        <div style="color:var(--porsche); font-size:13px; margin:4px 0">$55,888 · 39k km · Mississauga (No Accidents)</div>
-        <div style="color:var(--muted); font-size:12px">2023 gas Macan (last gas gen), no accidents certified, best km/price ratio, individual AutoTrader link — verify before it sells.</div>
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥇 Best Move Fast</div>
+        <div style="font-weight:700; font-size:15px">Macan T Ottawa Local</div>
+        <div style="color:var(--porsche); font-size:13px; margin:4px 0">$60,690 · 14k km · Ottawa</div>
+        <div style="color:var(--muted); font-size:12px">Near-new, local, Sport Chrono. This will sell. Call today.</div>
+      </div>
+      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--bmw)">
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥈 Best Under $55k</div>
+        <div style="font-weight:700; font-size:15px">BMW 530i M Sport 2023</div>
+        <div style="color:var(--bmw); font-size:13px; margin:4px 0">$50,900 · 17k km · warranty Jul 2027</div>
+        <div style="color:var(--muted); font-size:12px">Factory warranty still active. Best km BMW sedan found.</div>
+      </div>
+      <div style="background: var(--surface2); border-radius: 10px; padding: 16px; border-left: 4px solid var(--audi)">
+        <div style="font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:6px">🥉 Best Local Flagship</div>
+        <div style="font-weight:700; font-size:15px">Audi Q8 Technik Orleans</div>
+        <div style="color:var(--audi); font-size:13px; margin:4px 0">$59,995 · 62k km · Orleans, 10km!</div>
+        <div style="color:var(--muted); font-size:12px">Q8 Technik flagship, $10k under budget, 10km from downtown. Rare find.</div>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-<script>
-// ============================================================
+<script>// ============================================================
 // DATA
 // ============================================================
 const listings = [
   // ─────────────── AUDI ───────────────
-  { brand:'audi', model:'Audi Q5 Komfort', year:2023, km:'57,416', trim:'Komfort — Accident-Free CARFAX', price:30998, type:'dealer', location:'Myers Barrhaven, Ottawa', highlights:'Quattro AWD, NO ACCIDENTS on CARFAX, Heated Seats, CarPlay, Blind Spot Monitor', value:'great', url:'https://www.carpages.ca/used-cars/ontario/ottawa/2023-audi-q5-13848255/' },
-  { brand:'audi', model:'Audi Q5 Technik', year:2023, km:'95,751', trim:'45 2.0T Technik — High Km Budget Pick', price:34995, type:'dealer', location:'Ottawa (Alfa Romeo Ottawa / Mark Motors)', highlights:'Technik top trim: HUD, 360 Cam, ACC, Pano, Heated Seats — highest km, lowest price Technik in Ottawa', value:'good', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13945565.html' },
-  { brand:'audi', model:'Audi Q5 Technik', year:2023, km:'64,589', trim:'45 2.0T Technik + S-Line Black', price:38888, type:'dealer', location:'Audi Ottawa', highlights:'Technik top trim, S-Line Black Package, HUD, 360 Cam, Panoramic, ACC, Heated Seats', value:'great', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13842168.html' },
-  { brand:'audi', model:'Audi Q5 Technik', year:2023, km:'43,419', trim:'45 2.0T Technik (Top Trim)', price:42898, type:'dealer', location:'Audi West Ottawa', highlights:'Top trim: 360 Cam, Heated Rear Seats, Traffic Jam Assist, Road Sign Recognition, Quattro AWD', value:'great', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13809211.html' },
-  { brand:'audi', model:'Audi Q5 Technik', year:2023, km:'57,132', trim:'45 2.0T Technik + S-Line Black', price:43888, type:'dealer', location:'Audi Ottawa', highlights:'Technik top trim, S-Line Black Package, 360 Cam, ACC, Heated Seats, CarPlay, Quattro AWD', value:'great', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13881939.html' },
-  { brand:'audi', model:'Audi Q7 Technik V6', year:2022, km:'61,786', trim:'55 3.0T Technik V6 335hp', price:46995, type:'dealer', location:'Ottawa (Mark Motors)', highlights:'3.0T V6 335hp, B&O Audio, HUD, Air Suspension, 4-Zone Climate, Surround-View Cameras', value:'great', url:'https://www.markmotorsgroup.com/used/2022-Audi-Q7-id13260293.html' },
-  { brand:'audi', model:'Audi Q7 Technik V6', year:2022, km:'79,008', trim:'55 3.0T Technik V6 — 2nd Ottawa Unit', price:47995, type:'dealer', location:'Ottawa (Mark Motors)', highlights:'Same Technik spec: 3.0T V6 335hp, B&O Audio, HUD, Air Suspension — second available unit Ottawa', value:'good', url:'https://www.markmotorsgroup.com/used/2022-Audi-Q7-id13809201.html' },
+  { brand:'audi', model:'Audi Q5 Technik', year:2023, km:'64,589', trim:'45 2.0T Technik + S-Line Black', price:38888, type:'dealer', location:'Audi Ottawa', highlights:'Technik top trim, S-Line Black, HUD, 360 Cam, Pano, ACC, Heated Seats — local Ottawa dealer', value:'great', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13842168.html' },
+  { brand:'audi', model:'Audi Q5 Technik ★', year:2023, km:'43,419', trim:'45 2.0T Technik — Low Km Ottawa', price:42898, type:'dealer', location:'Audi West Ottawa', highlights:'Technik top trim, 360 Cam, Traffic Jam Assist, HUD, Pano, Beige interior — best km/price Ottawa', value:'great', url:'https://www.markmotorsgroup.com/used/2023-Audi-Q5-id13809211.html' },
+  { brand:'audi', model:'Audi Q7 Komfort', year:2023, km:'59,797', trim:'55 TFSI Komfort — Value Pick', price:42995, type:'dealer', location:'Mississauga, ON (~450km)', highlights:'3.0T V6 quattro, Q7 size at Q5 price — confirm trim options with dealer. Great Deal rating.', value:'good', url:'https://www.cargurus.ca/details/449830036' },
+  { brand:'audi', model:'Audi Q7 Technik V6 ★', year:2022, km:'61,786', trim:'55 3.0T Technik V6 335hp', price:46995, type:'dealer', location:'Ottawa (Mark Motors)', highlights:'3.0T V6 335hp, B&O Audio, HUD, Air Suspension, 4-Zone Climate, Surround-View Cameras — Ottawa local', value:'great', url:'https://www.markmotorsgroup.com/used/2022-Audi-Q7-id13260293.html' },
+  { brand:'audi', model:'Audi Q7 Technik V6', year:2023, km:'40,232', trim:'55 TFSI Technik — Top Trim', price:60995, type:'dealer', location:'Mississauga, ON (~450km)', highlights:'2023 Q7 Technik: B&O 3D, Matrix LED, Air Suspension, ACC — 100% accident-free on CarGurus. Fair deal = room to negotiate.', value:'great', url:'https://www.cargurus.ca/details/450175710' },
+  { brand:'audi', model:'Audi Q8 Technik ★', year:2023, km:'62,989', trim:'55 TFSI Technik — Flagship Coupe-SUV', price:59995, type:'dealer', location:'Orleans, ON (Ottawa East, ~10km!)', highlights:'Q8 Technik flagship, 3.0T V6, top trim — virtually Ottawa-local. Daytona Gray Pearl. $10k under budget.', value:'great', url:'https://www.cargurus.ca/details/449505535' },
+  { brand:'audi', model:'Audi Q8 Technik', year:2023, km:'35,000', trim:'55 TFSI Technik — Low Km Toronto', price:62800, type:'dealer', location:'Toronto, ON (~450km)', highlights:'Q8 Technik top trim, 35k km — freshest Q8 Technik found. Black/Brown interior. Great Deal.', value:'great', url:'https://www.cargurus.ca/details/444950978' },
+  { brand:'audi', model:'Audi Q8 Progressiv', year:2024, km:'37,900', trim:'Progressiv — Ottawa Local', price:65995, type:'dealer', location:'Ottawa (Mark Motors, 611 Montreal Rd)', highlights:'2024 Q8 Progressiv, Ottawa local dealer, 37,900 km — one year newer. Ask about Audi CPO.', value:'great', url:'https://www.markmotorsgroup.com/used/2024-Audi-Q8-id13016189.html' },
   // ─────────────── MERCEDES ───────────────
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'87,458', trim:'4MATIC — Budget Pick', price:37999, type:'dealer', location:'Waterloo, ON (~450km)', highlights:'255hp, all-new 2023 W206 platform — best price option, high km', value:'good', url:'https://www.cargurus.ca/details/440445792' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'81,759', trim:'4MATIC — GTA Area', price:38800, type:'dealer', location:'Scarborough, ON (~450km)', highlights:'255hp, all-new 2023 W206 platform, Great Deal rating on CarGurus', value:'good', url:'https://www.cargurus.ca/details/436190071' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'74,130', trim:'4MATIC Coupe', price:40395, type:'dealer', location:'Joliette, QC (~130km)', highlights:'GLC Coupe body style, 255hp, all-new 2023 W206 platform', value:'good', url:'https://www.cargurus.ca/details/447470108' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★', year:2023, km:'90,940', trim:'4MATIC — Ottawa Local Only 18km!', price:41995, type:'dealer', location:'Ottawa, ON (18km!)', highlights:'255hp, 2023 W206 — ONLY Ottawa-area GLC found. High km but local, skip the road trip.', value:'good', url:'https://www.cargurus.ca/details/439198212' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'18,777', trim:'4MATIC — Very Low Km', price:48995, type:'dealer', location:'Montreal, QC (~200km)', highlights:'255hp, 2023 all-new gen, exceptional 18.7k km', value:'great', url:'https://www.cargurus.ca/details/448510104' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC CPO', year:2023, km:'24,007', trim:'4MATIC — CPO Certified', price:49895, type:'cpo', location:'Greenfield Park, QC (~190km)', highlights:'CPO certified, 24k km, Gray/Black — Mercedes CPO warranty protection', value:'great', url:'https://www.cargurus.ca/details/436561280' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'81,603', trim:'4MATIC — Lowest Price Ontario', price:36980, type:'dealer', location:'Guelph, ON (~450km)', highlights:'255hp, all-new 2023 W206 platform — lowest price 2023 GLC found in Ontario. Great Deal.', value:'good', url:'https://www.cargurus.ca/details/430733480' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'58,869', trim:'4MATIC — Best Km/Price GLC', price:38980, type:'dealer', location:'North York, ON (~450km)', highlights:'255hp, 2023 W206 — lowest km of the budget GLCs. White/Beige interior. Great Deal.', value:'great', url:'https://www.cargurus.ca/details/450322377' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★', year:2023, km:'90,940', trim:'4MATIC — Ottawa Local Only 18km', price:39995, type:'dealer', location:'Ottawa, ON (18km!)', highlights:'255hp, 2023 all-new W206 — ONLY Ottawa-area GLC. Skip the road trip. High km priced accordingly.', value:'good', url:'https://www.cargurus.ca/details/439198212' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC CPO ★', year:2023, km:'77,005', trim:'4MATIC CPO — Only $41.5k CPO Available', price:41500, type:'cpo', location:'Ste-Agathe-des-Monts, QC (~90km)', highlights:'CPO certified, Polar White/Macchiato Beige — the ONLY confirmed CPO 2023 GLC under budget found. ~90km from Ottawa.', value:'great', url:'https://www.cargurus.ca/details/423351489' },
+  { brand:'mercedes', model:'Mercedes E 350 4MATIC', year:2022, km:'15,669', trim:'E 350 — Ultra Low 15k km', price:49140, type:'dealer', location:'Ontario (delivery available)', highlights:'255hp, exceptional 15,669 km — effectively new. Great Deal. Beige interior. Home delivery.', value:'great', url:'https://www.cargurus.ca/details/441929309' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC CPO', year:2023, km:'24,007', trim:'4MATIC — CPO Certified Low Km', price:49895, type:'cpo', location:'Greenfield Park, QC (~190km)', highlights:'CPO certified, only 24k km, Gray/Black — Mercedes CPO warranty protection', value:'great', url:'https://www.cargurus.ca/details/436561280' },
+  { brand:'mercedes', model:'Mercedes E 450 4MATIC ★★', year:2023, km:'18,942', trim:'E 450 — 362hp / Near-New / Laval QC', price:57992, type:'dealer', location:'Laval, QC (~90km from Ottawa)', highlights:'362hp 3.0L I6 TwinTurbo, near-new 18,942 km — best power/km combo in the Mercedes set. ~$30k off new MSRP. Home delivery.', value:'great', url:'https://www.cargurus.ca/details/447138514' },
   // ─────────────── BMW ───────────────
-  { brand:'bmw', model:'BMW 530e xDrive CPO', year:2023, km:'76,018', trim:'M Sport — BMW CPO / PHEV Plug-in', price:44495, type:'cpo', location:'Woodbridge, ON (~450km)', highlights:'BMW CPO certified, M Sport pkg, PHEV hybrid (Ontario green plates eligible), M Sport brakes', value:'good', url:'https://www.autotrader.ca/offers/bmw-5-series-xdrive-sedan-gas-electric-hybrid-grey-cat_ma13gr100039mt488tr478943-598f2b2e-95cc-4057-bfa9-8fc7c2bba0ce' },
-  { brand:'bmw', model:'BMW 530e xDrive CPO', year:2023, km:'50,201', trim:'M Sport Pro — CPO / Single Owner / Clean Carfax', price:48169, type:'cpo', location:'Montreal, QC (~200km)', highlights:'BMW CPO, M Sport Pro (highest tier), single owner, Harman/Kardon, HUD, PHEV hybrid — ~2hr Ottawa', value:'great', url:'https://www.autotrader.ca/offers/bmw-5-series-530e-xdrive-premium-ameliore-m-sport-pro-fre-gas-electric-hybrid-black-cat_ma13gr100039mt488tr478943-998ea6f3-0d7b-41b2-a0aa-2cfba090b54d' },
-  { brand:'bmw', model:'BMW 530i xDrive M Sport ★', year:2023, km:'17,615', trim:'M Sport — 17k km / Factory Warranty to Jul 2027', price:50900, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'248hp, M Sport, HUD, 20" wheels, diamond-stitch leather, factory warranty active to July 2027 — best km in BMW set', value:'great', url:'https://www.autotrader.ca/offers/bmw-5-series-530i-m-sport-diamond-stitch-20-rim-heated-gasoline-grey-cat_ma13gr100039mt489tr478943-2164bdd7-0e7e-4b70-9bbc-a108223ec02c' },
-  { brand:'bmw', model:'BMW 540i xDrive M Sport', year:2023, km:'84,234', trim:'M Sport — 335hp / No Accidents', price:50990, type:'dealer', location:'Mississauga, ON (~450km)', highlights:'335hp I6 TwinTurbo, M Sport, NO ACCIDENTS, Panoramic, 360 Cam, Ventilated Seats, Memory', value:'good', url:'https://www.autotrader.ca/offers/bmw-5-series-540i-xdrive-m-sport-awd-no-accident-sunroof-gasoline-black-cat_ma13gr100039mt493tr478943-1cc3eb29-11c0-445b-a67e-09b3dfd1b2de' },
-  { brand:'bmw', model:'BMW 540i xDrive M Sport Pro', year:2023, km:'62,841', trim:'M Sport Pro + Premium Enhanced — Top Trim', price:51988, type:'dealer', location:'Brossard, QC (~200km)', highlights:'335hp I6, M Sport Pro (highest BMW trim), Harman/Kardon, HUD, Red M Sport Calipers — BMW Brossard official dealer', value:'great', url:'https://www.autotrader.ca/offers/bmw-5-series-540i-xdrive-premium-enhanced-m-sport-package-d-gasoline-grey-cat_ma13gr100039mt493tr478943-93436556-882e-46e5-b367-49cff2efdf17' },
-  // ─────────────── PORSCHE MACAN (2023) ───────────────
-  { brand:'porsche', model:'Porsche Macan 2023', year:2023, km:'61,280', trim:'Pano / BOSE / Heated+Vented / 360 Cam', price:53898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'NO ACCIDENTS, BOSE, Pano, ACC, Heated+Ventilated+Memory Seats, Heated Rear, Beige leather interior', value:'great', url:'https://www.carpages.ca/used-cars/ontario/vaughan/2023-porsche-macan-13794942/' },
-  { brand:'porsche', model:'Porsche Macan 2023 CPO ★', year:2023, km:'32,373', trim:'CPO — 111-Point Porsche Inspection', price:55275, type:'cpo', location:'Montreal, QC (~200km)', highlights:'Porsche CPO warranty, 111-point inspection, clean Carfax, home delivery to Ottawa available, 32k km', value:'great', url:'https://www.cargurus.ca/details/446988791' },
-  { brand:'porsche', model:'Porsche Macan 2023', year:2023, km:'53,867', trim:'Pano / Heated+Vented / 360 Cam', price:56998, type:'dealer', location:'Thornhill, ON (~450km)', highlights:'Panoramic roof confirmed, Heated & Ventilated seats confirmed, 360 Camera confirmed, White', value:'good', url:'https://www.carpages.ca/used-cars/ontario/thornhill/2023-porsche-macan-13904976/' },
-  { brand:'porsche', model:'Porsche Macan 2023', year:2023, km:'58,251', trim:'AWD White Ontario', price:58588, type:'dealer', location:'North York, ON (~450km)', highlights:'261hp AWD, White/Black — confirm BOSE/Pano with dealer before visiting', value:'good', url:'https://www.cargurus.ca/details/448856464' },
-  { brand:'porsche', model:'Porsche Macan S 2023 ★', year:2023, km:'65,150', trim:'S — 375hp V6 TwinTurbo (ONLY V6 Under $60k!)', price:58898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'375hp 2.9T V6 TwinTurbo (vs 261hp base) — only 2023 Macan S found under $60k in Canada. AWD, PDK.', value:'great', url:'https://www.cargurus.ca/details/450440054' },
-  { brand:'porsche', model:'Porsche Macan 2023 ★', year:2023, km:'13,828', trim:'No Accidents — Lowest Km Found', price:59898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'NO ACCIDENTS confirmed, exceptional 13,828 km, Pano, 360 Cam, Heated+Vented+Memory, Volcano Grey', value:'great', url:'https://www.carpages.ca/used-cars/ontario/vaughan/2023-porsche-macan-13951398/' },
-  { brand:'porsche', model:'Porsche Macan T 2023 ★', year:2023, km:'62,540', trim:'T — $20k+ Options: Air Susp/BOSE/Sport Exhaust', price:59900, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'Air Suspension+PASM, Sport Exhaust, BOSE, ACC, 18-way Adaptive Seats, WARRANTY to Jul 2027, clean Carfax', value:'great', url:'https://www.carpages.ca/used-cars/ontario/vaughan/2023-porsche-macan-14136004/' },
-  // ─────────────── PORSCHE CAYENNE (retained) ───────────────
-  { brand:'porsche', model:'Porsche Cayenne Coupe', year:2021, km:'92,281', trim:'Premium Plus / BOSE / Pano / 22"', price:56900, type:'dealer', location:'Vaughan (357km)', highlights:'3.0T V6 335hp, AWD, Coupe roofline, BOSE, Panoramic — high km', value:'good', url:'https://www.autotrader.ca/cars/porsche/cayenne/?loc=Vaughan%2C+ON&prx=30&yRng=2021,2021' },
-  { brand:'porsche', model:'Porsche Cayenne ★', year:2022, km:'51,496', trim:'Premium Plus / HUD / Pano / BOSE / 21"', price:65900, type:'dealer', location:'Vaughan (357km)', highlights:'Best Cayenne value: newest year, lowest km, HUD, Pano — 2023+ Cayenne starts $62k+', value:'good', url:'https://www.autotrader.ca/cars/porsche/cayenne/?loc=Vaughan%2C+ON&prx=30&yRng=2022,2022' },
-  // ─────────────── PORSCHE 718 BOXSTER (retained) ───────────────
-  { brand:'porsche', model:'Porsche 718 Boxster ★', year:2020, km:'16,500', trim:'Manual — Private Seller Orléans', price:69800, type:'dealer', location:'Orléans (16km!)', highlights:'BEST PICK: manual gearbox, only 16.5k km, private seller, practically local — move fast', value:'great', url:'https://www.kijiji.ca/b-cars-trucks/ottawa/porsche+718+boxster/k0c174l1700185' },
+  { brand:'bmw', model:'BMW 530e xDrive CPO', year:2023, km:'76,018', trim:'M Sport — BMW CPO / PHEV', price:44495, type:'cpo', location:'Woodbridge, ON (~450km)', highlights:'BMW CPO certified, M Sport, PHEV hybrid, green plates eligible — individual AT link', value:'good', url:'https://www.autotrader.ca/offers/bmw-5-series-xdrive-sedan-gas-electric-hybrid-grey-cat_ma13gr100039mt488tr478943-598f2b2e-95cc-4057-bfa9-8fc7c2bba0ce' },
+  { brand:'bmw', model:'BMW 530i xDrive M Sport ★', year:2023, km:'17,615', trim:'M Sport — 17k km / Factory Warranty Jul 2027', price:50900, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'248hp, M Sport, HUD, 20" wheels, diamond-stitch leather, factory warranty active to July 2027 — best km BMW sedan', value:'great', url:'https://www.autotrader.ca/offers/bmw-5-series-530i-m-sport-diamond-stitch-20-rim-heated-gasoline-grey-cat_ma13gr100039mt489tr478943-2164bdd7-0e7e-4b70-9bbc-a108223ec02c' },
+  { brand:'bmw', model:'BMW 540i xDrive M Sport Pro ★', year:2023, km:'62,841', trim:'M Sport Pro + Premium Enhanced — Top BMW Trim', price:51988, type:'dealer', location:'Brossard, QC (~200km)', highlights:'335hp I6, M Sport Pro (highest BMW tier), Harman/Kardon, HUD, Red M Calipers — BMW official dealer ~2hrs Ottawa', value:'great', url:'https://www.autotrader.ca/offers/bmw-5-series-540i-xdrive-premium-enhanced-m-sport-package-d-gasoline-grey-cat_ma13gr100039mt493tr478943-93436556-882e-46e5-b367-49cff2efdf17' },
+  { brand:'bmw', model:'BMW X5 M50i ★★', year:2022, km:'44,177', trim:'M50i — 523hp V8 TwinTurbo / M Performance', price:62898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'523hp 4.4L twin-turbo V8 — M Performance variant, 44k km, Blue ext. Great Deal. A completely different animal. New $127k+ MSRP.', value:'great', url:'https://www.cargurus.ca/details/428467089' },
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO', year:2024, km:'46,648', trim:'xDrive40i — BMW CPO / 375hp', price:64477, type:'cpo', location:'North York, ON (~450km)', highlights:'BMW CPO certified, 375hp 3.0L I6 (2024 upgrade vs 335hp 2023), Blue/White interior — Great Deal', value:'great', url:'https://www.cargurus.ca/details/448607642' },
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO', year:2024, km:'43,267', trim:'xDrive40i — BMW CPO', price:65695, type:'cpo', location:'Thornhill, ON (~450km)', highlights:'BMW CPO certified, 375hp 3.0L I6, 43k km, Gray/Black — Great Deal', value:'great', url:'https://www.cargurus.ca/details/431173764' },
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO ★', year:2024, km:'32,860', trim:'xDrive40i — CPO / Closest to Ottawa', price:65949, type:'cpo', location:'Ste-Agathe-des-Monts, QC (~150km)', highlights:'BMW CPO, 375hp, lowest km of all CPO X5s (32k), ~150km from Ottawa via Hwy 50 — closest X5 CPO to Ottawa', value:'great', url:'https://www.cargurus.ca/details/450264620' },
+  // ─────────────── PORSCHE MACAN (2023 gas — last gas gen) ───────────────
+  { brand:'porsche', model:'Porsche Macan 2023', year:2023, km:'61,280', trim:'Pano / BOSE / No Accidents', price:53898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'No Accidents, BOSE, Pano, ACC, Heated+Ventilated+Memory Seats, Heated Rear — Beige leather', value:'great', url:'https://www.carpages.ca/used-cars/ontario/vaughan/2023-porsche-macan-13794942/' },
+  { brand:'porsche', model:'Porsche Macan CPO ★', year:2023, km:'32,373', trim:'CPO — Porsche 111-Point Inspection', price:55275, type:'cpo', location:'Montreal, QC (~200km)', highlights:'Porsche CPO warranty, 111-point inspection, clean Carfax, home delivery available, 32k km', value:'great', url:'https://www.cargurus.ca/details/446988791' },
+  { brand:'porsche', model:'Porsche Macan S ★', year:2023, km:'65,150', trim:'S — 375hp V6 TwinTurbo', price:58898, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'375hp 2.9T V6 TwinTurbo — only 2023 Macan S under $70k in Canada. AWD, PDK.', value:'great', url:'https://www.cargurus.ca/details/450440054' },
+  { brand:'porsche', model:'Porsche Macan T ★★', year:2023, km:'14,755', trim:'T — 14k km / Ottawa Local!', price:60690, type:'dealer', location:'Ottawa, ON (local!)', highlights:'Ottawa-based dealer, only 14,755 km — near-new Macan T. Sport Chrono standard, PASM, mechanical LSD. Home delivery.', value:'great', url:'https://www.cargurus.ca/details/419227198' },
+  { brand:'porsche', model:'Porsche Macan S ★', year:2023, km:'20,322', trim:'S — 375hp V6 / Near-New Low Km', price:66990, type:'dealer', location:'Toronto, ON (~450km)', highlights:'375hp V6, only 20,322 km — rarest find: near-new Macan S in budget. Warranty intact.', value:'great', url:'https://www.cargurus.ca/details/444122065' },
+  // ─────────────── PORSCHE CAYENNE (2023) ───────────────
+  { brand:'porsche', model:'Porsche Cayenne ★', year:2023, km:'78,805', trim:'Premium / BOSE / HUD / 360 Cam — Certified', price:61999, type:'dealer', location:'Markham, ON (~430km)', highlights:'Premium Pkg, BOSE, HUD, 360 Cam, Pano, 3.0T V6 — Dilawri Certified (105-pt inspection). Best-priced 2023 Cayenne.', value:'great', url:'https://www.autotrader.ca/offers/porsche-cayenne-premium-pkg-bose-panoroof-360-cam-hud-na-gasoline-grey-cat_ma57gr18284-fd470643-ea9c-4ba9-9abe-370e9085edf2' },
+  { brand:'porsche', model:'Porsche Cayenne', year:2023, km:'64,000', trim:'Premium / HUD / ACC / 21" RS Spyder', price:64888, type:'dealer', location:'Woodbridge, ON (~450km)', highlights:'Premium Pkg, HUD, ACC, 21" RS Spyder wheels, 4-Zone Climate, Soft Close Doors, Pano — just listed', value:'great', url:'https://www.autotrader.ca/offers/porsche-cayenne-premium-hud-adaptive-cruise-surround-view-gasoline-white-cat_ma57gr18284-5e4a72e2-6f72-4dbb-81a4-7bcfc7757a1c' },
+  { brand:'porsche', model:'Porsche Cayenne ★', year:2023, km:'72,908', trim:'Premium Plus / Pano / 21" Exclusive / Warranty Mar 2027', price:65900, type:'dealer', location:'Vaughan, ON (~450km)', highlights:'Premium Plus Pkg, Pano, 21" Exclusive wheels, factory warranty to Mar 2027, Moonlight Blue — Great Price', value:'great', url:'https://www.autotrader.ca/offers/porsche-cayenne-premium-plus-pano-21-in-gasoline-blue-cat_ma57gr18284tr5878-b6806f56-7759-4506-ac3b-52e9e6a17279' },
+  { brand:'porsche', model:'Porsche Cayenne ★★', year:2023, km:'49,617', trim:'Platinum Edition / Premium Plus+ / Sport Design', price:69800, type:'dealer', location:'Toronto, ON (~450km)', highlights:'$128k MSRP car at $69,800 — Platinum Edition, Premium Pkg Plus, HUD, ACC, Ventilated Seats F+R, Sport Exhaust, Sport Design. 1-owner clean Carfax.', value:'great', url:'https://www.autotrader.ca/offers/porsche-cayenne-platinum-edition-sport-design-adaptive-cruise-s-gasoline-white-cat_ma57gr18284tr5878-3da28e9c-e0c2-4544-9b6c-41e279f59680' },
+  // ─────────────── PORSCHE 718 BOXSTER ───────────────
+  { brand:'porsche', model:'Porsche 718 Boxster ★', year:2020, km:'16,500', trim:'Manual — Private Seller Orléans (16km!)', price:69800, type:'dealer', location:'Orléans (16km!)', highlights:'Manual gearbox, only 16.5k km, private seller — practically local. Move fast.', value:'great', url:'https://www.kijiji.ca/b-cars-trucks/ottawa/porsche+718+boxster/k0c174l1700185' },
 ];
 
 const matrixData = [
-  { label:'Audi Q5 Komfort ★ Accident-Free (2023, 57k km, Ottawa)', price:30998, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q5 Technik High-Km Budget (2023, 95k km, Ottawa)', price:34995, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC (2023, 87k km, Waterloo ON)', price:37999, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC (2023, 81k km, Scarborough ON)', price:38800, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 4MATIC (2023, 81k km, Guelph ON)', price:36980, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 4MATIC (2023, 58k km, North York ON)', price:38980, cpo:null, cpoLabel:'N/A' },
   { label:'Audi Q5 Technik + S-Line (2023, 64k km, Audi Ottawa)', price:38888, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC Coupe (2023, 74k km, Joliette QC)', price:40395, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC ★ Ottawa Local 18km (2023, 90k km)', price:41995, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q5 Technik (2023, 43k km, Audi West Ottawa)', price:42898, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q5 Technik + S-Line (2023, 57k km, Audi Ottawa)', price:43888, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW 530e CPO M Sport PHEV (2023, 76k km, Woodbridge ON)', price:44495, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q7 Technik V6 335hp (2022, 61k km, Ottawa)', price:46995, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q7 Technik V6 335hp (2022, 79k km, Ottawa)', price:47995, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW 530e CPO M Sport Pro PHEV (2023, 50k km, Montreal)', price:48169, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC (2023, 18k km, Montreal)', price:48995, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLC 300 4MATIC CPO (2023, 24k km, Greenfield Park QC)', price:49895, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW 530i xDrive M Sport ★ 17k km (2023, factory warranty Jul 2027)', price:50900, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW 540i xDrive M Sport No Accidents (2023, 84k km, Mississauga)', price:50990, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW 540i xDrive M Sport Pro (2023, 62k km, Brossard QC)', price:51988, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 4MATIC ★ Ottawa 18km (2023, 90k km)', price:39995, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 4MATIC CPO ★ (2023, 77k km, Ste-Agathe QC)', price:41500, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q5 Technik Low Km (2023, 43k km, Audi West Ottawa)', price:42898, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q7 Komfort V6 (2023, 59k km, Mississauga)', price:42995, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW 530e CPO M Sport PHEV (2023, 76k km, Woodbridge)', price:44495, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q7 Technik V6 335hp ★ (2022, 61k km, Ottawa)', price:46995, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes E 350 4MATIC Ultra-Low Km (2022, 15k km, Ontario)', price:49140, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 CPO (2023, 24k km, Greenfield Park QC)', price:49895, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW 530i xDrive M Sport ★ 17k km (2023, warranty Jul 2027)', price:50900, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW 540i xDrive M Sport Pro ★ (2023, 62k km, Brossard QC)', price:51988, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Macan BOSE/Pano/No Acc (2023, 61k km, Vaughan)', price:53898, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Macan CPO ★ (2023, 32k km, Montreal)', price:55275, cpo:5.99, cpoLabel:'5.99%' },
-  { label:'Porsche Cayenne Coupe (2021, 92k km, Vaughan)', price:56900, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Macan Pano/Vented (2023, 53k km, Thornhill)', price:56998, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Macan AWD (2023, 58k km, North York)', price:58588, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Macan S ★ V6 375hp (2023, 65k km, Vaughan)', price:58898, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Macan T ★ Most Loaded (2023, 62k km, warranty Jul 2027)', price:59900, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Macan ★ Only 13k km No Acc (2023, Vaughan)', price:59898, cpo:null, cpoLabel:'N/A' },
-  { label:'Porsche Cayenne ★ Best Value (2022, 51k km)', price:65900, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes E 450 4MATIC ★★ Near-New (2023, 18k km, Laval QC)', price:57992, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Macan S V6 ★ 375hp (2023, 65k km, Vaughan)', price:58898, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q8 Technik ★ Flagship (2023, 62k km, Orleans ON)', price:59995, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q7 Technik V6 Top Trim (2023, 40k km, Mississauga)', price:60995, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Macan T ★★ 14k km Ottawa Local (2023)', price:60690, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Cayenne ★ BOSE+HUD+360 Dilawri (2023, 78k km)', price:61999, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 M50i ★★ 523hp V8 (2022, 44k km, Vaughan)', price:62898, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q8 Technik (2023, 35k km, Toronto)', price:62800, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 xDrive40i CPO (2024, 46k km, North York)', price:64477, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Cayenne Premium+HUD+ACC (2023, 64k km, Woodbridge)', price:64888, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 xDrive40i CPO (2024, 43k km, Thornhill)', price:65695, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Cayenne Pano+Warranty Mar27 ★ (2023, 72k km)', price:65900, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q8 Progressiv 2024 Ottawa Local (37k km)', price:65995, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Macan S ★ V6 Near-New (2023, 20k km, Toronto)', price:66990, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 CPO ★ Closest Ottawa (2024, 32k km, Ste-Agathe QC)', price:65949, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Cayenne Platinum Edition ★★ (2023, 49k km, Toronto)', price:69800, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche 718 Boxster ★ Manual (2020, 16k km, Orléans)', price:69800, cpo:null, cpoLabel:'N/A' },
 ];
 
@@ -1796,7 +1817,7 @@ function buildMatrix() {
     const m72 = monthly(row.price, 15, 7.49, 72);
     const m84 = monthly(row.price, 15, 7.49, 84);
     const mCpo = row.cpo ? monthly(row.price, 15, row.cpo, 72) : null;
-    const overBudget = row.price > 60000;
+    const overBudget = row.price > 70000;
     const highlight = overBudget ? ' style="opacity:0.6"' : '';
     tbody.innerHTML += `<tr${highlight}>
       <td class="model-col">${row.label}${overBudget ? ' <span style="color:var(--red);font-size:10px">over budget</span>' : ''}</td>
@@ -1815,10 +1836,11 @@ function jumpCalc(modelKey) {
   // Try to match model in select
   const sel = document.getElementById('calc-model');
   const keyMap = {
-    'audi-q5': '42898', 'audi-q7': '46995',
-    'bmw-530i': '50900', 'bmw-540i': '51988',
-    'mercedes-glc': '49895', 'mercedes-eclass': '48995',
-    'porsche-macan': '55275', 'porsche-cayenne': '65900', 'porsche-boxster': '69800'
+    'audi-q5': '42898', 'audi-q7': '46995', 'audi-q8': '59995',
+    'bmw-530i': '50900', 'bmw-540i': '51988', 'bmw-x5': '64477', 'bmw-x5-v8': '62898',
+    'mercedes-glc': '39995', 'mercedes-eclass': '49140', 'mercedes-e450': '57992',
+    'porsche-macan': '55275', 'porsche-macan-s': '58898', 'porsche-macan-t': '60690',
+    'porsche-cayenne': '65900', 'porsche-cayenne-plat': '69800', 'porsche-boxster': '69800'
   };
   const target = keyMap[modelKey];
   if (target) {
@@ -1888,9 +1910,9 @@ const macanListings = [
   { year:2023, trim:'AWD — No Accidents Certified ★', price:55888, km:39132, hp:261, engine:'2.0T 4-cyl', cpo:false, location:'Mississauga, ON (~450km)', dist:'450 km', fuel:'Gas', atBudget:true, rating:'great', ato:'https://www.autotrader.ca/offers/porsche-macan-awd-leather-low-km-no-accident-certfied-gasoline-cat_ma57gr20311-ef537686-9fdd-4749-9bee-73db0b29d771', highlights:'NO ACCIDENT on CARFAX certified, Leather, AWD — best km/price ratio. Clean history.', note:'Best value 2023 Macan. No accidents. Individual AT link verified June 2026.' },
   { year:2023, trim:'Base PDK — No Accidents (Montreal)', price:58769, km:51000, hp:261, engine:'2.0T 4-cyl', cpo:false, location:'Montreal, QC (~200km)', dist:'200 km', fuel:'Gas', atBudget:true, rating:'good', ato:'https://www.autotrader.ca/offers/porsche-macan-base-traction-integrale-transmission-pdk-gasoline-grey-cat_ma57gr20311-b7257955-0357-4bd8-b7b5-f75abd3bce02', highlights:'261hp PDK, No Accidents on Carfax, CarPlay, 3-zone climate — closest to Ottawa', note:'Closest 2023 Macan to Ottawa with clean Carfax. Individual AT link verified June 2026.' },
   // Retained older / slightly over $60k entries for reference
-  { year:2021, trim:'GTS AWD – Leather Seats', price:61915, km:63000, hp:375, engine:'2.9T V6 Twin-Turbo', cpo:false, location:'Ottawa (Myers Hunt Club VW)', dist:'9 km', fuel:'Gas', atBudget:false, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2021,2021&pRng=57000,67000', highlights:'375hp V6, GTS Sport Seats, Height-Adj Suspension, Leather & Alcantara, Apple CarPlay, Nav', note:'Only GTS within Ottawa city limits. High km but priced accordingly.' },
-  { year:2022, trim:'Macan S CPO', price:66900, km:31207, hp:375, engine:'2.9T V6 Twin-Turbo', cpo:true, location:'Ottawa (Mark Motors Porsche)', dist:'6 km', fuel:'Gas', atBudget:false, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2022,2022&pRng=62000,72000', highlights:'375hp, PASM, Sport Chrono, Sport Exhaust, Panoramic Roof, ACC, Surround View, Heated Steering, Bordeaux Belts', note:'Ottawa CPO. $6k over $60k budget but local and excellent spec.' },
-  { year:2024, trim:'Base AWD – Prem Plus/BOSE/Sport (Reduced)', price:66867, km:29995, hp:261, engine:'2.0T 4-cyl', cpo:false, location:'Toronto (MB Downtown)', dist:'350 km', fuel:'Gas', atBudget:false, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Toronto%2C+ON&prx=30&yRng=2024,2024&pRng=62000,72000', highlights:'Premium Plus Pkg, Sport Chrono, BOSE, Sport Tailpipes, Lane Keep, Winter Tires included, 20" Wheels', note:'2024 gas model (last gas gen). $6.8k over $60k budget.' },
+  { year:2021, trim:'GTS AWD – Leather Seats', price:61915, km:63000, hp:375, engine:'2.9T V6 Twin-Turbo', cpo:false, location:'Ottawa (Myers Hunt Club VW)', dist:'9 km', fuel:'Gas', atBudget:true, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2021,2021&pRng=57000,67000', highlights:'375hp V6, GTS Sport Seats, Height-Adj Suspension, Leather & Alcantara, Apple CarPlay, Nav', note:'Only GTS within Ottawa city limits. High km but priced accordingly.' },
+  { year:2022, trim:'Macan S CPO', price:66900, km:31207, hp:375, engine:'2.9T V6 Twin-Turbo', cpo:true, location:'Ottawa (Mark Motors Porsche)', dist:'6 km', fuel:'Gas', atBudget:true, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2022,2022&pRng=62000,72000', highlights:'375hp, PASM, Sport Chrono, Sport Exhaust, Panoramic Roof, ACC, Surround View, Heated Steering, Bordeaux Belts', note:'Ottawa CPO. $6k over $60k budget but local and excellent spec.' },
+  { year:2024, trim:'Base AWD – Prem Plus/BOSE/Sport (Reduced)', price:66867, km:29995, hp:261, engine:'2.0T 4-cyl', cpo:false, location:'Toronto (MB Downtown)', dist:'350 km', fuel:'Gas', atBudget:true, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Toronto%2C+ON&prx=30&yRng=2024,2024&pRng=62000,72000', highlights:'Premium Plus Pkg, Sport Chrono, BOSE, Sport Tailpipes, Lane Keep, Winter Tires included, 20" Wheels', note:'2024 gas model (last gas gen). $6.8k over $60k budget.' },
   // Over budget
   { year:2024, trim:'Macan S AWD CPO', price:78900, km:35701, hp:375, engine:'2.9T V6 Twin-Turbo', cpo:true, location:'Ottawa (Mark Motors Porsche)', dist:'6 km', fuel:'Gas', atBudget:false, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2024,2024&pRng=74000,84000', highlights:'375hp V6, Leather/Deviated Stitch Papaya, Prem Plus+, PDLS+, Adaptive Air Susp PASM, 20" Wheels, BOSE', note:'~$9k over budget. Lowest km 375hp S in Ottawa.' },
   { year:2025, trim:'Base AWD CPO', price:79900, km:10064, hp:261, engine:'2.0T 4-cyl', cpo:true, location:'Ottawa (Mark Motors Porsche)', dist:'6 km', fuel:'Gas', atBudget:false, rating:'great', ato:'https://www.autotrader.ca/cars/porsche/macan/?loc=Ottawa%2C+ON&prx=20&yRng=2025,2025&pRng=75000,85000', highlights:'Premium Plus+, Sport Chrono, Sport Exhaust, BOSE, Heated Windshield, Surround View, 20" Wheels', note:'Near-new 2025. CPO warranty. ~$10k over budget.' },
@@ -1924,7 +1946,7 @@ function renderMacanListings(filter, btnEl) {
   data.forEach((l, i) => {
     const overBudget = !l.atBudget;
     const bg = overBudget ? 'opacity:0.75;' : '';
-    const budgetTag = overBudget ? `<span style="background:#3a1a1a;color:#f87171;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">$${Math.round((l.price-60000)/1000)}k over budget</span>` : `<span style="background:#1a3a1a;color:#4ade80;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">✓ In budget</span>`;
+    const budgetTag = overBudget ? `<span style="background:#3a1a1a;color:#f87171;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">$${Math.round((l.price-70000)/1000)}k over budget</span>` : `<span style="background:#1a3a1a;color:#4ade80;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">✓ In budget</span>`;
     const cpoBadge = l.cpo ? '<span style="background:#1a3a2a;color:#4ade80;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">CPO</span>' : '<span style="background:#1a2a3a;color:#60a5fa;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">Dealer</span>';
     const fuelBadge = l.fuel === 'Electric' ? '<span style="background:#1f1a3a;color:#a78bfa;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">⚡ EV</span>' : '<span style="background:#2a1f1a;color:#fb923c;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">⛽ Gas</span>';
     const hpColor = l.hp >= 400 ? '#f87171' : l.hp >= 375 ? '#f59e0b' : '#60a5fa';
