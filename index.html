@@ -155,6 +155,77 @@
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── MOBILE VIEW TOGGLE ──────────────────────────────────── */
+  .mobile-toggle-bar {
+    display: flex; align-items: center; justify-content: flex-end;
+    padding: 7px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    gap: 9px; font-size: 12px; color: var(--muted); position: sticky; top: 0; z-index: 100;
+  }
+  .mobile-toggle-bar span { user-select: none; }
+  .mtoggle { position: relative; width: 42px; height: 22px; cursor: pointer; flex-shrink: 0; }
+  .mtoggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .mtoggle-track {
+    position: absolute; inset: 0; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 22px; transition: background 0.22s, border-color 0.22s;
+  }
+  .mtoggle-thumb {
+    position: absolute; left: 3px; top: 3px; width: 14px; height: 14px;
+    background: var(--muted); border-radius: 50%; transition: transform 0.22s, background 0.22s;
+  }
+  .mtoggle input:checked ~ .mtoggle-track { background: var(--accent); border-color: var(--accent); }
+  .mtoggle input:checked ~ .mtoggle-thumb { transform: translateX(20px); background: #fff; }
+
+  /* ── MOBILE VIEW OVERRIDES ───────────────────────────────── */
+  body.mobile-view .header { padding: 14px 16px 12px; }
+  body.mobile-view .header h1 { font-size: 17px; }
+  body.mobile-view .header p { font-size: 12px; }
+  body.mobile-view .header-meta { gap: 6px; margin-top: 8px; }
+  body.mobile-view .meta-chip { font-size: 11px; padding: 4px 8px; }
+  body.mobile-view .tabs { padding: 0 8px; }
+  body.mobile-view .tab { padding: 12px 12px; font-size: 12px; }
+  body.mobile-view .mobile-toggle-bar { padding: 7px 12px; }
+  body.mobile-view .main { padding: 14px 12px; max-width: 100%; }
+  body.mobile-view .cards-grid { grid-template-columns: 1fr; gap: 12px; }
+  body.mobile-view .calc-grid { grid-template-columns: 1fr; }
+  body.mobile-view .rec-grid { grid-template-columns: 1fr; }
+  body.mobile-view .section-title { font-size: 16px; }
+  body.mobile-view .section-sub { font-size: 12px; }
+  body.mobile-view .filter-bar { gap: 6px; }
+  body.mobile-view .filter-bar label { display: none; }
+  body.mobile-view select, body.mobile-view .btn-filter { font-size: 13px; padding: 8px 10px; }
+  body.mobile-view .info-banner { font-size: 12px; padding: 10px 12px; }
+  body.mobile-view .sub-tabs { gap: 2px; }
+  body.mobile-view .sub-tab { padding: 8px 12px; font-size: 12px; }
+
+  /* Mobile table → card style */
+  body.mobile-view .table-wrap { border: none; background: transparent; }
+  body.mobile-view .table-wrap table { display: block; }
+  body.mobile-view .table-wrap table thead { display: none; }
+  body.mobile-view .table-wrap table tbody { display: block; }
+  body.mobile-view .table-wrap table tbody tr {
+    display: block; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 14px; overflow: hidden;
+  }
+  body.mobile-view .table-wrap table tbody td {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 10px; border-top: none; border-bottom: 1px solid var(--border);
+    padding: 10px 14px; font-size: 13px; white-space: normal;
+  }
+  body.mobile-view .table-wrap table tbody td:last-child { border-bottom: none; }
+  body.mobile-view .table-wrap table tbody td::before {
+    content: attr(data-label); color: var(--muted); font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.4px; flex-shrink: 0;
+    padding-top: 2px; min-width: 80px;
+  }
+  body.mobile-view .table-wrap table tbody tr:hover td { background: transparent; }
+  body.mobile-view .matrix-table td { font-size: 13px; padding: 10px 14px; }
+
+  /* Mobile listing card — hide verbose highlights column */
+  body.mobile-view td[data-label="Highlights"] { display: none; }
+
+  /* Mobile quick-compare (non-.table-wrap tables) */
+  body.mobile-view table:not(.table-wrap table) { font-size: 12px; }
 </style>
 </head>
 <body>
@@ -180,6 +251,15 @@
   <div class="tab" onclick="showTab('listings', this)">📋 Live Listings</div>
   <div class="tab" onclick="showTab('recommend', this)">🎯 Recommendations</div>
   <div class="tab" onclick="showTab('macan', this)">🏔️ Cayenne</div>
+</div>
+
+<div class="mobile-toggle-bar">
+  <span>📱 Mobile View</span>
+  <label class="mtoggle" title="Toggle mobile-friendly layout">
+    <input type="checkbox" id="mobile-toggle" onchange="toggleMobileView(this.checked)">
+    <span class="mtoggle-track"></span>
+    <span class="mtoggle-thumb"></span>
+  </label>
 </div>
 
 <!-- ============================== MODELS TAB ============================== -->
@@ -879,7 +959,7 @@
 
   <!-- TOP 3 BANNER -->
   <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;border:1px solid var(--gold);">
-    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — 15 15 15 15 15 June 2026 · Budget $70k</div>
+    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — 15 15 15 15 15 15 June 2026 · Budget $70k</div>
     <div style="font-size:15px;color:#fff;line-height:2.4;">
       🥇 <strong style="color:#FFD700">BMW X5 M Sport CPO 2023</strong> — $60,998 · 61k km · Ottawa (Otto's BMW 8km!) · CPO warranty included<br>
       🥈 <strong style="color:#C0C0C0">Porsche Cayenne Platinum Edition 2023</strong> — $69,800 · 49k km · Toronto · 1-owner clean Carfax · $128k MSRP<br>
@@ -1096,6 +1176,8 @@ function showTab(name, el) {
   if (name === 'calculator') { buildMatrix(); calcUpdate(); }
   if (name === 'listings') buildListings();
   if (name === 'macan') { buildMacanTab(); showPorscheTab('overview', document.querySelector('#tab-macan .sub-tab')); }
+  // Re-apply mobile labels if mobile view is active and new tab has tables
+  if (document.body.classList.contains('mobile-view')) applyMobileLabels();
 }
 
 function showPorscheTab(name, btnEl) {
@@ -1197,12 +1279,12 @@ function buildMatrix() {
     const overBudget = row.price > 70000;
     const highlight = overBudget ? ' style="opacity:0.6"' : '';
     tbody.innerHTML += `<tr${highlight}>
-      <td class="model-col">${row.label}${overBudget ? ' <span style="color:var(--red);font-size:10px">over budget</span>' : ''}</td>
-      <td>${fmt(row.price)}</td>
-      <td>${fmt(m60)}/mo</td>
-      <td><strong>${fmt(m72)}/mo</strong></td>
-      <td>${fmt(m84)}/mo</td>
-      <td>${mCpo ? '<span style="color:var(--green);font-weight:700">' + fmt(mCpo) + '/mo</span> <span style="color:var(--muted);font-size:10px">' + row.cpoLabel + '</span>' : '<span style="color:var(--muted)">—</span>'}</td>
+      <td data-label="Model" class="model-col">${row.label}${overBudget ? ' <span style="color:var(--red);font-size:10px">over budget</span>' : ''}</td>
+      <td data-label="Price">${fmt(row.price)}</td>
+      <td data-label="60 mo">${fmt(m60)}/mo</td>
+      <td data-label="72 mo"><strong>${fmt(m72)}/mo</strong></td>
+      <td data-label="84 mo">${fmt(m84)}/mo</td>
+      <td data-label="CPO 72mo">${mCpo ? '<span style="color:var(--green);font-weight:700">' + fmt(mCpo) + '/mo</span> <span style="color:var(--muted);font-size:10px">' + row.cpoLabel + '</span>' : '<span style="color:var(--muted)">—</span>'}</td>
     </tr>`;
   });
 }
@@ -1256,16 +1338,16 @@ function renderListings() {
     const dot = `<div style="display:inline-block;width:8px;height:8px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:6px"></div>`;
     const linkCell = l.url ? `<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 10px;background:#1a2a3a;color:#60a5fa;border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap" title="Search AutoTrader / Kijiji for this listing">🔗 View</a>` : '<span style="color:var(--muted);font-size:11px">—</span>';
     tbody.innerHTML += `<tr class="listing-row" data-brand="${l.brand}" data-type="${l.type}">
-      <td>${dot}<strong>${l.model}</strong></td>
-      <td>${l.year}</td>
-      <td>${l.km} km</td>
-      <td style="font-size:12px;color:var(--muted)">${l.trim}</td>
-      <td><span class="price-tag ${priceClass}">${fmt(l.price)}</span><br><span style="font-size:10px;color:var(--muted)">+HST</span></td>
-      <td>${typeBadge}</td>
-      <td style="font-size:12px">${l.location}</td>
-      <td style="font-size:12px;color:var(--muted)">${l.highlights}</td>
-      <td style="font-size:12px">${valueIcon}</td>
-      <td>${linkCell}</td>
+      <td data-label="Model">${dot}<strong>${l.model}</strong></td>
+      <td data-label="Year">${l.year}</td>
+      <td data-label="Km">${l.km} km</td>
+      <td data-label="Trim" style="font-size:12px;color:var(--muted)">${l.trim}</td>
+      <td data-label="Price"><span class="price-tag ${priceClass}">${fmt(l.price)}</span><br><span style="font-size:10px;color:var(--muted)">+HST</span></td>
+      <td data-label="Type">${typeBadge}</td>
+      <td data-label="Location" style="font-size:12px">${l.location}</td>
+      <td data-label="Highlights" style="font-size:12px;color:var(--muted)">${l.highlights}</td>
+      <td data-label="Value"style="font-size:12px">${valueIcon}</td>
+      <td data-label="Link">${linkCell}</td>
     </tr>`;
   });
 }
@@ -1383,10 +1465,36 @@ function buildMacanMatrix() {
 }
 
 // ============================================================
+// MOBILE VIEW TOGGLE
+// ============================================================
+function toggleMobileView(active) {
+  document.body.classList.toggle('mobile-view', active);
+  if (active) applyMobileLabels();
+}
+
+// Reads <th> from each static table and stamps data-label onto every <td>
+function applyMobileLabels() {
+  document.querySelectorAll('.table-wrap table').forEach(table => {
+    const headers = [...table.querySelectorAll('th')].map(th => th.textContent.trim());
+    if (!headers.length) return;
+    table.querySelectorAll('tbody tr').forEach(row => {
+      [...row.querySelectorAll('td')].forEach((td, i) => {
+        if (!td.dataset.label && headers[i]) td.setAttribute('data-label', headers[i]);
+      });
+    });
+  });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 window.onload = () => {
   calcUpdate();
+  // Auto-enable mobile view for narrow screens (phones open in mobile mode by default)
+  if (window.innerWidth <= 768) {
+    document.getElementById('mobile-toggle').checked = true;
+    toggleMobileView(true);
+  }
 };
 </script>
 </body>
