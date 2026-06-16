@@ -224,6 +224,13 @@
   /* Mobile listing card — hide verbose highlights column */
   body.mobile-view td[data-label="Highlights"] { display: none; }
 
+  /* pkg-row — desktop subtle bg */
+  .pkg-row td { background: rgba(255,255,255,0.015); }
+  /* pkg-row — mobile: merge with previous card, no ::before label */
+  body.mobile-view .pkg-row { display: block; background: var(--surface); border: 1px solid var(--border) !important; border-top: none !important; border-radius: 0 0 12px 12px !important; margin-top: -14px !important; margin-bottom: 14px; overflow: hidden; }
+  body.mobile-view .pkg-row td { display: block !important; border-bottom: none !important; padding: 8px 14px 10px; }
+  body.mobile-view .pkg-row td::before { display: none !important; }
+
   /* Mobile quick-compare (non-.table-wrap tables) */
   body.mobile-view table:not(.table-wrap table) { font-size: 12px; }
 </style>
@@ -1060,7 +1067,7 @@
 
   <!-- TOP 3 BANNER -->
   <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;border:1px solid var(--gold);">
-    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — 15 16 June 2026 · Budget $70k · Updated</div>
+    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — 15 16 16 June 2026 · Budget $70k · Updated</div>
     <div style="font-size:15px;color:#fff;line-height:2.4;">
       🥇 <strong style="color:#FFD700">BMW X5 M Sport CPO 2022</strong> — $48,995 · 69k km · Ottawa (Otto's BMW 8km!) · 🆕 NEW BEST DEAL · CPO warranty<br>
       🥈 <strong style="color:#C0C0C0">Porsche Cayenne Premium Plus 2022</strong> — $65,900 · 51k km · Vaughan · Clean Carfax confirmed · Best Cayenne spec/price<br>
@@ -1195,16 +1202,24 @@
 // ============================================================
 const listings = [
   // ─────────── MERCEDES GLC ───────────  Source: markmotorsgroup.com / mercedes-benz-gatineau.ca / AutoTrader.ca
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★', year:2023, km:'75,000', trim:'4MATIC SUV — MB Gatineau (10km from Ottawa)', price:49888, type:'dealer', location:'MB Gatineau — 10 min from Ottawa', highlights:'✅ CONFIRMED active Jun 2026. 2023 W206 all-new GLC platform, 255hp 4MATIC. Mark Motors Group (authorized MB dealer Gatineau). Great Value badge on AutoTrader.', value:'great', url:'https://www.markmotorsgroup.com/used/Mercedes_Benz-GLC_300.html' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★★', year:2023, km:'25,000', trim:'CPO Low Km — MB Gatineau (10km!)', price:53888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'✅ CONFIRMED active Jun 2026. Only 25,000 km on a 2023 GLC — exceptional. Authorized MB dealer Gatineau. CPO eligible. Best km/price GLC near Ottawa.', value:'great', url:'https://www.mercedes-benz-gatineau.ca/used/2023-GLC_300.html' },
-  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'38,000', trim:'Accident-Free — Gatineau (10km) · Verify', price:51888, type:'dealer', location:'Gatineau, QC (~10km from Ottawa)', highlights:'⚠️ Verify before visiting. 1-owner, accident-free, AMG Package, Night Package, 360 cameras. Search Gatineau GLC listings via link.', value:'good', url:'https://www.autotrader.ca/cars/mercedes-benz/glc/reg_qc/cit_gatineau' },
-  { brand:'mercedes', model:'Mercedes GLC 300 Coupe 2024', year:2024, km:'27,645', trim:'4MATIC Coupe — Newest Gen / Gatineau', price:65888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'2024 GLC Coupe, only 27k km, Silver/Black. Latest-gen GLC with sporty coupe roofline. CPO eligible. Mark Motors Group Gatineau.', value:'great', url:'https://www.markmotorsgroup.com/models/Mercedes_Benz-GLC300.html' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★', year:2023, km:'75,000', trim:'4MATIC SUV — MB Gatineau (10km from Ottawa)', price:49888, type:'dealer', location:'MB Gatineau — 10 min from Ottawa', highlights:'✅ CONFIRMED active Jun 2026. 2023 W206 all-new GLC platform, 255hp 4MATIC. Mark Motors Group (authorized MB dealer Gatineau). Great Value badge on AutoTrader.',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.markmotorsgroup.com/used/Mercedes_Benz-GLC_300.html' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★★', year:2023, km:'25,000', trim:'CPO Low Km — MB Gatineau (10km!)', price:53888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'✅ CONFIRMED active Jun 2026. Only 25,000 km on a 2023 GLC — exceptional. Authorized MB dealer Gatineau. CPO eligible. Best km/price GLC near Ottawa.',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.mercedes-benz-gatineau.ca/used/2023-GLC_300.html' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC', year:2023, km:'38,000', trim:'Accident-Free — Gatineau (10km) · AMG+Night+360', price:51888, type:'dealer', location:'Gatineau, QC (~10km from Ottawa)', highlights:'⚠️ Verify before visiting. 1-owner, accident-free. AMG Package + Night Package + 360 cameras confirmed. Search Gatineau GLC listings via link.',
+    pkgs:{ prem:'partial', drv:null, cam360:true, burm:false, hsteer:true, vent:false, pano:null }, value:'good', url:'https://www.autotrader.ca/cars/mercedes-benz/glc/reg_qc/cit_gatineau' },
+  { brand:'mercedes', model:'Mercedes GLC 300 Coupe 2024', year:2024, km:'27,645', trim:'4MATIC Coupe — Newest Gen / Gatineau', price:65888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'2024 GLC Coupe, only 27k km, Silver/Black. Latest-gen GLC with sporty coupe roofline. CPO eligible. Mark Motors Group Gatineau.',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.markmotorsgroup.com/models/Mercedes_Benz-GLC300.html' },
   // ─────────── MERCEDES GLE ───────────  Source: mercedes-benz-starmotors.ca / AutoTrader.ca
-  { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★', year:2022, km:'77,640', trim:'4MATIC SUV — Ottawa Local (Star Motors Nepean)', price:52950, type:'dealer', location:'Star Motors Nepean, Ottawa (8km!)', highlights:'✅ CONFIRMED active Jun 2026 · Stock #UC4999. Star Motors Nepean (authorized MB dealer). 255hp I4, full-size SUV. ONLY Ottawa-local GLE under $70k found. Confirm CPO eligibility.', value:'great', url:'https://www.mercedes-benz-starmotors.ca/models/Mercedes_Benz-GLE_350.html' },
+  { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★', year:2022, km:'77,640', trim:'4MATIC SUV — Ottawa Local (Star Motors Nepean)', price:52950, type:'dealer', location:'Star Motors Nepean, Ottawa (8km!)', highlights:'✅ CONFIRMED active Jun 2026 · Stock #UC4999. Star Motors Nepean (authorized MB dealer). 255hp I4, full-size SUV. ONLY Ottawa-local GLE under $70k found. Confirm CPO eligibility.',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:null, hsteer:true, vent:null, pano:true }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/models/Mercedes_Benz-GLE_350.html' },
   // ─────────── MERCEDES E-CLASS ───────────  Source: AutoTrader.ca / mercedes-benz-blainville.ca / CarGurus.ca
-  { brand:'mercedes', model:'Mercedes E 450 All-Terrain ★★', year:2022, km:'41,308', trim:'E 450 4MATIC Wagon — Orleans, ON (15km!)', price:58995, type:'cpo', location:'Orleans, ON (~15km from Ottawa!)', highlights:'✅ CONFIRMED active Jun 2026 (AutoTrader). E 450 362hp I-6, All-Terrain Wagon, CPO certified, Graphite Grey, 41k km. Ottawa suburb — no road trip. Premium + Technology + Intelligent Drive packages.', value:'great', url:'https://www.autotrader.ca/cars/mercedes-benz/e-class/reg_on/bt_wagon' },
-  { brand:'mercedes', model:'Mercedes E 450 All-Terrain ★', year:2023, km:'36,444', trim:'E 450 4MATIC Wagon — 2023 / Mirabel QC (~90km)', price:64888, type:'dealer', location:'MB Blainville, Mirabel QC (~90km via Hwy 50)', highlights:'2023 E 450 All-Terrain Wagon, 36,444 km. Authorized MB dealer Mirabel. Home delivery. Inventory ID: U26-193. Verify current Jun 2026.', value:'great', url:'https://www.mercedes-benz-blainville.ca/en/used-inventory/mercedes-benz/e450/2023-mercedes-benz-e450-id38317835' },
-  { brand:'mercedes', model:'Mercedes E 450 4MATIC ★', year:2023, km:'18,942', trim:'E 450 — 362hp / Near-New / Laval QC', price:57992, type:'dealer', location:'Laval, QC (~90km from Ottawa)', highlights:'2023 E 450, 362hp, near-new 18,942 km. ~$30k off MSRP. Home delivery available. Source: CarGurus.ca · Verify active Jun 2026.', value:'great', url:'https://www.cargurus.ca/Cars/l-Used-Mercedes-Benz-E-Class-All-Terrain-d3107' },
+  { brand:'mercedes', model:'Mercedes E 450 All-Terrain ★★', year:2022, km:'41,308', trim:'E 450 4MATIC Wagon CPO — Orleans, ON (15km!)', price:58995, type:'cpo', location:'Orleans, ON (~15km from Ottawa!)', highlights:'✅ CONFIRMED active Jun 2026 (AutoTrader). E 450 362hp I-6, All-Terrain Wagon, CPO certified, Graphite Grey, 41k km. Ottawa suburb. Premium + Technology + Intelligent Drive packages confirmed.',
+    pkgs:{ prem:true, drv:true, cam360:true, burm:true, hsteer:true, vent:null, pano:true }, value:'great', url:'https://www.autotrader.ca/cars/mercedes-benz/e-class/reg_on/bt_wagon' },
+  { brand:'mercedes', model:'Mercedes E 450 All-Terrain ★', year:2023, km:'36,444', trim:'E 450 4MATIC Wagon — 2023 / Mirabel QC (~90km)', price:64888, type:'dealer', location:'MB Blainville, Mirabel QC (~90km via Hwy 50)', highlights:'2023 E 450 All-Terrain Wagon, 36,444 km. AMG Night Package + Ensemble Haut de Gamme + Panoramic Roof + Burmester confirmed. Home delivery. MB Blainville Inventory ID: U26-193.',
+    pkgs:{ prem:true, drv:null, cam360:null, burm:true, hsteer:true, vent:null, pano:true }, value:'great', url:'https://www.mercedes-benz-blainville.ca/en/used-inventory/mercedes-benz/e450/2023-mercedes-benz-e450-id38317835' },
+  { brand:'mercedes', model:'Mercedes E 450 4MATIC ★', year:2023, km:'18,942', trim:'E 450 — 362hp / Near-New / Laval QC', price:57992, type:'dealer', location:'Laval, QC (~90km from Ottawa)', highlights:'2023 E 450, 362hp, near-new 18,942 km. ~$30k off MSRP. Home delivery available. Packages unknown — verify with dealer (likely well-optioned at this age/km).',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:null, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.cargurus.ca/Cars/l-Used-Mercedes-Benz-E-Class-All-Terrain-d3107' },
   // ─────────── AUDI Q8 ─────────────────  Source: CarGurus.ca Ottawa (25 Q8s in area Jun 2026)
   { brand:'audi', model:'Audi Q8 Progressiv ★', year:2023, km:'53,785', trim:'55 TFSI Progressiv — Ottawa (9km!)', price:56995, type:'dealer', location:'Ottawa, ON (9km from Ottawa!)', highlights:'Ottawa dealer, 2023 Q8, no accidents. Verify current price — 25 Q8s near Ottawa on CarGurus Jun 2026 ($32k–$106k range). Link searches Ottawa Q8 inventory.', value:'great', url:'https://www.cargurus.ca/Cars/l-Used-Audi-Q8-Ottawa-d2792_L412564' },
   { brand:'audi', model:'Audi Q8 Technik ★★', year:2023, km:'63,556', trim:'55 TFSI Technik Top Trim — Orleans (12km!)', price:59895, type:'dealer', location:'Orleans, ON (~12km from Ottawa!)', highlights:'Technik = top trim. 3.0T V6, Virtual Cockpit Plus, B&O 3D, Matrix LED, HUD, Daytona Gray. Ottawa suburb! Verify current price Jun 2026 via Ottawa Q8 search.', value:'great', url:'https://www.cargurus.ca/Cars/l-Used-Audi-Q8-Ottawa-d2792_L412564' },
@@ -1414,6 +1429,40 @@ function buildListings() {
 function filterListings(val) { listingsBrandFilter = val; renderListings(); }
 function filterListingsType(val) { listingsTypeFilter = val; renderListings(); }
 
+const PKG_DEFS = [
+  { key:'prem',   label:'Premium+',     tip:'Premium Plus package (or equivalent luxury bundle)' },
+  { key:'drv',    label:'Driver Assist', tip:'Driver Assistance / Intelligent Drive package (DISTRONIC, Lane Assist, etc.)' },
+  { key:'cam360', label:'360 Cam',       tip:'Surround View / 360-degree camera system' },
+  { key:'burm',   label:'Burmester',    tip:'Burmester premium audio system' },
+  { key:'hsteer', label:'Htd Steering', tip:'Heated steering wheel' },
+  { key:'vent',   label:'Vent Seats',   tip:'Ventilated / cooled front seats' },
+  { key:'pano',   label:'Pano Roof',    tip:'Panoramic sunroof / glass roof' },
+];
+
+function buildPkgRow(l) {
+  if (!l.pkgs) return '';
+  const score = PKG_DEFS.filter(d => l.pkgs[d.key] === true).length;
+  const total = PKG_DEFS.length;
+  const scoreColor = score >= 6 ? '#4CAF50' : score >= 4 ? '#FFC107' : '#888';
+  const badges = PKG_DEFS.map(d => {
+    const val = l.pkgs[d.key];
+    const isPart = val === 'partial';
+    const icon  = val === true ? '✅' : isPart ? '⚠️' : val === false ? '❌' : '❓';
+    const r = val === true ? '76,175,80' : isPart ? '255,152,0' : val === false ? '244,67,54' : '120,120,120';
+    const c = val === true ? '#4CAF50'   : isPart ? '#FF9800'   : val === false ? '#ef5350'  : '#888';
+    return `<span title="${d.tip}" style="display:inline-flex;align-items:center;gap:2px;background:rgba(${r},0.1);border:1px solid rgba(${r},0.35);border-radius:5px;padding:2px 6px;font-size:10px;color:${c};white-space:nowrap;cursor:default">${icon} ${d.label}</span>`;
+  }).join('');
+  return `<tr class="pkg-row">
+    <td colspan="10" style="padding:3px 14px 9px 28px;border-bottom:2px solid var(--border)">
+      <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+        <span style="font-size:10px;font-weight:800;color:${scoreColor};text-transform:uppercase;letter-spacing:0.4px;margin-right:2px">Your Spec ${score}/${total}</span>
+        ${badges}
+        ${score < 6 ? '<span style="font-size:10px;color:var(--muted)">— ❓ = verify with dealer</span>' : ''}
+      </div>
+    </td>
+  </tr>`;
+}
+
 function renderListings() {
   const tbody = document.getElementById('listings-body');
   tbody.innerHTML = '';
@@ -1439,9 +1488,9 @@ function renderListings() {
       <td data-label="Type">${typeBadge}</td>
       <td data-label="Location" style="font-size:12px">${l.location}</td>
       <td data-label="Highlights" style="font-size:12px;color:var(--muted)">${l.highlights}</td>
-      <td data-label="Value"style="font-size:12px">${valueIcon}</td>
+      <td data-label="Value" style="font-size:12px">${valueIcon}</td>
       <td data-label="Link">${linkCell}</td>
-    </tr>`;
+    </tr>${buildPkgRow(l)}`;
   });
 }
 
