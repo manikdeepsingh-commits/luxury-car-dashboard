@@ -233,6 +233,31 @@
 
   /* Mobile quick-compare (non-.table-wrap tables) */
   body.mobile-view table:not(.table-wrap table) { font-size: 12px; }
+
+  /* ── Watchlist / Star feature ── */
+  .star-btn { background:none; border:none; font-size:18px; cursor:pointer; padding:2px 5px; border-radius:5px; line-height:1; transition:transform 0.12s, filter 0.12s; color:#555; }
+  .star-btn:hover { transform:scale(1.35); }
+  .star-btn.starred { color:#ffd700; filter:drop-shadow(0 0 5px #ffd70080); }
+  .listing-row.is-starred { background: rgba(255,215,0,0.04) !important; outline: 1px solid rgba(255,215,0,0.12); }
+  #star-count-badge { display:none; background:#ffd700; color:#111; border-radius:9px; font-size:10px; font-weight:800; padding:1px 6px; margin-left:5px; vertical-align:middle; }
+  #star-count-badge.has-stars { display:inline-block; }
+  .tab.starred-tab { position:relative; }
+
+  /* Watchlist tab compare panel */
+  #starred-empty { text-align:center; padding:60px 20px; color:var(--muted); font-size:15px; }
+  .compare-grid { display:grid; gap:12px; margin-bottom:28px; }
+  .compare-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; }
+  .compare-card .cc-header { font-weight:700; font-size:13px; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+  .compare-card .cc-row { display:flex; justify-content:space-between; font-size:12px; padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .compare-card .cc-label { color:var(--muted); }
+  .compare-card .cc-val { font-weight:600; text-align:right; max-width:60%; }
+  .compare-card .cc-price { font-size:17px; font-weight:800; color:#4ade80; }
+  .compare-card .cc-monthly { font-size:11px; color:var(--muted); }
+  .unstar-btn { background:none; border:1px solid #3a2a2a; color:#f87171; border-radius:5px; font-size:10px; font-weight:600; padding:2px 7px; cursor:pointer; }
+  .unstar-btn:hover { background:#3a1a1a; }
+  .watchlist-clear-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+  .clear-all-btn { background:#1a0d0d; border:1px solid #440000; color:#f87171; border-radius:6px; padding:5px 14px; font-size:12px; cursor:pointer; font-weight:600; }
+  .clear-all-btn:hover { background:#2a1010; }
 </style>
 </head>
 <body>
@@ -258,6 +283,7 @@
   <div class="tab" onclick="showTab('listings', this)">📋 Live Listings</div>
   <div class="tab" onclick="showTab('recommend', this)">🎯 Recommendations</div>
   <div class="tab" onclick="showTab('macan', this)">🏔️ Cayenne</div>
+  <div class="tab starred-tab" onclick="showTab('starred', this)">⭐ Watchlist<span id="star-count-badge"></span></div>
 </div>
 
 <div class="mobile-toggle-bar">
@@ -1154,6 +1180,7 @@
           <th>Highlights</th>
           <th>Value Rating</th>
           <th>Link</th>
+          <th title="Add to Watchlist">⭐</th>
         </tr>
       </thead>
       <tbody id="listings-body">
@@ -1360,6 +1387,38 @@
   </div>
 
 </div><!-- /tab-macan -->
+
+
+<!-- ============================== WATCHLIST TAB ============================== -->
+<div id="tab-starred" class="section">
+  <h2 class="section-title">⭐ My Watchlist</h2>
+  <p class="section-sub">Listings you starred — star any row in the Live Listings tab to add it here. Stars persist across sessions.</p>
+  <div id="starred-empty" style="display:none">
+    <div style="font-size:48px;margin-bottom:12px">☆</div>
+    <div style="font-weight:600;margin-bottom:6px">Your watchlist is empty</div>
+    <div style="font-size:13px">Go to <strong>📋 Live Listings</strong> and tap ☆ on any row to save it here.</div>
+  </div>
+  <div id="starred-content" style="display:none">
+    <div class="watchlist-clear-bar">
+      <span id="starred-count-label" style="font-size:13px;color:var(--muted)"></span>
+      <button class="clear-all-btn" onclick="clearAllStars()">✕ Clear all</button>
+    </div>
+    <!-- Compare cards rendered here -->
+    <div id="compare-grid" class="compare-grid"></div>
+    <!-- Full table of starred listings -->
+    <h3 style="margin:20px 0 10px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px">Full Detail</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th><th>Year</th><th>Km</th><th>Trim</th><th>Price</th><th>Type</th><th>Location</th><th>Highlights</th><th>Value</th><th>Link</th><th>⭐</th>
+          </tr>
+        </thead>
+        <tbody id="starred-listings-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div><!-- /tab-starred -->
 
 
 <!-- ============================== RECOMMENDATIONS TAB ============================== -->
@@ -1715,6 +1774,149 @@ const matrixData = [
 
 
 // ============================================================
+// WATCHLIST / STAR FEATURE
+// ============================================================
+const STAR_KEY = 'lcdb_starred_v1';
+let starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || '[]'));
+
+function listingKey(l) {
+  // Stable key: brand|year|price — unique enough across our dataset
+  return l.brand + '|' + l.year + '|' + l.price;
+}
+
+function saveStars() {
+  localStorage.setItem(STAR_KEY, JSON.stringify([...starred]));
+}
+
+function updateStarBadge() {
+  const badge = document.getElementById('star-count-badge');
+  if (!badge) return;
+  const n = starred.size;
+  badge.textContent = n;
+  badge.classList.toggle('has-stars', n > 0);
+}
+
+function toggleStar(key, btn) {
+  if (starred.has(key)) {
+    starred.delete(key);
+    btn.classList.remove('starred');
+    btn.textContent = '☆';
+    btn.title = 'Add to Watchlist';
+    // Un-highlight row
+    const row = btn.closest('tr');
+    if (row) row.classList.remove('is-starred');
+  } else {
+    starred.add(key);
+    btn.classList.add('starred');
+    btn.textContent = '⭐';
+    btn.title = 'Remove from Watchlist';
+    const row = btn.closest('tr');
+    if (row) row.classList.add('is-starred');
+  }
+  saveStars();
+  updateStarBadge();
+}
+
+function clearAllStars() {
+  starred.clear();
+  saveStars();
+  updateStarBadge();
+  // Re-render listings to reset star buttons if listings tab is open
+  const listTab = document.getElementById('tab-listings');
+  if (listTab && listTab.classList.contains('active')) renderListings();
+  renderStarred();
+}
+
+function renderStarred() {
+  const empty = document.getElementById('starred-empty');
+  const content = document.getElementById('starred-content');
+  const tbody = document.getElementById('starred-listings-body');
+  const countLabel = document.getElementById('starred-count-label');
+  const compareGrid = document.getElementById('compare-grid');
+  if (!empty) return;
+
+  const starredListings = listings.filter(l => starred.has(listingKey(l)));
+
+  if (starredListings.length === 0) {
+    empty.style.display = 'block';
+    content.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  content.style.display = 'block';
+  countLabel.textContent = starredListings.length + ' listing' + (starredListings.length > 1 ? 's' : '') + ' saved';
+
+  // ── Compare cards (side-by-side summary) ──
+  starredListings.sort((a,b) => a.price - b.price);
+  const cols = Math.min(starredListings.length, 4);
+  compareGrid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+  compareGrid.innerHTML = '';
+  starredListings.forEach(l => {
+    const key = listingKey(l);
+    const mo72 = monthly(l.price, 15, 7.49, 72);
+    const valueBadge = l.value === 'great' ? '<span style="color:#4ade80">🟢 Great Deal</span>' : l.value === 'good' ? '<span style="color:#fbbf24">🟡 Good Price</span>' : '<span style="color:#f87171">🔴 Fair</span>';
+    const typeBadge = l.type === 'cpo' ? '<span style="color:#4ade80">CPO</span>' : '<span style="color:#60a5fa">Dealer</span>';
+    const brandColors = {audi:'var(--audi)',bmw:'var(--bmw)',porsche:'var(--porsche)',mercedes:'var(--mercedes)'};
+    const dot = `<div style="display:inline-block;width:9px;height:9px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:7px;flex-shrink:0"></div>`;
+    compareGrid.innerHTML += `<div class="compare-card">
+      <div class="cc-header">
+        <span style="display:flex;align-items:center">${dot}<span>${l.model}</span></span>
+        <button class="unstar-btn" onclick="unstarFromWatchlist('${key}', this)">✕ Remove</button>
+      </div>
+      <div class="cc-price">${fmt(l.price)} <span class="cc-monthly">+HST · est. ${fmt(mo72)}/mo</span></div>
+      <div style="margin:8px 0 6px"></div>
+      <div class="cc-row"><span class="cc-label">Year</span><span class="cc-val">${l.year}</span></div>
+      <div class="cc-row"><span class="cc-label">Km</span><span class="cc-val">${l.km} km</span></div>
+      <div class="cc-row"><span class="cc-label">Type</span><span class="cc-val">${typeBadge}</span></div>
+      <div class="cc-row"><span class="cc-label">Value</span><span class="cc-val">${valueBadge}</span></div>
+      <div class="cc-row"><span class="cc-label">Location</span><span class="cc-val" style="font-size:11px">${l.location}</span></div>
+      ${l.url ? `<div style="margin-top:10px"><a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:5px 12px;background:#1a2a3a;color:#60a5fa;border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">🔗 View listing</a></div>` : ''}
+    </div>`;
+  });
+
+  // ── Full table ──
+  tbody.innerHTML = '';
+  starredListings.forEach(l => {
+    const key = listingKey(l);
+    const priceClass = l.value === 'great' ? 'price-good' : l.value === 'fair' ? 'price-high' : 'price-fair';
+    const typeBadge = l.type === 'cpo' ? '<span class="listing-badge lb-cpo">CPO</span>' : '<span class="listing-badge lb-dealer">Dealer</span>';
+    const valueIcon = l.value === 'great' ? '🟢 Great Deal' : l.value === 'good' ? '🟡 Good Price' : '🔴 Fair/Stretched';
+    const brandColors = {audi:'var(--audi)',bmw:'var(--bmw)',porsche:'var(--porsche)',mercedes:'var(--mercedes)'};
+    const dot = `<div style="display:inline-block;width:8px;height:8px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:6px"></div>`;
+    const linkCell = l.url ? `<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 10px;background:#1a2a3a;color:#60a5fa;border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">🔗 View</a>` : '<span style="color:var(--muted)">—</span>';
+    tbody.innerHTML += `<tr class="listing-row is-starred">
+      <td data-label="Model">${dot}<strong>${l.model}</strong></td>
+      <td data-label="Year">${l.year}</td>
+      <td data-label="Km">${l.km} km</td>
+      <td data-label="Trim" style="font-size:12px;color:var(--muted)">${l.trim || ''}</td>
+      <td data-label="Price"><span class="price-tag ${priceClass}">${fmt(l.price)}</span><br><span style="font-size:10px;color:var(--muted)">+HST</span></td>
+      <td data-label="Type">${typeBadge}</td>
+      <td data-label="Location" style="font-size:12px">${l.location}</td>
+      <td data-label="Highlights" style="font-size:12px;color:var(--muted)">${l.highlights || ''}</td>
+      <td data-label="Value" style="font-size:12px">${valueIcon}</td>
+      <td data-label="Link">${linkCell}</td>
+      <td data-label="★"><button class="star-btn starred" onclick="unstarFromWatchlist('${key}', this)" title="Remove from Watchlist">⭐</button></td>
+    </tr>`;
+  });
+}
+
+function unstarFromWatchlist(key, btn) {
+  starred.delete(key);
+  saveStars();
+  updateStarBadge();
+  // Reset button in listings tab if visible
+  document.querySelectorAll('.star-btn[data-key="' + key + '"]').forEach(b => {
+    b.classList.remove('starred');
+    b.textContent = '☆';
+    b.title = 'Add to Watchlist';
+    const row = b.closest('tr');
+    if (row) row.classList.remove('is-starred');
+  });
+  renderStarred();
+}
+
+// ============================================================
 // TABS
 // ============================================================
 function showTab(name, el) {
@@ -1724,6 +1926,7 @@ function showTab(name, el) {
   el.classList.add('active');
   if (name === 'calculator') { buildMatrix(); calcUpdate(); }
   if (name === 'listings') buildListings();
+  if (name === 'starred') renderStarred();
   if (name === 'macan') { buildMacanTab(); showPorscheTab('overview', document.querySelector('#tab-macan .sub-tab')); }
   // Re-apply mobile labels if mobile view is active and new tab has tables
   if (document.body.classList.contains('mobile-view')) applyMobileLabels();
@@ -1949,13 +2152,16 @@ function renderListings() {
   });
   filtered.sort((a,b) => a.price - b.price);
   filtered.forEach(l => {
+    const key = listingKey(l);
+    const isStarred = starred.has(key);
     const priceClass = l.value === 'great' ? 'price-good' : l.value === 'fair' ? 'price-high' : 'price-fair';
     const typeBadge = l.type === 'cpo' ? '<span class="listing-badge lb-cpo">CPO</span>' : '<span class="listing-badge lb-dealer">Dealer</span>';
     const valueIcon = l.value === 'great' ? '🟢 Great Deal' : l.value === 'good' ? '🟡 Good Price' : '🔴 Fair/Stretched';
     const brandColors = {genesis:'var(--genesis)',audi:'var(--audi)',bmw:'var(--bmw)',porsche:'var(--porsche)',mercedes:'var(--mercedes)',volvo:'#4d85b8',lexus:'var(--lexus)'};
     const dot = `<div style="display:inline-block;width:8px;height:8px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:6px"></div>`;
     const linkCell = l.url ? `<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 10px;background:#1a2a3a;color:#60a5fa;border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap" title="Search AutoTrader / Kijiji for this listing">🔗 View</a>` : '<span style="color:var(--muted);font-size:11px">—</span>';
-    tbody.innerHTML += `<tr class="listing-row" data-brand="${l.brand}" data-type="${l.type}">
+    const starCell = `<button class="star-btn${isStarred ? ' starred' : ''}" data-key="${key}" onclick="toggleStar('${key}', this)" title="${isStarred ? 'Remove from Watchlist' : 'Add to Watchlist'}">${isStarred ? '⭐' : '☆'}</button>`;
+    tbody.innerHTML += `<tr class="listing-row${isStarred ? ' is-starred' : ''}" data-brand="${l.brand}" data-type="${l.type}">
       <td data-label="Model">${dot}<strong>${l.model}</strong></td>
       <td data-label="Year">${l.year}</td>
       <td data-label="Km">${l.km} km</td>
@@ -1966,6 +2172,7 @@ function renderListings() {
       <td data-label="Highlights" style="font-size:12px;color:var(--muted)">${l.highlights}</td>
       <td data-label="Value" style="font-size:12px">${valueIcon}</td>
       <td data-label="Link">${linkCell}</td>
+      <td data-label="★">${starCell}</td>
     </tr>${buildPkgRow(l)}`;
   });
 }
@@ -2108,6 +2315,7 @@ function applyMobileLabels() {
 // ============================================================
 window.onload = () => {
   calcUpdate();
+  updateStarBadge();
   // Auto-enable mobile view for narrow screens (phones open in mobile mode by default)
   if (window.innerWidth <= 768) {
     document.getElementById('mobile-toggle').checked = true;
