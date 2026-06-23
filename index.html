@@ -347,10 +347,10 @@
       <div class="card-body">
         <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0L I6 TwinTurbo 335hp</span></div>
         <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">xDrive (performance-biased)</span></div>
-        <div class="stat-row"><span class="stat-label">Ottawa X5</span><span class="stat-val green">⚠️ Prio Auto $49,995/80k km (verify active) · 🆕 $51,490 Kia 417 Gloucester · Ottos BMW $54,598+ · Jun 22 2026</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa X5</span><span class="stat-val green">✅ Prio Auto $49,995/80k km (confirmed Jun 23) · Ottos BMW $54,598+ · Jun 23 2026</span></div>
         <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">iDrive 8, Panoramic, M Sport (335hp)</span></div>
         <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
-        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">⚠️ $49,995/80k km Prio Auto (verify) · 🆕 $51,490 Kia 417 Gloucester Ottawa LOCAL · $50,598/42k km MB Oakville (low km!) · CPO $64,400 Ottos BMW Jun 22</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">✅ $49,995/80k km Prio Auto Ottawa LOCAL · $50,598/42k km MB Oakville · 🆕 $57,697/33k km CarHub Thornhill (low km!) · CPO $64,400 Ottos BMW Jun 23</span></div>
       </div>
       <div class="card-footer">
         <div><div class="price-range" style="color:var(--bmw)">$49,995 – $69,499</div><div class="monthly-est">Est. $890–$1,229/mo @ 10% down, 72mo</div></div>
@@ -1530,8 +1530,10 @@ const listings = [
     pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLC_300.html' },
   { brand:'mercedes', model:'Mercedes GLC 300 Coupe 2024', year:2024, km:'27,645', trim:'4MATIC Coupe — Newest Gen / Gatineau', price:65888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'2024 GLC Coupe, only 27k km. Latest-gen GLC sporty coupe roofline. Mark Motors Group Gatineau.',
     pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.markmotorsgroup.com/models/Mercedes_Benz-GLC300.html' },
-  // ─── MERCEDES GLE ─── Sources: Star Motors Nepean site + AutoTrader/CarGurus Ottawa Jun 22 2026 — updated listings
-  { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL', year:2022, km:'77,640', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Ottawa LOCAL', price:52950, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'✅ Jun 22 2026 — Star Motors Nepean $52,950 / 77,640 km. 2022 GLE 350 4MATIC. Ottawa-local authorized MB dealer. Previous CPO $44,967 / 97,603 km unit SOLD. New listing at lower km. Walk-in test drive — no delivery required.',
+  // ─── MERCEDES GLE ─── Sources: Star Motors Nepean site + AutoTrader/CarGurus Ottawa Jun 23 2026 — updated listings
+  { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL', year:2022, km:'77,640', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Ottawa LOCAL', price:52950, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'✅ Jun 23 2026 — Star Motors Nepean $52,950 / 77,640 km. 2022 GLE 350 4MATIC. Ottawa-local authorized MB dealer. Walk-in test drive — no delivery required.',
+    value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
+  { brand:'mercedes', model:'Mercedes GLE 350 4MATIC LOW KM ★★ 🆕', year:2022, km:'34,036', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Low Km 34k · NEW', price:58848, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'🆕 NEW Jun 23 2026 — Star Motors Nepean $58,848 / 34,036 km. 2022 GLE 350 4MATIC. Ultra-low km unit — nearly half the km of the $52,950 entry. Ottawa-local authorized MB dealer. Walk-in test drive.',
     value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★ Ottawa LOCAL', year:2022, km:'80,377', trim:'GLE 450 4MATIC — Star Motors Nepean (9km!) · 362hp · Ottawa LOCAL', price:55887, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'🆕 NEW Jun 22 2026 — Star Motors Nepean $55,887 / 80,377 km. 2022 GLE 450 4MATIC (362hp 3.0T I-6 twin-turbo). Ottawa-local authorized MB dealer. Walk-in test drive. Upgraded GLE 450 engine vs GLE 350.',
     value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_450.html' },
@@ -1593,14 +1595,10 @@ const listings = [
   { brand:'bmw', model:'BMW 540i xDrive AWD ★', year:2022, km:'50,858', trim:'540i xDrive — 335hp I-6 / Vaughan ON', price:51077, type:'dealer', location:'Vaughan, ON (~450km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 540i xDrive AWD, 50,858 km, $51,077. CarGurus Fair Deal #428091138. Black. Delivery $179.',
     value:'good', url:'https://www.cargurus.ca/details/428091138' },
   // ─── BMW X5 ─── Sources: AutoTrader, bmwottos.ca Jun 21 2026
-  { brand:'bmw', model:'BMW X5 xDrive40i ★★ Ottawa LOCAL Certified ⚠️Verify', year:2022, km:'79,790', trim:'xDrive40i — Prio Auto Nepean (9km!) · Verify Active Jun 22', price:49995, type:'dealer', location:'Prio Auto Sales Nepean — 9km! (verify active)',
-    highlights:'⚠️ Verify before visiting Jun 22 2026 — Prio Auto Sales Nepean (9km). $49,995 / 79,790 km. 2022 X5 xDrive40i. Certified, 360 Camera. 335hp 3.0L I-6. Ottawa-local, walk-in test drive. Not confirmed in latest search refresh — call ahead to confirm still available.',
+  { brand:'bmw', model:'BMW X5 xDrive40i ★★ Ottawa LOCAL', year:2022, km:'79,790', trim:'xDrive40i — Prio Auto Nepean (9km!) · Confirmed Jun 23', price:49995, type:'dealer', location:'Prio Auto Sales Nepean — 9km!',
+    highlights:'✅ CONFIRMED active Jun 23 2026 — Prio Auto Sales Nepean (9km). $49,995 / 79,790 km. 2022 X5 xDrive40i. Certified, 360 Camera. 335hp 3.0L I-6. Ottawa-local, walk-in test drive. Best-priced local Ottawa X5.',
     value:'great', url:'https://www.autotrader.ca/cars/bmw/x5/reg_on/cit_ottawa',
     pkgSet:'bmwx5', pkgs:{ msport:null, premenh:null, drvpro:null, park360:true, vent:null, airsusp:null, audio:null, pano:null } },
-  { brand:'bmw', model:'BMW X5 xDrive40i ★★ Ottawa LOCAL 🆕', year:2022, km:'unknown', trim:'xDrive40i — Kia 417 Ottawa Gloucester · Ottawa LOCAL', price:51490, type:'dealer', location:'Kia 417 — Gloucester, Ottawa (east Ottawa!)',
-    highlights:'🆕 NEW Jun 22 2026 — 2022 BMW X5 xDrive40i at Kia 417 Ottawa/Gloucester. $51,490. East Ottawa location. Verify exact km and packages with dealer before visiting. Ottawa-local alternative to Prio Auto unit.',
-    value:'great', url:'https://www.autotrader.ca/cars/bmw/x5/reg_on/cit_ottawa',
-    pkgSet:'bmwx5', pkgs:{ msport:null, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
   { brand:'bmw', model:'BMW X5 xDrive40i ★★', year:2022, km:'51,065', trim:'xDrive40i Premium Enhanced + Rear Heated — Vaughan ON', price:47900, type:'dealer', location:'Toronto Auto Brokers — Vaughan ON (~357km)', highlights:'🆕 NEW Jun 18 2026 — 2022 X5 xDrive40i Premium Enhanced Package ($9,200) + Panoramic Moonroof + Rear Heated Seats. Vaughan ON, delivery available. Toronto Auto Brokers. Best $/km X5 found. Delivery available. $47,900 CHEAPEST X5 in budget. Note: 357km from Ottawa.',
     value:'great', url:'https://www.autotrader.ca/offers/bmw-x5-xdrive40i-premium-enhanced-pkg-rear-heated-gasoline-grey-cat_ma13gr16406mt363tr478956-d6066077-13e5-4570-9e54-b76bbf8af2d7',
     pkgSet:'bmwx5', pkgs:{ msport:false, premenh:true, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:true } },
@@ -1613,7 +1611,7 @@ const listings = [
   { brand:'bmw', model:'BMW X5 xDrive40i LOW KM ★★ 🆕', year:2022, km:'42,316', trim:'xDrive40i Premium Essential — Low Km / MB Oakville delivery', price:50598, type:'dealer', location:'Mercedes-Benz Oakville (~386km, delivery)', highlights:'🆕 NEW Jun 22 2026 — Mercedes-Benz Oakville. 2022 X5 xDrive40i $50,598 / 42,316 km. Premium Essential Package + 20" wheels. White Metallic. Coffee Leather. Lowest-km 2022 X5 found. Delivery available.',
     value:'great', url:'https://www.autotrader.ca/cars/bmw/x5/my_2022',
     pkgSet:'bmwx5', pkgs:{ msport:false, premenh:false, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
-  { brand:'bmw', model:'BMW X5 xDrive40i CPO ★★ 🆕', year:2023, km:'59,780', trim:'xDrive40i CPO Premium Essential + M Sport — BMW Autohaus Thornhill', price:58888, type:'cpo', location:'BMW Autohaus Thornhill, ON (~347km, delivery)', highlights:'🆕 NEW Jun 22 2026 — BMW Autohaus Thornhill. 2023 X5 CPO $58,888 / 59,780 km. Premium Essential + M Sport Package + 22" wheels. BMW Certified. Delivery available.',
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO ★★', year:2023, km:'59,780', trim:'xDrive40i CPO Premium Essential + M Sport — BMW Autohaus Thornhill · Price Drop', price:58695, type:'cpo', location:'BMW Autohaus Thornhill, ON (~347km, delivery)', highlights:'✅ CONFIRMED Jun 23 2026 — BMW Autohaus Thornhill. 2023 X5 CPO $58,695 / 59,780 km. Price drop $58,888 → $58,695. Premium Essential + M Sport Package + 22" wheels. BMW Certified. Delivery available.',
     value:'great', url:'https://www.autotrader.ca/cars/bmw/x5/my_2023',
     pkgSet:'bmwx5', pkgs:{ msport:true, premenh:false, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
   { brand:'bmw', model:'BMW X5 xDrive40i CPO M Sport ★★', year:2022, km:'43,250', trim:'xDrive40i M Sport CPO — Lowest Km Ottawa', price:64400, type:'cpo', location:'Ottos BMW Ottawa (8km!)', highlights:'✅ CONFIRMED active Jun 18 2026 (Stock B22085A). 2022 X5 xDrive40i M Sport CPO. Grey/Black. BMW Certified. Lowest-km CPO X5 at Ottos.',
@@ -1628,6 +1626,9 @@ const listings = [
   { brand:'bmw', model:'BMW X5 xDrive40i 2024 ★★', year:2024, km:'23,315', trim:'xDrive40i M Sport + M Sport Pro + Premium — Near-New Markham', price:69499, type:'dealer', location:'Markham, ON (~450km from Ottawa)', highlights:'🆕 NEW Jun 17 2026. 2024 X5 M Sport + M Sport Pro + Premium at $69,499 / 23,315 km. Markham ON. Dilawri 90-day/3,000km warranty. Best-km 2024 X5 under $70k.',
     value:'great', url:'https://www.autotrader.ca/offers/bmw-x5-xdrive40i-m-sport-pkg-m-sport-pro-pkg-premium-gasoline-black-cat_ma13gr16406mt363tr478956-06295eb0-e960-45ce-b3cb-3fb7cfb54bec',
     pkgSet:'bmwx5', pkgs:{ msport:true, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
+  { brand:'bmw', model:'BMW X5 xDrive40i LOW KM ★★ 🆕', year:2022, km:'33,014', trim:'xDrive40i — Lowest-Km Non-CPO X5 · CarHub Thornhill', price:57697, type:'dealer', location:'CarHub Thornhill, ON (~347km, delivery)', highlights:'🆕 NEW Jun 23 2026 — CarHub Thornhill. 2022 X5 xDrive40i $57,697 / 33,014 km. Lowest-km non-CPO X5 found this refresh — only 33k km at a great price. Delivery available. Best km-to-price non-CPO X5 outside Ottawa.',
+    value:'great', url:'https://www.autotrader.ca/cars/bmw/x5/my_2022',
+    pkgSet:'bmwx5', pkgs:{ msport:null, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
   // ─── PORSCHE CAYENNE ─── Sources: AutoTrader Ontario Jun 21 2026 — updated listings
   // NOTE: Mark Motors Porsche Ottawa — no base Cayenne under $70k (lowest is $81,900 Coupe)
   // NOTE: $59,800 Toronto Platinum (71k km) no longer appearing — likely sold Jun 21 2026
@@ -1656,15 +1657,15 @@ const matrixData = [
   { label:'BMW 530i xDrive AWD ★ (2022, 70k km, Concord ON delivery) ✅', price:38800, cpo:null, cpoLabel:'N/A' },
   { label:'BMW 530i xDrive AWD CPO ★★ 25k km (2022, Quebec City CPO) ✅', price:40370, cpo:5.99, cpoLabel:'CPO' },
   { label:'BMW 530i xDrive AWD ★ (2022, 52k km, Quebec City delivery) ✅', price:40050, cpo:null, cpoLabel:'N/A' },
-  { label:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL Star Motors Nepean 9km (2022, 78k km) Jun 22 — prev CPO $44,967 SOLD', price:52950, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL Star Motors Nepean 9km (2022, 78k km) ✅', price:52950, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLE 350 4MATIC LOW KM ★★ Star Motors Nepean 9km 🆕 (2022, 34k km)', price:58848, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLE 450 4MATIC ★★ Ottawa LOCAL Star Motors Nepean 9km (2022, 80k km) 🆕 NEW', price:55887, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLE 350 CPO ★★ Night+Burmester+360 (2022, 78k km, Markham) ✅', price:47999, cpo:5.99, cpoLabel:'CPO' },
   { label:'Mercedes GLE 350 4MATIC ★ (2022, 110k km, Scarborough delivery) ✅', price:39880, cpo:null, cpoLabel:'N/A' },
   { label:'BMW 540i xDrive AWD ★★ Ottawa LOCAL 16km (2022, 96k km) ✅', price:42995, cpo:null, cpoLabel:'N/A' },
   { label:'BMW 530i xDrive AWD ★ 29k km (2022, Vaughan ON delivery) ✅', price:42077, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLC 300 Coupe CPO ★★ Star Motors Nepean (2023, 75k km) ✅', price:42888, cpo:5.99, cpoLabel:'CPO' },
-  { label:'BMW X5 xDrive40i ★★ Prio Auto Nepean 9km (2022, 80k km) ⚠️Verify', price:49995, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW X5 xDrive40i ★★ Kia 417 Ottawa Gloucester LOCAL 🆕 (2022, verify km)', price:51490, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 xDrive40i ★★ Prio Auto Nepean 9km ✅ (2022, 80k km)', price:49995, cpo:null, cpoLabel:'N/A' },
   { label:'BMW 540i xDrive AWD ★★ GREAT DEAL (2022, 66k km, St-Bruno QC) ✅', price:45182, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLC 300 Coupe NEW ARRIVAL ★★ Star Motors Nepean (2022, 62k km) 🆕', price:45887, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLE 450 4MATIC ★★ Great Deal (2022, 65k km, delivery) ✅', price:50140, cpo:null, cpoLabel:'N/A' },
@@ -1690,7 +1691,8 @@ const matrixData = [
   { label:'Mercedes E 450 All-Terrain Wagon ★★ CPO (2022, 42k km, Orleans 15km) Price Drop', price:57887, cpo:5.99, cpoLabel:'CPO' },
   { label:'Audi Q8 Technik ★★ Orleans 12km (2023, 64k km)', price:59895, cpo:null, cpoLabel:'N/A' },
   { label:'BMW X5 xDrive40i LOW KM ★★ MB Oakville NEW (2022, 42k km, delivery) 🆕', price:50598, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW X5 xDrive40i CPO ★★ BMW Autohaus Thornhill NEW (2023, 60k km) 🆕', price:58888, cpo:5.99, cpoLabel:'CPO' },
+  { label:'BMW X5 xDrive40i LOW KM ★★ CarHub Thornhill 🆕 (2022, 33k km, delivery)', price:57697, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X5 xDrive40i CPO ★★ BMW Autohaus Thornhill (2023, 60k km) Price Drop', price:58695, cpo:5.99, cpoLabel:'CPO' },
   { label:'Mercedes GLE 450 4MATIC ★★ Low Km 30k (2022, Quebec City delivery) ✅', price:60071, cpo:null, cpoLabel:'N/A' },
   { label:'Audi Q8 Progressiv Low Km (2023, 40k km, Laval QC)', price:61446, cpo:null, cpoLabel:'N/A' },
   { label:'Audi Q8 Technik Top Trim ★★ (2023, 60k km, Laval QC) 🆕', price:63446, cpo:null, cpoLabel:'N/A' },
