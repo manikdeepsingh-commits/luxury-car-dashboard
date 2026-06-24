@@ -388,6 +388,30 @@
     </div>
 
 
+    <!-- BMW X6 (X5 Coupe Fastback) -->
+    <div class="model-card" data-type="mid-suv" data-brand="bmw" data-price="65" data-value="79" onclick="jumpCalc('bmw-x6')">
+      <div class="card-header">
+        <div class="brand-dot" style="background:var(--bmw)"></div>
+        <div>
+          <div class="card-title">BMW X6</div>
+          <div class="card-subtitle">2023 · SUV Coupe Fastback (X5 Platform)</div>
+        </div>
+        <div class="card-badge badge-suv">🚀 X5 Coupe Style</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0L I6 TwinTurbo 335hp (same as X5)</span></div>
+        <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">xDrive (performance-biased)</span></div>
+        <div class="stat-row"><span class="stat-label">Style</span><span class="stat-val">Fastback coupe roofline · sportier than X5</span></div>
+        <div class="stat-row"><span class="stat-label">Best Deal Jun 24</span><span class="stat-val green">🆕 2023 CPO $69,888 / 14k km Thornhill (near-new!) · 2023 $64,995 / 52k km Brampton ⚠️ former rental</span></div>
+        <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
+        <div class="stat-row"><span class="stat-label">⚠️ Note</span><span class="stat-val yellow">GTA dealers only (~350–370km). No Ottawa inventory. Delivery required.</span></div>
+      </div>
+      <div class="card-footer">
+        <div><div class="price-range" style="color:var(--bmw)">$64,995 – $69,888</div><div class="monthly-est">Est. $1,145–$1,230/mo @ 10% down, 72mo</div></div>
+        <div class="star-row">⭐⭐⭐</div>
+      </div>
+    </div>
+
     <!-- MERCEDES E-CLASS -->
     <div class="model-card" data-type="sedan" data-brand="mercedes" data-price="46" data-value="78" onclick="jumpCalc('mercedes-eclass')">
       <div class="card-header">
@@ -616,6 +640,19 @@
           <td><span class="tick">⚠️ $49,995/80k km Prio Auto Nepean (verify active) · 🆕 $51,490 Kia 417 Gloucester Ottawa LOCAL! · Ottos BMW from $54,598 · $50,598/42k km MB Oakville (delivery)</span></td>
           <td><span class="tick">✅ 🆕 2023 CPO from $60,595 Ottos BMW Ottawa · CPO $58,695 BMW Autohaus Thornhill · CPO $64,400/43k km Jun 24</span></td>
           <td class="highlight">✅ Jun 24: 🆕 2 new 2023 CPO X5s at Ottos BMW Ottawa: $60,595/58k km & $60,998 M Sport/61k km. ✅ Prio Auto Nepean $49,995/80k km confirmed. $50,598/42k km MB Oakville low-km delivery. $57,697/33k km CarHub Thornhill low-km. Ottos BMW CPO 2022 $54,598 (M Sport, CPO-confirmed). BMW Autohaus Thornhill CPO $58,695.</td>
+        </tr>
+        <tr>
+          <td><div class="brand-pill"><div class="brand-bar" style="background:var(--bmw)"></div><strong>BMW X6</strong></div></td>
+          <td>Mid-Size SUV Coupe</td>
+          <td>$65k–$70k</td>
+          <td><span class="tick">✓ 2 confirmed Jun 24</span></td>
+          <td>3.0L I-6 TwinTurbo 335hp</td>
+          <td>xDrive AWD</td>
+          <td><span style="color:var(--yellow)">★★★</span></td>
+          <td>Highest</td>
+          <td><span style="color:var(--yellow)">None — GTA/delivery only (~350km)</span></td>
+          <td><span class="tick">🆕 2023 CPO $69,888 / 14k km BMW Autohaus Thornhill (near-new!)</span></td>
+          <td class="highlight">🆕 NEW Jun 24: 2 X6 xDrive40i under $70k found. CPO: 2023 $69,888 / 14,225km — BMW Autohaus Thornhill (M Sport + Adaptive M Suspension + Premium Essential, BMW Certified). Non-CPO: 2023 $64,995 / 52,372km — Auto Planet Brampton (HUD, Pano, 360° Surround, ⚠️ former rental). X6 = X5 fastback coupe style. GLE Coupe, GLC Coupe over $73k+ for 2022+.</td>
         </tr>
         <tr>
           <td><div class="brand-pill"><div class="brand-bar" style="background:var(--porsche)"></div><strong>Porsche Cayenne</strong></div></td>
@@ -1729,6 +1766,11 @@ const listings = [
     pkgSet:'porsche', pkgs:{ prem:null, surv:null, bose:null, pano:null, acc:null, vent:null, pasm:true }, value:'great', url:'https://www.autotrader.ca/cars/porsche/cayenne/reg_on' },
   { brand:'porsche', model:'Porsche Cayenne ★★ NEW', year:2023, km:'64,000', price:65888, type:'dealer', location:'Woodbridge, ON (~430km)', highlights:'🆕 NEW Jun 20 2026 — CarGurus Great Deal (listing #443541400). 2023 Cayenne AWD 64,000 km $65,888. White/Black. 335hp 3L V6. Woodbridge ON. Verify packages with dealer.',
     pkgSet:'porsche', pkgs:{ prem:null, surv:null, bose:null, pano:null, acc:null, vent:null, pasm:null }, value:'great', url:'https://www.cargurus.ca/details/443541400' },
+  // ─── BMW X6 (X5 Coupe Fastback) ─── Sources: AutoTrader Ontario Jun 24 2026
+  { brand:'bmw', model:'BMW X6 xDrive40i CPO ★★ 🆕', year:2023, km:'14,225', trim:'xDrive40i CPO — M Sport + Premium Essential + Adaptive M Susp · BMW Autohaus Thornhill', price:69888, type:'cpo', location:'BMW Autohaus Thornhill (~347km, delivery)', highlights:'🆕 NEW Jun 24 2026 — BMW Autohaus Thornhill. 2023 X6 xDrive40i CPO $69,888 / 14,225 km. NEAR-NEW! BMW Certified. M Sport Package + Premium Essential + Adaptive M Suspension. Fastback coupe roofline on X5 platform. Delivery available. Best X6 under budget.',
+    value:'great', url:'https://www.autotrader.ca/cars/bmw/x6/my_2023', pkgSet:'bmwx5', pkgs:{ msport:true, premenh:false, drvpro:null, park360:null, vent:null, airsusp:true, audio:null, pano:null } },
+  { brand:'bmw', model:'BMW X6 xDrive40i ★★ 🆕', year:2023, km:'52,372', trim:'xDrive40i — Premium Essential + HUD + Pano + 360° Surround · Auto Planet Brampton', price:64995, type:'dealer', location:'Auto Planet Brampton (~368km, delivery)', highlights:'🆕 NEW Jun 24 2026 — Auto Planet Brampton. 2023 X6 xDrive40i $64,995 / 52,372 km. Premium Essential Package + HUD + Panoramic Roof + 360° Surround View + Heated F+R Seats. ⚠️ Listed as former daily rental — factor into decision. Best-priced X6 under budget.',
+    value:'great', url:'https://www.autotrader.ca/cars/bmw/x6/my_2023', pkgSet:'bmwx5', pkgs:{ msport:false, premenh:false, drvpro:null, park360:true, vent:null, airsusp:null, audio:null, pano:true } },
 ];
 
 const matrixData = [
@@ -1797,6 +1839,8 @@ const matrixData = [
   { label:'BMW X5 xDrive40i M Sport Pro 2024 Near-New (23k km, Markham)', price:69499, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Cayenne ★★ (2023, 58k km, Concord ON) ✅', price:69800, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Cayenne Premium Plus ★★ Best Spec (2023, 48k km, Vaughan) ⚠️Verify', price:69900, cpo:null, cpoLabel:'N/A' },
+  { label:'BMW X6 xDrive40i CPO ★★ Near-New 14k km (2023, BMW Autohaus Thornhill) 🆕', price:69888, cpo:5.99, cpoLabel:'CPO' },
+  { label:'BMW X6 xDrive40i ★★ Former Daily Rental (2023, 52k km, Auto Planet Brampton) 🆕', price:64995, cpo:null, cpoLabel:'N/A' },
 ];
 
 
