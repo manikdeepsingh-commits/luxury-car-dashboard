@@ -258,6 +258,9 @@
   .watchlist-clear-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
   .clear-all-btn { background:#1a0d0d; border:1px solid #440000; color:#f87171; border-radius:6px; padding:5px 14px; font-size:12px; cursor:pointer; font-weight:600; }
   .clear-all-btn:hover { background:#2a1010; }
+  .copy-link-btn { background:#0d1e0d; border:1px solid #14532d; color:#4ade80; border-radius:6px; padding:5px 14px; font-size:12px; cursor:pointer; font-weight:600; margin-left:8px; }
+  .copy-link-btn:hover { background:#14532d; }
+  .copy-link-btn.copied { background:#14532d; color:#fff; }
 </style>
 </head>
 <body>
@@ -265,7 +268,7 @@
 
 <div class="header">
   <h1>Ottawa Luxury Car <span>Buyer's Dashboard</span> 2026</h1>
-  <p>Personalized research · 7 shortlisted models · Budget up to $70,000 CAD · Ottawa &amp; surrounding area (~500km) · Last refreshed: 22 June 2026</p>
+  <p>Personalized research · 7 shortlisted models · Budget up to $70,000 CAD · Ottawa &amp; surrounding area (~500km) · Last refreshed: 24 June 2026</p>
   <div class="header-meta">
     <div class="meta-chip">📍 <strong>Ottawa, ON</strong> — 4–5 hr radius</div>
     <div class="meta-chip">💰 Budget: <strong>Up to $70,000 CAD</strong></div>
@@ -352,10 +355,10 @@
         <div class="stat-row"><span class="stat-label">Infotainment</span><span class="stat-val green">MBUX 11.9" + 12.3" combo</span></div>
         <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">MBUX Interior Assist, 64-color ambient</span></div>
         <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average</span></div>
-        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">✅ 2022 $38,495 / 56k km MB Ottawa Downtown · CPO $39,950 / 61k km Star Motors · 🆕 $41,950 / 61k km Star Motors 2nd unit · 2023 $49,488 Gatineau Jun 22 2026</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">🆕 Budget: $34,900/70k km AutoAgents Ottawa (Jun 24) · ✅ $38,495/56k km MB Ottawa Downtown · CPO $39,950/61k km Star Motors · $41,950 Star Motors 2nd unit</span></div>
       </div>
       <div class="card-footer">
-        <div><div class="price-range" style="color:#999">$40,000 – $55,000</div><div class="monthly-est">Est. $710–$970/mo @ 10% down, 72mo</div></div>
+        <div><div class="price-range" style="color:#999">$34,900 – $55,000</div><div class="monthly-est">Est. $630–$970/mo @ 10% down, 72mo</div></div>
         <div class="star-row">⭐⭐⭐⭐</div>
       </div>
     </div>
@@ -373,10 +376,10 @@
       <div class="card-body">
         <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0L I6 TwinTurbo 335hp</span></div>
         <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">xDrive (performance-biased)</span></div>
-        <div class="stat-row"><span class="stat-label">Ottawa X5</span><span class="stat-val green">✅ Prio Auto $49,995/80k km (confirmed Jun 23) · Ottos BMW $54,598+ · Jun 23 2026</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa X5</span><span class="stat-val green">✅ Prio Auto $49,995 · Ottos BMW: 🆕 2023 CPO $60,595 · 🆕 2023 CPO M Sport $60,998 (Jun 24 NEW!)</span></div>
         <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-val">iDrive 8, Panoramic, M Sport (335hp)</span></div>
         <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
-        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">✅ $49,995/80k km Prio Auto Ottawa LOCAL · $50,598/42k km MB Oakville · 🆕 $57,697/33k km CarHub Thornhill (low km!) · CPO $64,400 Ottos BMW Jun 23</span></div>
+        <div class="stat-row"><span class="stat-label">Best Listing</span><span class="stat-val green">✅ $49,995/80k km Prio Auto Ottawa LOCAL · $50,598/42k km MB Oakville · $57,697/33k km CarHub Thornhill · 🆕 2023 CPO from $60,595 Ottos BMW Ottawa (Jun 24)</span></div>
       </div>
       <div class="card-footer">
         <div><div class="price-range" style="color:var(--bmw)">$49,995 – $69,499</div><div class="monthly-est">Est. $890–$1,229/mo @ 10% down, 72mo</div></div>
@@ -448,9 +451,9 @@
         <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0T V6 335hp (base)</span></div>
         <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val">Porsche AWD (standard)</span></div>
         <div class="stat-row"><span class="stat-label">Cargo</span><span class="stat-val green">770L — more room than Macan</span></div>
-        <div class="stat-row"><span class="stat-label">Best Deal Jun 21</span><span class="stat-val green">🆕 2022 Platinum $63,807 / 69k km (NEW · $59,800 unit sold) · $64,898 / 51k km Vaughan · 2022 InnoDrive $69,995 / 37k km CONFIRMED · 7 listings</span></div>
+        <div class="stat-row"><span class="stat-label">Best Deal Jun 24</span><span class="stat-val green">🆕 2022 Cayenne S $64,077/65k km (434hp NEW!) · 2022 Platinum $63,807/69k km · $64,898/51k km Vaughan · InnoDrive $69,995/37k km · 8 listings</span></div>
         <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average (higher maint.)</span></div>
-        <div class="stat-row"><span class="stat-label">Price Range</span><span class="stat-val green">2022 from $63,807 · 2023 from $65,888 — 7 confirmed listings Jun 21 2026</span></div>
+        <div class="stat-row"><span class="stat-label">Price Range</span><span class="stat-val green">2022 from $63,807 · 🆕 Cayenne S $64,077 (434hp) · 2023 from $65,888 — 8 listings Jun 24 2026</span></div>
       </div>
       <div class="card-footer">
         <div><div class="price-range" style="color:var(--porsche)">$63,807 – $69,995</div><div class="monthly-est">Est. $1,123–$1,232/mo @ 15% down, 72mo</div></div>
@@ -496,10 +499,10 @@
       <div class="card-body">
         <div class="stat-row"><span class="stat-label">Engine</span><span class="stat-val">3.0T V6 335hp Quattro</span></div>
         <div class="stat-row"><span class="stat-label">AWD</span><span class="stat-val green">Quattro (best AWD in class)</span></div>
-        <div class="stat-row"><span class="stat-label">Ottawa Local</span><span class="stat-val green">🆕 $56,995 Prio Auto 9km · $59,895 Orleans 12km · $65,995 Alfa Romeo 6km (price drop!)</span></div>
-        <div class="stat-row"><span class="stat-label">Best Value</span><span class="stat-val green">✅ 2023 Q8 $56,995 / 54k km Prio Auto Ottawa (9km!) · 🆕 CPO $57,568 Audi Ottawa · 30k km $60,950 Jun 21 2026</span></div>
+        <div class="stat-row"><span class="stat-label">Ottawa Local</span><span class="stat-val green">$56,995 Prio Auto 9km · ✅ $59,498 Orleans 12km (price drop Jun 24) · $65,995 Alfa Romeo 6km</span></div>
+        <div class="stat-row"><span class="stat-label">Best Value</span><span class="stat-val green">✅ 2023 Q8 $56,995 / 54k km Prio Auto Ottawa (9km!) · ⚠️ CPO $57,568 Audi Ottawa (verify — may be sold) · Technik $59,498 Orleans Jun 24</span></div>
         <div class="stat-row"><span class="stat-label">Reliability</span><span class="stat-val yellow">★★★ Average</span></div>
-        <div class="stat-row"><span class="stat-label">Trims Found</span><span class="stat-val green">Progressiv, Technik (top), 2022–2024 — 5 active listings</span></div>
+        <div class="stat-row"><span class="stat-label">Trims Found</span><span class="stat-val green">Progressiv, Technik (top), 2022–2024 — 6 active listings</span></div>
       </div>
       <div class="card-footer">
         <div><div class="price-range" style="color:var(--audi)">$58,888 – $67,995</div><div class="monthly-est">Est. $1,035–$1,195/mo @ 15% down, 72mo</div></div>
@@ -514,7 +517,7 @@
 <!-- ============================== COMPARE TAB ============================== -->
 <div id="tab-compare" class="section">
   <h2 class="section-title">Head-to-Head Comparison</h2>
-  <p class="section-sub">Mercedes GLC · GLE · E-Class · Audi Q8 · BMW 5 Series · X5 · Porsche Cayenne · 2022+ · Clean Carfax · Jun 22 2026 · X5 $51,490 Kia 417 Gloucester (Ottawa LOCAL!) · GLE Star Nepean: $52,950/78k km GLE 350 + 🆕 $55,887/80k km GLE 450 · Q8 CPO $57,568 Audi Ottawa · prev GLE CPO $44,967 SOLD</p>
+  <p class="section-sub">Mercedes GLC · GLE · E-Class · Audi Q8 · BMW 5 Series · X5 · Porsche Cayenne · 2022+ · Clean Carfax · Jun 24 2026 · 🆕 2023 CPO X5 from $60,595 Ottos BMW Ottawa · Q8 Technik $59,498 Orleans (price drop) · ⚠️ Q8 CPO Audi Ottawa verify active · 🆕 GLC budget $34,900 AutoAgents Ottawa · 🆕 Cayenne S $64,077</p>
 
   <div class="info-banner">💡 <strong>Green = Best in class</strong> · <strong>Yellow = Good</strong> · <strong>Red = Caution or over budget</strong> for your criteria</div>
 
@@ -605,14 +608,14 @@
           <td><div class="brand-pill"><div class="brand-bar" style="background:var(--bmw)"></div><strong>BMW X5</strong></div></td>
           <td>Mid-Size SUV</td>
           <td>$50k–$70k</td>
-          <td><span class="tick">✓ Jun 22: $49,995 Prio Auto Nepean (9km!) · Ottos BMW $58,985 · CPO $64,400</span></td>
+          <td><span class="tick">✓ Jun 24: $49,995 Prio Auto Nepean (9km!) · 🆕 2023 CPO $60,595 & $60,998 Ottos BMW</span></td>
           <td>3.0L I-6 TwinTurbo 335hp</td>
           <td>xDrive AWD</td>
           <td><span style="color:var(--yellow)">★★★</span></td>
           <td>Highest</td>
           <td><span class="tick">⚠️ $49,995/80k km Prio Auto Nepean (verify active) · 🆕 $51,490 Kia 417 Gloucester Ottawa LOCAL! · Ottos BMW from $54,598 · $50,598/42k km MB Oakville (delivery)</span></td>
-          <td><span class="tick">✅ Ottos BMW CPO $64,400 / 43k km · CPO $58,888 / 60k km BMW Autohaus Thornhill Jun 22 2026</span></td>
-          <td class="highlight">✅ Jun 22: 🆕 NEW Ottawa-LOCAL: $51,490 Kia 417 Gloucester (east Ottawa). ⚠️ Prio Auto Nepean $49,995/80k km — verify active (not confirmed this refresh). $50,598/42k km MB Oakville low-km delivery. Ottos BMW: $54,598 (M Sport), $58,985 (Prem Enh). CPO: Ottos $64,400/43k km ✅, BMW Autohaus Thornhill $58,888/60k km.</td>
+          <td><span class="tick">✅ 🆕 2023 CPO from $60,595 Ottos BMW Ottawa · CPO $58,695 BMW Autohaus Thornhill · CPO $64,400/43k km Jun 24</span></td>
+          <td class="highlight">✅ Jun 24: 🆕 2 new 2023 CPO X5s at Ottos BMW Ottawa: $60,595/58k km & $60,998 M Sport/61k km. ✅ Prio Auto Nepean $49,995/80k km confirmed. $50,598/42k km MB Oakville low-km delivery. $57,697/33k km CarHub Thornhill low-km. Ottos BMW CPO 2022 $54,598 (M Sport, CPO-confirmed). BMW Autohaus Thornhill CPO $58,695.</td>
         </tr>
         <tr>
           <td><div class="brand-pill"><div class="brand-bar" style="background:var(--porsche)"></div><strong>Porsche Cayenne</strong></div></td>
@@ -1392,7 +1395,7 @@
 <!-- ============================== WATCHLIST TAB ============================== -->
 <div id="tab-starred" class="section">
   <h2 class="section-title">⭐ My Watchlist</h2>
-  <p class="section-sub">Listings you starred — star any row in the Live Listings tab to add it here. Stars persist across sessions.</p>
+  <p class="section-sub">Listings you starred — star any row in the Live Listings tab to add it here. Stars sync across devices via the shareable link.</p>
   <div id="starred-empty" style="display:none">
     <div style="font-size:48px;margin-bottom:12px">☆</div>
     <div style="font-weight:600;margin-bottom:6px">Your watchlist is empty</div>
@@ -1401,7 +1404,10 @@
   <div id="starred-content" style="display:none">
     <div class="watchlist-clear-bar">
       <span id="starred-count-label" style="font-size:13px;color:var(--muted)"></span>
-      <button class="clear-all-btn" onclick="clearAllStars()">✕ Clear all</button>
+      <div style="display:flex;gap:8px">
+        <button class="copy-link-btn" onclick="copyWatchlistLink()" title="Copy a shareable link — open on any device to restore your watchlist">📋 Copy link</button>
+        <button class="clear-all-btn" onclick="clearAllStars()">✕ Clear all</button>
+      </div>
     </div>
     <!-- Compare cards rendered here -->
     <div id="compare-grid" class="compare-grid"></div>
@@ -1428,28 +1434,28 @@
 
   <!-- TOP 3 BANNER -->
   <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:12px;padding:20px 24px;margin-bottom:24px;border:1px solid var(--gold);">
-    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — Jun 22 2026 · Budget $70k · Updated</div>
+    <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:700;">Top 3 Picks — Jun 24 2026 · Budget $70k · Updated</div>
     <div style="font-size:15px;color:#fff;line-height:2.4;">
-      🥇 <strong style="color:#FFD700">BMW X5 xDrive40i 2022 — Ottawa LOCAL!</strong> — 🆕 $51,490 Kia 417 Gloucester · ⚠️ $49,995 Prio Auto Nepean (verify) · $50,598/42k km MB Oakville low-km delivery<br>
-      🥈 <strong style="color:#C0C0C0">Mercedes GLC 300 2022 Ottawa Downtown</strong> — $38,495 · 56k km · MB Ottawa Downtown (Ottawa!) · Star Motors Nepean from $39,950 CPO<br>
-      🥉 <strong style="color:#CD7F32">Porsche Cayenne Platinum 2022</strong> — $63,807 / 69k km or $64,898 / 51k km Vaughan · Platinum Edition (BOSE+Pano+Vent+ACC)
+      🥇 <strong style="color:#FFD700">BMW X5 xDrive40i — Ottawa LOCAL Ottos!</strong> — 🆕 2023 CPO $60,595 & $60,998 M Sport (Ottos BMW Ottawa) · $49,995 Prio Auto (confirmed) · $50,598/42k km MB Oakville<br>
+      🥈 <strong style="color:#C0C0C0">Mercedes GLC 300 2022 Ottawa Downtown</strong> — $38,495 · 56k km · MB Ottawa Downtown · CPO $39,950 Star Motors · 🆕 Budget $34,900 AutoAgents Ottawa<br>
+      🥉 <strong style="color:#CD7F32">Porsche Cayenne 2022</strong> — 🆕 Cayenne S $64,077 / 65k km (434hp!) · Platinum $63,807 / 69k km · InnoDrive $69,995 / 37k km
     </div>
   </div>
 
   <div class="rec-grid" id="rec-grid">
 
     <div class="rec-card" style="border-color: var(--bmw)">
-      <div class="persona">🔥 #1 Pick — Jun 22: 🆕 $51,490 Kia 417 Gloucester Ottawa LOCAL · ⚠️ Prio Auto $49,995 Nepean (verify) · $50,598 / 42k km MB Oakville (low km!) · CPO $58,888 BMW Thornhill</div>
-      <h4>BMW X5 — Jun 22: 🆕 $51,490 Kia 417 Gloucester (Ottawa LOCAL) · ⚠️ $49,995 Prio Nepean (verify) · $50,598 / 42k km MB Oakville · Ottos BMW from $54,598</h4>
-      <p>✅ Jun 22 2026: 🆕 <strong>NEW Ottawa-local X5: 2022 xDrive40i $51,490 at Kia 417 Ottawa/Gloucester</strong> — east Ottawa, walk-in test drive. ⚠️ Prio Auto Nepean $49,995/79,790km — <strong>verify still active before visiting</strong> (not confirmed in this refresh). Also: <strong>2022 X5 $50,598 / 42,316 km MB Oakville (~386km delivery)</strong> — lowest-km 2022 X5. <strong>2023 X5 CPO $58,888 BMW Autohaus Thornhill</strong> (~347km). Ottos BMW Ottawa: $54,598 (Prem Essential + M Sport), $58,985 (Prem Enhanced + M Sport + Driver Assist) — confirmed active. CPO M Sport low-km $64,400 at Ottos. Also: 2024 X5 $69,499 / 23k km Markham.</p>
-      <div class="pick" style="color:var(--bmw)">→ 🆕 Ottawa LOCAL: 2022 X5 $51,490 · Kia 417 Gloucester 🔗 <a href="https://www.autotrader.ca/cars/bmw/x5/reg_on/cit_ottawa" target="_blank" style="color:var(--bmw)">AutoTrader Ottawa X5</a> · Low-km delivery: $50,598 · 42k km MB Oakville 🔗 <a href="https://www.autotrader.ca/cars/bmw/x5/my_2022" target="_blank" style="color:var(--bmw)">AutoTrader 2022 X5</a></div>
+      <div class="persona">🔥 #1 Pick — Jun 24: 🆕 2023 CPO $60,595 & $60,998 M Sport Ottos BMW Ottawa (8km!) · ✅ Prio Auto $49,995 · $50,598/42k km MB Oakville · CPO $58,695 BMW Thornhill</div>
+      <h4>BMW X5 — Jun 24: 🆕 2 new 2023 CPO X5s at Ottos BMW Ottawa! · $49,995 Prio Auto confirmed · $50,598/42k km MB Oakville low-km delivery</h4>
+      <p>✅ Jun 24 2026: 🆕 <strong>2 NEW 2023 CPO X5s at Ottos BMW Ottawa (8km):</strong> <strong>$60,595/57,945km</strong> (CPO) and <strong>$60,998/61,029km M Sport Edition</strong> (CPO) — both BMW Certified, walk-in available. ✅ Prio Auto Nepean $49,995/79,790km confirmed. Also: <strong>2022 X5 $50,598/42,316km MB Oakville</strong> (low-km delivery), $57,697/33,014km CarHub Thornhill (lowest-km non-CPO), 2023 CPO $58,695 BMW Autohaus Thornhill. CPO 2022 $54,598 M Sport at Ottos (CPO-confirmed). Also: 2024 X5 $69,499/23k km Markham.</p>
+      <div class="pick" style="color:var(--bmw)">→ 🆕 Ottos BMW Ottawa: 2023 CPO $60,595 or M Sport $60,998 🔗 <a href="https://www.bmwottos.ca/used/BMW-X5.html" target="_blank" style="color:var(--bmw)">Ottos BMW X5</a> · Budget: Prio Auto $49,995/80k km 🔗 <a href="https://www.autotrader.ca/cars/bmw/x5/reg_on/cit_ottawa" target="_blank" style="color:var(--bmw)">AutoTrader Ottawa X5</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--porsche)">
-      <div class="persona">⭐ #2 Pick — Best Prestige Under $70k · Jun 21 2026 · 🆕 NEW $63,807 · InnoDrive CONFIRMED $69,995</div>
-      <h4>Porsche Cayenne Platinum 2022 — 🆕 $63,807 / 69k km (NEW LOWEST · prev $59,800 sold)</h4>
-      <p>✅ Jun 21 2026: 7 confirmed Cayennes under $70k. Previous $59,800 Toronto unit is now sold. NEW LOWEST: <strong>2022 Platinum ★★ $63,807 / 69,103 km</strong> (Ontario). Also CONFIRMED: 2022 InnoDrive $69,995 / 36,952 km (Favorit Motors Toronto — was "may be sold", now active, price up from $67,995). Also: 2022 Platinum $64,898 / 51k km Vaughan, 2023 Cayenne AWD $65,888 / 64k km Woodbridge, 2023 Premium Plus $65,900 / 73k km Vaughan, 2023 Platinum $69,800 / 50k km North York, 2023 Premium Plus ★★ $69,900 / 48k km Vaughan.</p>
-      <div class="pick" style="color:var(--porsche)">→ 🆕 LOWEST: 2022 Cayenne Platinum $63,807 · 69k km · Ontario 🔗 <a href="https://www.autotrader.ca/cars/porsche/cayenne/reg_on" target="_blank" style="color:var(--porsche)">AutoTrader</a> · Or lower-km Vaughan: $64,898 · 51k km 🔗 <a href="https://www.cargurus.ca/details/445924532" target="_blank" style="color:var(--porsche)">CarGurus</a></div>
+      <div class="persona">⭐ #2 Pick — Best Prestige Under $70k · Jun 24 2026 · 🆕 Cayenne S $64,077 (434hp!) · Platinum $63,807 · InnoDrive $69,995</div>
+      <h4>Porsche Cayenne 2022 — 🆕 Cayenne S $64,077 / 65k km (434hp!) · Platinum $63,807 / 69k km · 8 listings</h4>
+      <p>✅ Jun 24 2026: 8 confirmed Cayennes under $70k. 🆕 <strong>NEW: 2022 Cayenne S $64,077 / 64,961 km Vaughan</strong> — Cayenne S = <strong>434hp 2.9L twin-turbo V6</strong> (vs 335hp base), significant performance upgrade! Also: 2022 Platinum $63,807/69k km (Ontario), 2022 Platinum $64,898/51k km Vaughan (lower km), 2022 InnoDrive $69,995/37k km (confirmed). 2023s: AWD $65,888/64k km Woodbridge, Premium Plus $65,900/73k km Vaughan, Platinum $69,800/50k km North York, Premium Plus ★★ $69,900/48k km Vaughan.</p>
+      <div class="pick" style="color:var(--porsche)">→ 🆕 Cayenne S 434hp: $64,077 · 65k km · Vaughan 🔗 <a href="https://www.autotrader.ca/cars/porsche/cayenne/reg_on" target="_blank" style="color:var(--porsche)">AutoTrader Cayenne</a> · Platinum: $63,807 · 69k km 🔗 <a href="https://www.autotrader.ca/cars/porsche/cayenne/reg_on" target="_blank" style="color:var(--porsche)">AutoTrader</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--mercedes)">
@@ -1460,16 +1466,16 @@
     </div>
 
     <div class="rec-card" style="border-color: var(--audi)">
-      <div class="persona">💰 Best Value — 🆕 New Cheapest Ottawa Q8 $56,995 Prio Auto (9km!)</div>
-      <h4>🆕 Audi Q8 Progressiv 2023 — Prio Auto Ottawa (9km!) · $56,995 · Best Ottawa Q8</h4>
-      <p>✅ Jun 21 2026: <strong>New: Audi Ottawa (Mark Motors) CPO</strong> — 2023 Q8 Progressiv Black Optics CPO $57,568 / 53,233 km (Ottawa local, Audi Certified). New ultra-low-km: 2023 Q8 Progressiv $60,950 / 30,252 km Ottawa area (best km-to-price Progressiv found). Existing confirmed: $56,995 / 53,785 km Prio Auto Ottawa (9km), $59,895 / 63,556 km Orleans (12km), $65,995 / 37,900 km Alfa Romeo Ottawa (6km), $48,888 / 48,915 km Technik (Scarborough delivery). Four Ottawa-area Q8s means easy comparison drives.</p>
-      <div class="pick" style="color:var(--audi)">→ 🆕 2023 Q8 @ $56,995 · 54k km · Prio Auto Ottawa 9km 🔗 <a href="https://www.cargurus.ca/details/433644033" target="_blank" style="color:var(--audi)">CarGurus Listing</a> · Or 2024 Q8 @ $65,995 (price drop!) · Alfa Romeo Ottawa 🔗 <a href="https://www.markmotorsgroup.com/used/2024-Audi-Q8-id13016189.html" target="_blank" style="color:var(--audi)">Direct Link</a></div>
+      <div class="persona">💰 Best Value — $56,995 Prio Auto Ottawa (9km!) · Technik $59,498 Orleans price drop Jun 24 · ⚠️ Audi Ottawa CPO verify</div>
+      <h4>Audi Q8 Progressiv 2023 — $56,995 Prio Auto Ottawa (9km!) · Technik $59,498 Orleans (price drop!)</h4>
+      <p>✅ Jun 24 2026: ⚠️ <strong>Audi Ottawa (Mark Motors) CPO $57,568</strong> — Jun 24 search shows only 2025 models ($83k+) at Audi Ottawa, so this listing may be sold. Confirm by phone before visiting. Price drop confirmed: <strong>Q8 Technik $59,895 → $59,498</strong> at Myers Orleans (12km from Ottawa). Confirmed: $56,995/53,785km Prio Auto Ottawa (9km), $65,995/37,900km Alfa Romeo Ottawa (6km). Also: $48,888/49k km Technik (Scarborough delivery), $60,950/30k km low-km Progressiv. 4–5 Ottawa-area Q8s for comparison drives.</p>
+      <div class="pick" style="color:var(--audi)">→ 2023 Q8 Progressiv $56,995 · 54k km · Prio Auto Ottawa 9km 🔗 <a href="https://www.cargurus.ca/details/433644033" target="_blank" style="color:var(--audi)">CarGurus</a> · Technik $59,498 (price drop) · Orleans 12km 🔗 <a href="https://www.cargurus.ca/details/449505535" target="_blank" style="color:var(--audi)">CarGurus</a></div>
     </div>
 
     <div class="rec-card" style="border-color: var(--mercedes)">
-      <div class="persona">🏘️ Best Local Mercedes — Jun 22: 8+ Ottawa-area GLC listings · Star Motors 6 units · MB Downtown active!</div>
-      <h4>Mercedes GLC 300 — MB Ottawa Downtown from $38,495 · Star Motors Nepean 6 units incl. CPO $39,950!</h4>
-      <p>✅ Jun 22 2026: Multiple Ottawa-area GLC 300s confirmed! MB Ottawa Downtown: <strong>$38,495 / 55,905 km</strong> ✅ and <strong>$39,795 / 39,954 km</strong> ✅ plus 2023 GLC at <strong>$53,765 / 38,275 km</strong>. Star Motors Nepean (Ottawa West): 2022 CPO <strong>$39,950 / 61,374 km</strong> ✅ + 🆕 2022 SUV <strong>$41,950 / 60,902 km</strong> + 2022 Coupe <strong>$45,887 / 62,212 km</strong> + 2023 Coupe <strong>$42,888 / 74,628 km</strong> CPO ✅ + 🆕 2023 Coupe <strong>$45,950 / 78,335 km</strong> + 2023 Coupe CPO <strong>$52,950 / 28,017 km</strong> ✅ (ultra-low km). MB Gatineau (10 min): 2023 GLC <strong>$49,488</strong> / 75k km. MB Ottawa Downtown CPO: 2023 $51,078 / 34k km. The GLC 300 is the most Ottawa-local luxury SUV on this list — 6+ Ottawa/Gatineau units confirmed.</p>
+      <div class="persona">🏘️ Best Local Mercedes — Jun 24: 🆕 Budget $34,900 AutoAgents Ottawa · $38,495 MB Downtown · Star Motors 6 units!</div>
+      <h4>Mercedes GLC 300 — 🆕 Budget $34,900 AutoAgents Ottawa · MB Downtown from $38,495 · Star Motors 6 units!</h4>
+      <p>✅ Jun 24 2026: 🆕 <strong>Budget pick: 2022 GLC 300 $34,900 / 69,900 km at AutoAgents Ottawa (5km)</strong> — non-CPO, verify Carfax. Multiple Ottawa-area MB GLC 300s confirmed! MB Ottawa Downtown: <strong>$38,495 / 55,905 km</strong> ✅ and <strong>$39,795 / 39,954 km</strong> ✅ plus 2023 GLC at <strong>$53,765 / 38,275 km</strong>. Star Motors Nepean (Ottawa West): 2022 CPO <strong>$39,950 / 61,374 km</strong> ✅ + 🆕 2022 SUV <strong>$41,950 / 60,902 km</strong> + 2022 Coupe <strong>$45,887 / 62,212 km</strong> + 2023 Coupe <strong>$42,888 / 74,628 km</strong> CPO ✅ + 🆕 2023 Coupe <strong>$45,950 / 78,335 km</strong> + 2023 Coupe CPO <strong>$52,950 / 28,017 km</strong> ✅ (ultra-low km). MB Gatineau (10 min): 2023 GLC <strong>$49,488</strong> / 75k km. MB Ottawa Downtown CPO: 2023 $51,078 / 34k km. The GLC 300 is the most Ottawa-local luxury SUV on this list — 6+ Ottawa/Gatineau units confirmed.</p>
       <div class="pick" style="color:var(--mercedes)">→ 2022 GLC $38,495 · 56k km · MB Ottawa Downtown! 🔗 <a href="https://www.mercedes-benz-ottawa-downtown.ca/en/used-inventory/mercedes-benz" target="_blank" style="color:var(--mercedes)">MB Ottawa Downtown</a> · Star Motors CPO $39,950 + 5 more units 🔗 <a href="https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLC_300.html" target="_blank" style="color:var(--mercedes)">Star Motors Nepean</a></div>
     </div>
 
@@ -1589,6 +1595,8 @@ const listings = [
     pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLC_300.html' },
   { brand:'mercedes', model:'Mercedes GLC 300 Coupe 2024', year:2024, km:'27,645', trim:'4MATIC Coupe — Newest Gen / Gatineau', price:65888, type:'cpo', location:'MB Gatineau — 10 min from Ottawa', highlights:'2024 GLC Coupe, only 27k km. Latest-gen GLC sporty coupe roofline. Mark Motors Group Gatineau.',
     pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'great', url:'https://www.markmotorsgroup.com/models/Mercedes_Benz-GLC300.html' },
+  { brand:'mercedes', model:'Mercedes GLC 300 4MATIC ★ Budget Pick 🆕', year:2022, km:'69,900', trim:'4MATIC SUV — AutoAgents Ottawa (5km!) · Budget Pick', price:34900, type:'dealer', location:'AutoAgents Ottawa — 5km!', highlights:'🆕 NEW Jun 24 2026 — AutoAgents Ottawa (5km). 2022 GLC 300 4MATIC $34,900 / 69,900 km. Non-CPO used dealer. Lowest-price 2022 GLC 300 found in Ottawa — budget pick. Verify Carfax and condition before buying.',
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'good', url:'https://www.autotrader.ca/cars/mercedes-benz/glc/reg_on/cit_ottawa' },
   // ─── MERCEDES GLE ─── Sources: Star Motors Nepean site + AutoTrader/CarGurus Ottawa Jun 23 2026 — updated listings
   { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL', year:2022, km:'77,640', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Ottawa LOCAL', price:52950, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'✅ Jun 23 2026 — Star Motors Nepean $52,950 / 77,640 km. 2022 GLE 350 4MATIC. Ottawa-local authorized MB dealer. Walk-in test drive — no delivery required.',
     value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
@@ -1622,7 +1630,7 @@ const listings = [
   { brand:'mercedes', model:'Mercedes E 450 All-Terrain ★', year:2023, km:'36,444', trim:'E 450 4MATIC Wagon — 2023 / Mirabel QC (~90km)', price:64888, type:'dealer', location:'MB Blainville, Mirabel QC (~90km via Hwy 50)', highlights:'2023 E 450 All-Terrain Wagon, 36,444 km. AMG Night + Pano + Burmester confirmed. MB Blainville.',
     pkgs:{ prem:true, drv:null, cam360:null, burm:true, hsteer:true, vent:null, pano:true }, value:'great', url:'https://www.mercedes-benz-blainville.ca/en/used-inventory' },
   // ─── AUDI Q8 ─── Sources: AutoTrader/CarGurus Ottawa Jun 21 2026 — updated listings
-  { brand:'audi', model:'Audi Q8 Progressiv CPO ★★ Ottawa LOCAL', year:2023, km:'53,233', trim:'55 TFSI Progressiv CPO Black Optics — Audi Ottawa (Mark Motors)', price:57568, type:'cpo', location:'Audi Ottawa (Mark Motors) — Ottawa LOCAL!', highlights:'🆕 NEW Jun 21 2026 — $57,568 / 53,233 km. 2023 Q8 Progressiv Black Optics Package CPO at Audi Ottawa (Mark Motors). Audi Certified. Walk-in Ottawa dealer. Black optics exterior trim.',
+  { brand:'audi', model:'Audi Q8 Progressiv CPO ★ Ottawa LOCAL', year:2023, km:'53,233', trim:'55 TFSI Progressiv CPO Black Optics — Audi Ottawa (Mark Motors) · Verify Active', price:57568, type:'cpo', location:'Audi Ottawa (Mark Motors) — Ottawa LOCAL!', highlights:'⚠️ Verify before visiting Jun 24 2026 — $57,568 / 53,233 km. 2023 Q8 Progressiv CPO at Audi Ottawa (Mark Motors). Jun 24 search shows only 2025 models ($83k+) at Audi Ottawa — this listing may be sold. Call ahead. Audi Certified.',
     value:'great', url:'https://www.markmotorsgroup.com/used/Audi-Q8.html',
     pkgSet:'audiq8', pkgs:{ technik:false, airsusp:null, bando:null, hud:null, cam360:null, matrix:false, vent:false, hsteer:true, drvassist:null, pano:null, sline:true } },
   { brand:'audi', model:'Audi Q8 Progressiv ★★ Low Km', year:2023, km:'30,252', trim:'55 TFSI Progressiv — Ultra Low 30k km / Ottawa area', price:60950, type:'dealer', location:'Ottawa area', highlights:'🆕 NEW Jun 21 2026 — $60,950 / 30,252 km. 2023 Q8 Progressiv, only 30k km — near-new condition. Ottawa area listing. Best km-to-price Q8 Progressiv found this refresh.',
@@ -1631,7 +1639,7 @@ const listings = [
   { brand:'audi', model:'Audi Q8 Progressiv ★★', year:2023, km:'53,785', trim:'55 TFSI Progressiv — Prio Auto Ottawa (9km!) · Best Ottawa Price', price:56995, type:'dealer', location:'Prio Auto Sales Ottawa — 9km!', highlights:'✅ CONFIRMED Jun 21 2026. 2023 Q8 Progressiv at Prio Auto Sales Ottawa (9km). $56,995 / 53,785 km — best-priced Q8 in Ottawa. No accidents. Stock #04968.',
     value:'great', url:'https://www.cargurus.ca/details/433644033',
     pkgSet:'audiq8', pkgs:{ technik:false, airsusp:null, bando:null, hud:null, cam360:null, matrix:false, vent:false, hsteer:true, drvassist:null, pano:null, sline:null } },
-  { brand:'audi', model:'Audi Q8 Technik ★★', year:2023, km:'63,556', trim:'55 TFSI Technik Top Trim — Orleans (12km!)', price:59895, type:'dealer', location:'Orleans, ON (~12km from Ottawa!)', highlights:'✅ CONFIRMED active Jun 18 2026 at $59,895 / 63,556 km. Technik = top trim, B&O 3D, Matrix LED, HUD, Virtual Cockpit Plus. Ottawa suburb! Stock #U1327.',
+  { brand:'audi', model:'Audi Q8 Technik ★★', year:2023, km:'63,556', trim:'55 TFSI Technik Top Trim — Orleans (12km!) · Price Drop', price:59498, type:'dealer', location:'Orleans, ON (~12km from Ottawa!)', highlights:'✅ CONFIRMED Jun 24 2026 — Price dropped $59,895 → $59,498. 2023 Q8 55 TFSI Technik (top trim), 63,556 km. Myers Orleans Jeep, Ottawa suburb! Technik = B&O 3D, Matrix LED, HUD, Virtual Cockpit Plus. Stock #U1327.',
     value:'great', url:'https://www.cargurus.ca/details/449505535',
     pkgSet:'audiq8', pkgs:{ technik:true, airsusp:null, bando:true, hud:true, cam360:null, matrix:true, vent:true, hsteer:true, drvassist:null, pano:null, sline:null } },
   { brand:'audi', model:'Audi Q8 Progressiv ★', year:2023, km:'40,019', trim:'55 TFSI Progressiv — Low Km / Laval QC', price:61446, type:'dealer', location:'Laval, QC (~200km from Ottawa)', highlights:'✅ CONFIRMED active Jun 18 2026. Only 40k km on a 2023 Q8. Mythos Black. Home delivery available.',
@@ -1669,8 +1677,14 @@ const listings = [
   { brand:'bmw', model:'BMW X5 xDrive40i ★★', year:2022, km:'51,065', trim:'xDrive40i Premium Enhanced + Rear Heated — Vaughan ON', price:47900, type:'dealer', location:'Toronto Auto Brokers — Vaughan ON (~357km)', highlights:'🆕 NEW Jun 18 2026 — 2022 X5 xDrive40i Premium Enhanced Package ($9,200) + Panoramic Moonroof + Rear Heated Seats. Vaughan ON, delivery available. Toronto Auto Brokers. Best $/km X5 found. Delivery available. $47,900 CHEAPEST X5 in budget. Note: 357km from Ottawa.',
     value:'great', url:'https://www.autotrader.ca/offers/bmw-x5-xdrive40i-premium-enhanced-pkg-rear-heated-gasoline-grey-cat_ma13gr16406mt363tr478956-d6066077-13e5-4570-9e54-b76bbf8af2d7',
     pkgSet:'bmwx5', pkgs:{ msport:false, premenh:true, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:true } },
-  { brand:'bmw', model:'BMW X5 xDrive40i ★★', year:2022, km:'63,544', trim:'xDrive40i Premium Essential + M Sport — Ottos BMW Ottawa', price:54598, type:'dealer', location:'Ottos BMW Ottawa (8km!)', highlights:'✅ CONFIRMED active Jun 18 2026 — Ottos BMW Ottawa (Stock B22480A). $54,598 / 63,544 km. 2022 X5 xDrive40i Premium Essential + M Sport + M Sport Brakes. Black/Black.',
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO ★★', year:2022, km:'63,544', trim:'xDrive40i Premium Essential + M Sport CPO — Ottos BMW Ottawa', price:54598, type:'cpo', location:'Ottos BMW Ottawa (8km!)', highlights:'✅ CONFIRMED CPO Jun 24 2026 — Ottos BMW Ottawa (Stock B22480A). $54,598 / 63,544 km. 2022 X5 xDrive40i Premium Essential + M Sport + M Sport Brakes CPO. BMW Certified. Black/Black.',
     value:'great', url:'https://www.bmwottos.ca/used/2022-BMW-X5-id13049893.html',
+    pkgSet:'bmwx5', pkgs:{ msport:true, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO ★★ 🆕', year:2023, km:'57,945', trim:'xDrive40i CPO — Ottos BMW Ottawa (8km!) · New Jun 24', price:60595, type:'cpo', location:'Ottos BMW Ottawa (8km!)', highlights:'🆕 NEW Jun 24 2026 — Ottos BMW Ottawa. 2023 X5 xDrive40i CPO $60,595 / 57,945 km. BMW Certified. Local Ottawa walk-in. Under budget with CPO warranty.',
+    value:'great', url:'https://www.bmwottos.ca/used/BMW-X5.html',
+    pkgSet:'bmwx5', pkgs:{ msport:null, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
+  { brand:'bmw', model:'BMW X5 xDrive40i CPO M Sport ★★ 🆕', year:2023, km:'61,029', trim:'xDrive40i M Sport Edition CPO — Ottos BMW Ottawa (8km!) · New Jun 24', price:60998, type:'cpo', location:'Ottos BMW Ottawa (8km!)', highlights:'🆕 NEW Jun 24 2026 — Ottos BMW Ottawa. 2023 X5 xDrive40i M Sport Edition CPO $60,998 / 61,029 km. BMW Certified. M Sport package. Local Ottawa walk-in available.',
+    value:'great', url:'https://www.bmwottos.ca/used/BMW-X5.html',
     pkgSet:'bmwx5', pkgs:{ msport:true, premenh:null, drvpro:null, park360:null, vent:null, airsusp:null, audio:null, pano:null } },
   { brand:'bmw', model:'BMW X5 xDrive40i ★', year:2022, km:'59,822', trim:'xDrive40i Premium Enhanced + M Sport + Advanced Driver Assist', price:58985, type:'dealer', location:'Ottos BMW Ottawa (8km!)', highlights:'✅ CONFIRMED active Jun 18 2026 (Stock B22749A). 2022 X5 xDrive40i Premium Enhanced + M Sport + Advanced Driver Assist + M Sport Brakes. Black/Black. Non-CPO.',
     value:'good', url:'https://www.bmwottos.ca/used/2022-BMW-X5-id13841952.html',
@@ -1711,6 +1725,8 @@ const listings = [
     pkgSet:'porsche', pkgs:{ prem:true, surv:null, bose:true, pano:true, acc:true, vent:true, pasm:true }, value:'great', url:'https://www.autotrader.ca/offers/porsche-cayenne-premium-plus-pkg-red-leather-pano-bose-gasoline-grey-cat_ma57gr18284-edc522f6-6dfe-4ba8-9ccc-193b3b200a4d' },
   { brand:'porsche', model:'Porsche Cayenne Platinum ★★', year:2023, km:'49,617', price:69800, type:'dealer', location:'North York, ON (~450km)', highlights:'✅ CONFIRMED Jun 20 2026 (CarGurus Great Deal). 2023 Cayenne Platinum Edition AWD, 49,617 km, $69,800. CarGurus #449127235. Stock A06120. VIN WP1AA2AY1PDA06120. North York 15km. Home delivery available.',
     pkgSet:'porsche', pkgs:{ prem:true, surv:null, bose:true, pano:true, acc:true, vent:true, pasm:true }, value:'great', url:'https://www.cargurus.ca/details/449127235' },
+  { brand:'porsche', model:'Porsche Cayenne S ★★ 🆕', year:2022, km:'64,961', price:64077, type:'dealer', location:'Vaughan, ON (~440km)', highlights:'🆕 NEW Jun 24 2026 — 2022 Cayenne S $64,077 / 64,961 km. Vaughan ON, delivery available. Cayenne S = 434hp 2.9L twin-turbo V6 (vs 335hp base). Significant power upgrade. Under $70k budget. Best-value Cayenne S found.',
+    pkgSet:'porsche', pkgs:{ prem:null, surv:null, bose:null, pano:null, acc:null, vent:null, pasm:true }, value:'great', url:'https://www.autotrader.ca/cars/porsche/cayenne/reg_on' },
   { brand:'porsche', model:'Porsche Cayenne ★★ NEW', year:2023, km:'64,000', price:65888, type:'dealer', location:'Woodbridge, ON (~430km)', highlights:'🆕 NEW Jun 20 2026 — CarGurus Great Deal (listing #443541400). 2023 Cayenne AWD 64,000 km $65,888. White/Black. 335hp 3L V6. Woodbridge ON. Verify packages with dealer.',
     pkgSet:'porsche', pkgs:{ prem:null, surv:null, bose:null, pano:null, acc:null, vent:null, pasm:null }, value:'great', url:'https://www.cargurus.ca/details/443541400' },
 ];
@@ -1746,8 +1762,10 @@ const matrixData = [
   { label:'Mercedes GLC 300 Coupe ★ Star Motors Nepean NEW (2023, 78k km) 🆕', price:45950, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLC 300 Coupe ★★ Star Motors Nepean ULTRA LOW KM (2023, 28k km) ✅', price:52950, cpo:5.99, cpoLabel:'CPO' },
   { label:'Mercedes GLC 300 ★★ MB Ottawa Downtown 2023 (38k km) 🆕', price:53765, cpo:null, cpoLabel:'N/A' },
-  { label:'BMW X5 xDrive40i Ottos BMW Ottawa (2022, 64k km)', price:54598, cpo:null, cpoLabel:'N/A' },
-  { label:'Audi Q8 Progressiv CPO ★★ Audi Ottawa Mark Motors (2023, 53k km) 🆕', price:57568, cpo:5.99, cpoLabel:'CPO' },
+  { label:'BMW X5 xDrive40i CPO ★★ Ottos BMW Ottawa (2022, 64k km) — CPO confirmed', price:54598, cpo:5.99, cpoLabel:'CPO' },
+  { label:'BMW X5 xDrive40i CPO ★★ Ottos BMW Ottawa NEW (2023, 58k km) 🆕', price:60595, cpo:5.99, cpoLabel:'CPO' },
+  { label:'BMW X5 xDrive40i CPO M Sport ★★ Ottos BMW Ottawa NEW (2023, 61k km) 🆕', price:60998, cpo:5.99, cpoLabel:'CPO' },
+  { label:'Audi Q8 Progressiv CPO ★ Audi Ottawa Mark Motors VERIFY (2023, 53k km) 🆕', price:57568, cpo:5.99, cpoLabel:'CPO' },
   { label:'Audi Q8 Progressiv LOW KM 30k ★★ Ottawa area (2023, 30k km) 🆕', price:60950, cpo:null, cpoLabel:'N/A' },
   { label:'Audi Q8 Progressiv ★★ Prio Auto Ottawa 9km (2023, 54k km)', price:56995, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes GLE 450 4MATIC ★★ (2022, 48k km, Richmond Hill delivery) ✅', price:57685, cpo:null, cpoLabel:'N/A' },
@@ -1756,7 +1774,7 @@ const matrixData = [
   { label:'BMW X5 xDrive45e PHEV CPO ★ Ottos BMW Ottawa VERIFY (2023, 79k km)', price:61995, cpo:5.99, cpoLabel:'CPO' },
   { label:'BMW X5 xDrive40i Premium+M Sport Ottawa (2022, 60k km, Ottos BMW)', price:58985, cpo:null, cpoLabel:'N/A' },
   { label:'Mercedes E 450 All-Terrain Wagon ★★ CPO (2022, 42k km, Orleans 15km) Price Drop', price:57887, cpo:5.99, cpoLabel:'CPO' },
-  { label:'Audi Q8 Technik ★★ Orleans 12km (2023, 64k km)', price:59895, cpo:null, cpoLabel:'N/A' },
+  { label:'Audi Q8 Technik ★★ Orleans 12km Price Drop (2023, 64k km)', price:59498, cpo:null, cpoLabel:'N/A' },
   { label:'BMW X5 xDrive40i LOW KM ★★ MB Oakville NEW (2022, 42k km, delivery) 🆕', price:50598, cpo:null, cpoLabel:'N/A' },
   { label:'BMW X5 xDrive40i LOW KM ★★ CarHub Thornhill 🆕 (2022, 33k km, delivery)', price:57697, cpo:null, cpoLabel:'N/A' },
   { label:'BMW X5 xDrive40i CPO ★★ BMW Autohaus Thornhill (2023, 60k km) Price Drop', price:58695, cpo:5.99, cpoLabel:'CPO' },
@@ -1767,6 +1785,8 @@ const matrixData = [
   { label:'BMW X5 xDrive40i CPO M Sport Lowest Km Ottawa (2022, 43k km)', price:64400, cpo:null, cpoLabel:'CPO' },
   { label:'Mercedes GLE 450 4MATIC CPO ★★ (2023, 51k km, Sainte-Agathe QC CPO) ✅', price:65155, cpo:5.99, cpoLabel:'CPO' },
   { label:'Mercedes E 450 All-Terrain Wagon 2023 (36k km, MB Blainville ~90km)', price:64888, cpo:null, cpoLabel:'N/A' },
+  { label:'Mercedes GLC 300 ★ Budget Pick AutoAgents Ottawa 5km (2022, 70k km) 🆕', price:34900, cpo:null, cpoLabel:'N/A' },
+  { label:'Porsche Cayenne S ★★ 434hp V6 NEW (2022, 65k km, Vaughan) 🆕', price:64077, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Cayenne Platinum ★★ NEW (2022, 69k km, Ontario) 🆕', price:63807, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Cayenne AWD InnoDrive ★★ CONFIRMED (2022, 37k km, Toronto)', price:69995, cpo:null, cpoLabel:'N/A' },
   { label:'Porsche Cayenne Platinum ★★ (2022, 51k km, Vaughan) ✅', price:64898, cpo:null, cpoLabel:'N/A' },
@@ -1782,10 +1802,22 @@ const matrixData = [
 
 
 // ============================================================
-// WATCHLIST / STAR FEATURE
+// WATCHLIST / STAR FEATURE  (cross-device via URL hash)
 // ============================================================
 const STAR_KEY = 'lcdb_starred_v1';
-let starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || '[]'));
+
+function _starsFromHash() {
+  try {
+    const m = location.hash.match(/[#&]wl=([A-Za-z0-9_-]+)/);
+    if (m) {
+      const decoded = JSON.parse(atob(m[1].replace(/-/g,'+').replace(/_/g,'/')));
+      if (Array.isArray(decoded)) return new Set(decoded);
+    }
+  } catch(e) {}
+  return null;
+}
+
+let starred = _starsFromHash() || new Set(JSON.parse(localStorage.getItem(STAR_KEY) || '[]'));
 
 function listingKey(l) {
   // Stable key: brand|year|price — unique enough across our dataset
@@ -1793,7 +1825,27 @@ function listingKey(l) {
 }
 
 function saveStars() {
-  localStorage.setItem(STAR_KEY, JSON.stringify([...starred]));
+  const arr = [...starred];
+  localStorage.setItem(STAR_KEY, JSON.stringify(arr));
+  if (arr.length > 0) {
+    const encoded = btoa(JSON.stringify(arr)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+    history.replaceState(null, '', location.pathname + location.search + '#wl=' + encoded);
+  } else {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+}
+
+function copyWatchlistLink() {
+  // Make sure the URL is up to date before copying
+  if (starred.size > 0) saveStars();
+  const url = location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.querySelector('.copy-link-btn');
+    if (!btn) return;
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy link'; btn.classList.remove('copied'); }, 2200);
+  }).catch(() => prompt('Copy this link to open your watchlist on any device:', url));
 }
 
 function updateStarBadge() {
