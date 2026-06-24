@@ -268,7 +268,7 @@
 
 <div class="header">
   <h1>Ottawa Luxury Car <span>Buyer's Dashboard</span> 2026</h1>
-  <p>Personalized research · 7 shortlisted models · Budget up to $70,000 CAD · Ottawa &amp; surrounding area (~500km) · Last refreshed: 24 June 2026</p>
+  <p>Personalized research · 7 shortlisted models · Budget up to $70,000 CAD · 📍 Ottawa area (≤2hr) default — expandable · Last refreshed: 24 June 2026</p>
   <div class="header-meta">
     <div class="meta-chip">📍 <strong>Ottawa, ON</strong> — 4–5 hr radius</div>
     <div class="meta-chip">💰 Budget: <strong>Up to $70,000 CAD</strong></div>
@@ -1187,22 +1187,37 @@
   <p class="section-sub">Best available listings from AutoTrader.ca · CarGurus.ca · bmwottos.ca · Star Motors Nepean · Dealer sites · Refreshed: 22 June 2026 · Key update: GLE 350 CPO $44,967 SOLD → $52,950 Star Nepean · 🆕 GLE 450 $55,887 Star Nepean · 🆕 GLC $41,950+$45,950 Star Nepean · 🆕 X5 $51,490 Kia 417 Gloucester</p>
 
   <div class="info-banner">
-    🔍 <strong>Prices are from web research (June 2026)</strong> — always verify current pricing directly with the dealer. Links go to stable search/dealer pages (not individual listings that may expire). Prices exclude HST. Listings marked ✅ CONFIRMED verified active; ⚠️ Verify = call ahead; 🆕 = newly found this refresh.
+    🔍 <strong>Prices are from web research (June 2026)</strong> — always verify current pricing directly with the dealer. Prices exclude HST. ✅ CONFIRMED = verified active; 🆕 = newly found this refresh. <strong>📍 Default filter: Ottawa area (≤2hr radius)</strong> — change the Radius dropdown to see all listings. <strong>🔗 View</strong> = direct listing link · <strong>🔍 Search</strong> = search results page (listing may have sold).
   </div>
 
   <div class="filter-bar" style="margin-bottom:16px">
-    <label>FILTER BY:</label>
-    <select onchange="filterListings(this.value)">
+    <label>BRAND:</label>
+    <select id="brand-filter-sel" onchange="onBrandChange(this.value)">
       <option value="all">All brands</option>
       <option value="audi">Audi</option>
       <option value="bmw">BMW</option>
       <option value="mercedes">Mercedes-Benz</option>
       <option value="porsche">Porsche</option>
     </select>
+    <select id="model-filter-sel" style="display:none" onchange="filterListingsModel(this.value)">
+      <option value="all">All models</option>
+    </select>
     <select onchange="filterListingsType(this.value)">
       <option value="all">All types</option>
       <option value="cpo">CPO Only</option>
       <option value="dealer">Dealer</option>
+    </select>
+    <label style="margin-left:4px">📍 RADIUS:</label>
+    <select id="radius-filter-sel" onchange="filterListingsRadius(this.value)">
+      <option value="local">Ottawa area (≤2hr)</option>
+      <option value="all">All listings</option>
+    </select>
+    <label style="margin-left:4px">SORT:</label>
+    <select onchange="sortListings(this.value)">
+      <option value="price-asc">Price ↑</option>
+      <option value="price-desc">Price ↓</option>
+      <option value="km-asc">KM ↑ (lowest first)</option>
+      <option value="year-desc">Year ↓ (newest first)</option>
     </select>
   </div>
 
@@ -1636,25 +1651,25 @@ const listings = [
     pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:false, pano:null }, value:'good', url:'https://www.autotrader.ca/cars/mercedes-benz/glc/reg_on/cit_ottawa' },
   // ─── MERCEDES GLE ─── Sources: Star Motors Nepean site + AutoTrader/CarGurus Ottawa Jun 23 2026 — updated listings
   { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★★ Ottawa LOCAL', year:2022, km:'77,640', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Ottawa LOCAL', price:52950, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'✅ Jun 23 2026 — Star Motors Nepean $52,950 / 77,640 km. 2022 GLE 350 4MATIC. Ottawa-local authorized MB dealer. Walk-in test drive — no delivery required.',
-    value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
   { brand:'mercedes', model:'Mercedes GLE 350 4MATIC LOW KM ★★ 🆕', year:2022, km:'34,036', trim:'GLE 350 4MATIC — Star Motors Nepean (9km!) · Low Km 34k · NEW', price:58848, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'🆕 NEW Jun 23 2026 — Star Motors Nepean $58,848 / 34,036 km. 2022 GLE 350 4MATIC. Ultra-low km unit — nearly half the km of the $52,950 entry. Ottawa-local authorized MB dealer. Walk-in test drive.',
-    value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_350.html' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★ Ottawa LOCAL', year:2022, km:'80,377', trim:'GLE 450 4MATIC — Star Motors Nepean (9km!) · 362hp · Ottawa LOCAL', price:55887, type:'dealer', location:'Star Motors Nepean — Ottawa West (9km)!', highlights:'🆕 NEW Jun 22 2026 — Star Motors Nepean $55,887 / 80,377 km. 2022 GLE 450 4MATIC (362hp 3.0T I-6 twin-turbo). Ottawa-local authorized MB dealer. Walk-in test drive. Upgraded GLE 450 engine vs GLE 350.',
-    value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_450.html' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.mercedes-benz-starmotors.ca/used/Mercedes_Benz-GLE_450.html' },
   { brand:'mercedes', model:'Mercedes GLE 350 4MATIC CPO ★★', year:2022, km:'78,000', trim:'GLE 350 4MATIC CPO — Night + Burmester + 360 Cam / Markham delivery', price:47999, type:'cpo', location:'Markham, ON (~350km, delivery)', highlights:'🆕 NEW Jun 21 2026. 2022 GLE 350 4MATIC CPO $47,999 / 78,000 km. Night Package + Burmester Audio + 360 Camera. Markham ON, delivery available. MB Certified. Great spec for the price.',
-    value:'great', url:'https://www.autotrader.ca/cars/mercedes-benz/gle/my_2022/reg_on/cit_ottawa' },
+    pkgs:{ prem:false, drv:null, cam360:true, burm:true, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.autotrader.ca/cars/mercedes-benz/gle/my_2022/reg_on/cit_ottawa' },
   { brand:'mercedes', model:'Mercedes GLE 350 4MATIC ★', year:2022, km:'109,899', trim:'GLE 350 4MATIC — Great Deal / Delivery ~$1,000', price:39880, type:'dealer', location:'Scarborough, ON (~450km, delivery ~$1,000)', highlights:'✅ CONFIRMED Jun 20 2026. 2022 GLE 350 4MATIC, 109,899 km, $39,880. CarGurus Great Deal #450034970. VIN 4JGFB4KB1NA719836. Delivery ~$1,000. Very high km — lowest-price GLE 350 in region. Inspect carefully.',
-    value:'good', url:'https://www.cargurus.ca/details/450034970' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'good', url:'https://www.cargurus.ca/details/450034970' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★', year:2022, km:'65,036', trim:'GLE 450 4MATIC — 362hp / Great Deal / Delivery ~$1,350', price:50140, type:'dealer', location:'GTA/ON delivery (~$1,350)', highlights:'✅ CONFIRMED Jun 20 2026. 2022 GLE 450 4MATIC, 65,036 km, $50,140. CarGurus Great Deal #438227935. VIN 4JGFB5KB8NA699262. 362hp 3.0T I-6. Best-value GLE 450 found. Home delivery ~$1,350.',
-    value:'great', url:'https://www.cargurus.ca/details/438227935' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.cargurus.ca/details/438227935' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★', year:2022, km:'48,279', trim:'GLE 450 4MATIC — Lower Km / Richmond Hill delivery', price:57685, type:'dealer', location:'Richmond Hill, ON (~450km, delivery)', highlights:'✅ CONFIRMED Jun 20 2026. 2022 GLE 450 4MATIC, 48,279 km, $57,685. CarGurus Good Deal #440394221. VIN 4JGFB5KB5NA602275. Lower km unit. Home delivery available.',
-    value:'good', url:'https://www.cargurus.ca/details/440394221' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'good', url:'https://www.cargurus.ca/details/440394221' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★', year:2023, km:'42,729', trim:'GLE 450 4MATIC 2023 — Levis QC delivery $380', price:58875, type:'dealer', location:'Levis, QC (~400km, delivery $380)', highlights:'✅ CONFIRMED Jun 20 2026. 2023 GLE 450 4MATIC, 42,729 km, $58,875. CarGurus Great Deal #446678801. VIN 4JGFB5KB1PA919392. Delivery $380. 2023 gen GLE 450 under $60k.',
-    value:'great', url:'https://www.cargurus.ca/details/446678801' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.cargurus.ca/details/446678801' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC ★★', year:2022, km:'29,500', trim:'GLE 450 4MATIC — Low Km / Quebec City delivery', price:60071, type:'dealer', location:'Quebec City (~450km, delivery)', highlights:'✅ CONFIRMED Jun 20 2026. 2022 GLE 450 4MATIC, 29,500 km, $60,071. CarGurus Good Deal #447050218. VIN 4JGFB5KB7NA690777. Low km — best km-to-price GLE 450 found. Quebec City.',
-    value:'good', url:'https://www.cargurus.ca/details/447050218' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'good', url:'https://www.cargurus.ca/details/447050218' },
   { brand:'mercedes', model:'Mercedes GLE 450 4MATIC CPO ★★', year:2023, km:'51,191', trim:'GLE 450 4MATIC CPO 2023 — Sainte-Agathe QC (~200km)', price:65155, type:'cpo', location:'Sainte-Agathe-des-Monts, QC (~200km from Ottawa)', highlights:'✅ CONFIRMED Jun 20 2026. 2023 GLE 450 4MATIC CPO, 51,191 km, $65,155. CarGurus Good Deal #446786815. VIN 4JGFB5KB0PA966221. MB Certified. Home delivery available.',
-    value:'good', url:'https://www.cargurus.ca/details/446786815' },
+    pkgs:{ prem:null, drv:null, cam360:null, burm:false, hsteer:true, vent:null, pano:null }, value:'good', url:'https://www.cargurus.ca/details/446786815' },
   // ─── MERCEDES E-CLASS ─── Sources: AutoTrader/CarGurus Ottawa Jun 21 2026 — updated listings
   { brand:'mercedes', model:'Mercedes E 350 4MATIC ★★', year:2022, km:'15,669', trim:'E 350 4MATIC — Ultra Low Km / Delivery incl. $1,350', price:49140, type:'dealer', location:'Delivery included (~$1,350)', highlights:'✅ CONFIRMED Jun 20 2026. 2022 E350 4MATIC, 15,669 km — ultra-low km. $49,140 inc. $1,350 delivery. CarGurus Great Deal #441929309. Black, VIN W1KZF8EBXNB049092. Excellent condition implied by low km.',
     pkgs:{ prem:null, drv:null, cam360:null, burm:null, hsteer:true, vent:null, pano:null }, value:'great', url:'https://www.cargurus.ca/details/441929309' },
@@ -1693,19 +1708,19 @@ const listings = [
     pkgSet:'audiq8', pkgs:{ technik:true, airsusp:null, bando:true, hud:true, cam360:null, matrix:true, vent:true, hsteer:true, drvassist:null, pano:null, sline:null } },
   // ─── BMW 5 SERIES ─── Sources: CarGurus Ottawa Jun 20 2026 — 7 confirmed active listings
   { brand:'bmw', model:'BMW 530i xDrive AWD ★', year:2022, km:'69,605', trim:'530i xDrive — Concord ON delivery $350', price:38800, type:'dealer', location:'Concord, ON (~430km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 530i xDrive AWD, 69,605 km, $38,800. CarGurus Fair Deal #442382381. Gray. Home delivery $350. Lowest-price 530i confirmed this refresh.',
-    value:'good', url:'https://www.cargurus.ca/details/442382381' },
+    pkgSet:'bmw5', pkgs:{ trim:false, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/442382381' },
   { brand:'bmw', model:'BMW 530i xDrive AWD CPO ★★', year:2022, km:'25,075', trim:'530i xDrive CPO — Lowest Km / Quebec delivery $375', price:40370, type:'cpo', location:'Quebec City area (~450km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 530i xDrive AWD CPO, 25,075 km — lowest km 530i found. $40,370. CarGurus Fair Deal #450120973. White, VIN WBA13BJ00NWX84462. Quebec delivery $375. BMW Certified.',
-    value:'good', url:'https://www.cargurus.ca/details/450120973' },
+    pkgSet:'bmw5', pkgs:{ trim:false, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/450120973' },
   { brand:'bmw', model:'BMW 530i xDrive AWD ★', year:2022, km:'51,828', trim:'530i xDrive — Quebec delivery $1,124', price:40050, type:'dealer', location:'Quebec City area (~450km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 530i xDrive AWD, 51,828 km, $40,050. CarGurus Fair Deal #440237368. Black. Home delivery $1,124.',
-    value:'good', url:'https://www.cargurus.ca/details/440237368' },
+    pkgSet:'bmw5', pkgs:{ trim:false, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/440237368' },
   { brand:'bmw', model:'BMW 540i xDrive AWD ★★ Ottawa LOCAL', year:2022, km:'96,000', trim:'540i xDrive — 335hp I-6 / Ottawa LOCAL (16km!)', price:42995, type:'dealer', location:'Ottawa, ON (16km!)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 540i xDrive AWD, 96,000 km. CarGurus Fair Deal #449329411. White, VIN WBA73BJ09NWX62454. Ottawa LOCAL (16km!) — only Ottawa-area 5 Series found this refresh! 335hp I-6. High km — weigh vs lower-km delivery units.',
-    value:'good', url:'https://www.cargurus.ca/details/449329411' },
+    pkgSet:'bmw5', pkgs:{ trim:true, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/449329411' },
   { brand:'bmw', model:'BMW 530i xDrive AWD ★', year:2022, km:'29,298', trim:'530i xDrive — Low Km / Vaughan ON delivery $179', price:42077, type:'dealer', location:'Vaughan, ON (~450km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 530i xDrive AWD, 29,298 km, $42,077. CarGurus Fair Deal #430922048. Blue, VIN WBA13BJ01NCJ48697. Low km for a 2022. Delivery $179.',
-    value:'good', url:'https://www.cargurus.ca/details/430922048' },
+    pkgSet:'bmw5', pkgs:{ trim:false, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/430922048' },
   { brand:'bmw', model:'BMW 540i xDrive AWD ★★', year:2022, km:'66,000', trim:'540i xDrive — 335hp I-6 GREAT DEAL / St-Bruno QC', price:45182, type:'dealer', location:'St-Bruno, QC (~200km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 540i xDrive AWD, 66,000 km. CarGurus GREAT Deal #449553110. Blue, VIN WBA73BJ01NWX45034. Best-rated deal among all 5 Series found this refresh. Delivery $183.',
-    value:'great', url:'https://www.cargurus.ca/details/449553110' },
+    pkgSet:'bmw5', pkgs:{ trim:true, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'great', url:'https://www.cargurus.ca/details/449553110' },
   { brand:'bmw', model:'BMW 540i xDrive AWD ★', year:2022, km:'50,858', trim:'540i xDrive — 335hp I-6 / Vaughan ON', price:51077, type:'dealer', location:'Vaughan, ON (~450km from Ottawa)', highlights:'✅ CONFIRMED active Jun 20 2026. 2022 540i xDrive AWD, 50,858 km, $51,077. CarGurus Fair Deal #428091138. Black. Delivery $179.',
-    value:'good', url:'https://www.cargurus.ca/details/428091138' },
+    pkgSet:'bmw5', pkgs:{ trim:true, msport:null, premenh:null, drvpro:null, park360:null, hud:null, audio:null, vent:null }, value:'good', url:'https://www.cargurus.ca/details/428091138' },
   // ─── BMW X5 ─── Sources: AutoTrader, bmwottos.ca Jun 21 2026
   { brand:'bmw', model:'BMW X5 xDrive40i ★★ Ottawa LOCAL', year:2022, km:'79,790', trim:'xDrive40i — Prio Auto Nepean (9km!) · Confirmed Jun 23', price:49995, type:'dealer', location:'Prio Auto Sales Nepean — 9km!',
     highlights:'✅ CONFIRMED active Jun 23 2026 — Prio Auto Sales Nepean (9km). $49,995 / 79,790 km. 2022 X5 xDrive40i. Certified, 360 Camera. 335hp 3.0L I-6. Ottawa-local, walk-in test drive. Best-priced local Ottawa X5.',
@@ -2168,14 +2183,61 @@ function jumpCalc(modelKey) {
 // ============================================================
 // LISTINGS
 // ============================================================
-let listingsBrandFilter = 'all', listingsTypeFilter = 'all';
+let listingsBrandFilter = 'all', listingsTypeFilter = 'all', listingsModelFilter = 'all', listingsRadius = 'local', listingsSort = 'price-asc';
+
+const MODEL_OPTIONS = {
+  mercedes: [{val:'all',label:'All Models'},{val:'glc',label:'GLC'},{val:'gle',label:'GLE'},{val:'eclass',label:'E-Class'}],
+  bmw:      [{val:'all',label:'All Models'},{val:'5series',label:'5 Series'},{val:'x5',label:'X5'},{val:'x6',label:'X6'}],
+  audi:     [{val:'all',label:'All Models'},{val:'q8',label:'Q8'}],
+  porsche:  [{val:'all',label:'All Models'},{val:'cayenne',label:'Cayenne'}],
+};
+
+function getModelType(l) {
+  const m = (l.model || '').toLowerCase();
+  if (l.brand === 'mercedes') {
+    if (m.includes('glc')) return 'glc';
+    if (m.includes('gle')) return 'gle';
+    return 'eclass';
+  }
+  if (l.brand === 'bmw') {
+    if (m.includes('x6')) return 'x6';
+    if (m.includes('x5')) return 'x5';
+    return '5series';
+  }
+  if (l.brand === 'porsche') return 'cayenne';
+  if (l.brand === 'audi') return 'q8';
+  return 'other';
+}
+
+const WITHIN_2HR = /ottawa|nepean|gloucester|orleans|gatineau|kanata|barrhaven|hull|aylmer|autoagents|laval|montreal|st-bruno|kingston|brockville|smiths falls|dorval|lachenaie|longueuil|brossard/i;
+function isWithin2Hr(loc) { return WITHIN_2HR.test(loc || ''); }
+
+function isSpecificListing(url) {
+  if (!url) return false;
+  return url.includes('/offers/') || url.includes('/details/') || /id\d+\.html/i.test(url) || url.includes('/used/') && /id\d/.test(url);
+}
 
 function buildListings() {
   renderListings();
 }
 
+function onBrandChange(val) {
+  listingsBrandFilter = val;
+  listingsModelFilter = 'all';
+  const sel = document.getElementById('model-filter-sel');
+  if (val !== 'all' && MODEL_OPTIONS[val]) {
+    sel.style.display = '';
+    sel.innerHTML = MODEL_OPTIONS[val].map(o => `<option value="${o.val}">${o.label}</option>`).join('');
+  } else {
+    sel.style.display = 'none';
+  }
+  renderListings();
+}
 function filterListings(val) { listingsBrandFilter = val; renderListings(); }
 function filterListingsType(val) { listingsTypeFilter = val; renderListings(); }
+function filterListingsModel(val) { listingsModelFilter = val; renderListings(); }
+function filterListingsRadius(val) { listingsRadius = val; renderListings(); }
+function sortListings(val) { listingsSort = val; renderListings(); }
 
 const PKG_DEFS = [
   { key:'prem',   label:'Premium+',     tip:'Premium Plus package (or equivalent luxury bundle)' },
@@ -2266,9 +2328,20 @@ function renderListings() {
   const filtered = listings.filter(l => {
     if (listingsBrandFilter !== 'all' && l.brand !== listingsBrandFilter) return false;
     if (listingsTypeFilter !== 'all' && l.type !== listingsTypeFilter) return false;
+    if (listingsModelFilter !== 'all' && getModelType(l) !== listingsModelFilter) return false;
+    if (listingsRadius === 'local' && !isWithin2Hr(l.location)) return false;
     return true;
   });
-  filtered.sort((a,b) => a.price - b.price);
+  filtered.sort((a,b) => {
+    if (listingsSort === 'price-desc') return b.price - a.price;
+    if (listingsSort === 'km-asc') return parseInt((a.km||'0').replace(/,/g,'')) - parseInt((b.km||'0').replace(/,/g,''));
+    if (listingsSort === 'year-desc') return b.year - a.year;
+    return a.price - b.price; // price-asc default
+  });
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:32px;color:var(--muted);font-size:14px">No listings match the current filters. Try expanding the radius or changing the brand/type filter.</td></tr>`;
+    return;
+  }
   filtered.forEach(l => {
     const key = listingKey(l);
     const isStarred = starred.has(key);
@@ -2277,7 +2350,10 @@ function renderListings() {
     const valueIcon = l.value === 'great' ? '🟢 Great Deal' : l.value === 'good' ? '🟡 Good Price' : '🔴 Fair/Stretched';
     const brandColors = {genesis:'var(--genesis)',audi:'var(--audi)',bmw:'var(--bmw)',porsche:'var(--porsche)',mercedes:'var(--mercedes)',volvo:'#4d85b8',lexus:'var(--lexus)'};
     const dot = `<div style="display:inline-block;width:8px;height:8px;background:${brandColors[l.brand]||'#ccc'};border-radius:50%;margin-right:6px"></div>`;
-    const linkCell = l.url ? `<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 10px;background:#1a2a3a;color:#60a5fa;border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap" title="Search AutoTrader / Kijiji for this listing">🔗 View</a>` : '<span style="color:var(--muted);font-size:11px">—</span>';
+    const isSpecific = isSpecificListing(l.url);
+    const linkCell = l.url
+      ? `<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 10px;background:#1a2a3a;color:${isSpecific ? '#60a5fa' : '#a78bfa'};border:1px solid #2a3a50;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap" title="${isSpecific ? 'View this specific listing' : 'Search results page (not a direct listing link)'}">${isSpecific ? '🔗 View' : '🔍 Search'}</a>`
+      : '<span style="color:var(--muted);font-size:11px">—</span>';
     const starCell = `<button class="star-btn${isStarred ? ' starred' : ''}" data-key="${key}" onclick="toggleStar('${key}', this)" title="${isStarred ? 'Remove from Watchlist' : 'Add to Watchlist'}">${isStarred ? '⭐' : '☆'}</button>`;
     tbody.innerHTML += `<tr class="listing-row${isStarred ? ' is-starred' : ''}" data-brand="${l.brand}" data-type="${l.type}">
       <td data-label="Model">${dot}<strong>${l.model}</strong></td>
