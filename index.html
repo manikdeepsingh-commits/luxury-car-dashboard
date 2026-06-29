@@ -270,7 +270,7 @@
   <h1>Ottawa Luxury Car <span>Buyer's Dashboard</span> 2026</h1>
   <p>Personalized research · 9 shortlisted models · Budget up to $70,000 CAD · 📍 Ottawa area (≤2hr) default — expandable</p>
   <div class="header-meta">
-    <div class="meta-chip" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.5);color:#FFD700;font-weight:700;">🕐 Last updated: <strong>28 June 2026 — 11:23 PM</strong></div>
+    <div class="meta-chip" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.5);color:#FFD700;font-weight:700;">🕐 Last updated: <strong>28 June 2026 — 11:27 PM</strong></div>
     <div class="meta-chip">📍 <strong>Ottawa, ON</strong> — 4–5 hr radius</div>
     <div class="meta-chip">💰 Budget: <strong>Up to $70,000 CAD</strong></div>
     <div class="meta-chip">📅 <strong>2022+</strong> model years</div>
@@ -2269,7 +2269,7 @@ let listingsBrandFilter = 'all', listingsTypeFilter = 'all', listingsModelFilter
 const MODEL_OPTIONS = {
   mercedes: [{val:'all',label:'All Models'},{val:'glc',label:'GLC'},{val:'gle',label:'GLE'},{val:'eclass',label:'E-Class'}],
   bmw:      [{val:'all',label:'All Models'},{val:'5series',label:'5 Series'},{val:'x5',label:'X5'},{val:'x6',label:'X6'}],
-  audi:     [{val:'all',label:'All Models'},{val:'q8',label:'Q8'}],
+  audi:     [{val:'all',label:'All Models'},{val:'q8',label:'Q8'},{val:'a8',label:'A8 L'}],
   porsche:  [{val:'all',label:'All Models'},{val:'cayenne',label:'Cayenne'}],
 };
 
@@ -2286,7 +2286,10 @@ function getModelType(l) {
     return '5series';
   }
   if (l.brand === 'porsche') return 'cayenne';
-  if (l.brand === 'audi') return 'q8';
+  if (l.brand === 'audi') {
+    if (m.includes('a8')) return 'a8';
+    return 'q8';
+  }
   return 'other';
 }
 
